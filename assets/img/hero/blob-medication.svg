@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Abstract illustration representing medication management">
+  <defs>
+    <linearGradient id="bg-m" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF7F0"/>
+      <stop offset="1" stop-color="#ECE3D2"/>
+    </linearGradient>
+    <radialGradient id="glow-m" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6E8265" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#6E8265" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bg-m)" rx="20"/>
+
+  <!-- Soft sage glow -->
+  <circle cx="200" cy="200" r="190" fill="url(#glow-m)"/>
+
+  <!-- Large capsule, abstract -->
+  <g transform="translate(200 200) rotate(-25)">
+    <!-- Top half (terracotta) -->
+    <path d="M-90 -28 A28 28 0 0 1 -90 -28 L90 -28 A28 28 0 0 1 90 0 L-90 0 Z" fill="#07abce"/>
+    <!-- Bottom half (cream) -->
+    <path d="M-90 0 L90 0 A28 28 0 0 1 90 28 L-90 28 A28 28 0 0 1 -90 0 Z" fill="#F4F9FB" stroke="#D9CFBF" stroke-width="1.5"/>
+    <!-- Highlights -->
+    <ellipse cx="-40" cy="-18" rx="22" ry="5" fill="#F4F9FB" opacity="0.4"/>
+    <ellipse cx="40" cy="18" rx="22" ry="5" fill="#FFFFFF" opacity="0.6"/>
+  </g>
+
+  <!-- Smaller capsule -->
+  <g transform="translate(110 110) rotate(35)">
+    <path d="M-32 -10 L32 -10 L32 10 L-32 10 Z" fill="#6E8265"/>
+    <circle cx="-22" cy="0" r="10" fill="#4F5F49"/>
+    <circle cx="22" cy="0" r="10" fill="#93A488"/>
+  </g>
+
+  <!-- Tiny pill -->
+  <g transform="translate(310 290) rotate(15)">
+    <path d="M-18 -6 L18 -6 L18 6 L-18 6 Z" fill="#C9A24E"/>
+  </g>
+
+  <!-- Decorative dots -->
+  <circle cx="60" cy="60" r="4" fill="#07abce" opacity="0.6"/>
+  <circle cx="350" cy="80" r="5" fill="#6E8265" opacity="0.6"/>
+  <circle cx="80" cy="330" r="3" fill="#C9A24E" opacity="0.7"/>
+  <circle cx="340" cy="350" r="6" fill="#E5C9BD"/>
+</svg>

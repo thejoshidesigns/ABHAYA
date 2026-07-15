@@ -1,32 +1,41 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-.output
-.vinxi
-.tanstack/**
-.nitro
-*.local
-
-# Wrangler / Cloudflare
-.wrangler/
-.dev.vars
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# OS / editor noise
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude local state (per-machine, not part of the site)
+.claude/settings.local.json
+.claude/launch.json.bak
+
+# Local node (if anyone adds tooling later)
+node_modules/
+.npm/
+.cache/
+
+# Don't ignore .claude/ entirely — launch.json is shared team config.
+# Only the per-machine settings.local.json is excluded above.
+
+# Generated / build artifacts (none yet, but reserve the slots)
+dist/
+build/
+*.log
+.env
+.env.local
+
+# Planning / working documents (kept locally, not in the repo)
+*.docx
+*.pdf
+Abhaya-Website-Plan-Client-Review.html
+Abhaya-Website-Plan-GoogleDoc.txt
+"ABHAYA BEHAVIORAL HEALTH - WEBSITE PLAN.docx"
+"Website Plan draft.pdf"
+.claude/skills/
+
+# Internal smoke tests (v2 system test page, etc.)
+v2-system.html
+v2-*.html

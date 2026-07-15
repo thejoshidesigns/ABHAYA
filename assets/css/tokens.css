@@ -1,0 +1,162 @@
+/* =========================================================================
+   Abhaya Behavioral Health — Design Tokens V2
+   Teal + lime-green brand identity matching logo
+   ========================================================================= */
+
+:root {
+  /* ---------- Color: Brand palette ---------- */
+  --color-cream:           #F4F9FB;   /* primary background — cool teal-white */
+  --color-cream-deep:      #E6F2F7;   /* alt background, cards */
+  --color-cream-soft:      #F9FCFD;   /* lightest background, modals */
+  --color-paper:           #FFFFFF;   /* card surface */
+
+  /* Primary: teal #07abce */
+  --color-primary:         #07abce;   /* primary brand, CTA fill */
+  --color-primary-deep:    #069ab9;   /* CTA hover (10% darker) */
+  --color-primary-darker:  #0689a5;   /* 20% darker */
+  --color-primary-soft:    #c7e8f1;   /* tints, hairlines */
+  --color-primary-glow:    #4ac5e4;   /* gradient accent */
+
+  /* Accent: lime-green #bbd639 (logo leaves) */
+  --color-accent:          #bbd639;   /* secondary accent */
+  --color-accent-deep:     #a8c133;   /* 10% darker */
+  --color-accent-darker:   #96ab2e;   /* 20% darker */
+  --color-accent-soft:     #e6efb5;   /* accent tints */
+  --color-accent-glow:     #c9de61;   /* gradient accent */
+
+  /* Sage: kept as tertiary neutral green */
+  --color-sage:            #5b9ca8;   /* tertiary, muted teal-blue */
+  --color-sage-deep:       #3f7a85;   /* heading on cream */
+  --color-sage-soft:       #c2dfe5;   /* sage tints */
+  --color-sage-glow:       #80bbc7;   /* gradient accent */
+
+  /* Gold: laurel/sun motif accent */
+  --color-gold:            #C9A24E;
+  --color-gold-soft:       #E8D9A8;
+
+  /* Text */
+  --color-ink:             #2a3a40;   /* body text — cool dark charcoal */
+  --color-ink-soft:        #4e6370;   /* secondary text */
+  --color-ink-deep:        #1a252a;   /* deepest footer / contrast surface */
+
+  /* Borders/lines */
+  --color-line:            #c8dde4;   /* hairline dividers */
+  --color-line-soft:       #daedf3;
+
+  /* Crisis */
+  --color-crisis:          #8E2D2D;
+  --color-crisis-deep:     #6B1F1F;
+  --color-crisis-ink:      #F4F9FB;
+
+  /* Semantic */
+  --color-error:           #9E2A2A;
+  --color-success:         #3f7a85;   /* sage-deep */
+  --color-focus:           #07abce;   /* focus ring = primary teal */
+
+  /* Section alt background */
+  --color-section-alt:     #EBF5F9;   /* slightly deeper teal tint */
+
+  /* ---------- Gradients ---------- */
+  --gradient-warm:      linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-deep) 50%, var(--color-primary-soft) 100%);
+  --gradient-primary:   linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-deep) 100%);
+  --gradient-accent:    linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+  --gradient-crisis:    linear-gradient(135deg, var(--color-crisis) 0%, var(--color-crisis-deep) 100%);
+  --gradient-cream-fade: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-deep) 100%);
+
+  /* ---------- Typography ---------- */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                  Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+
+  /* Fluid type scale */
+  --fs-xs:      0.8125rem;
+  --fs-sm:      0.9375rem;
+  --fs-base:    1.0625rem;
+  --fs-md:      1.1875rem;
+  --fs-lg:      clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  --fs-xl:      clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  --fs-2xl:     clamp(1.875rem, 1.3rem + 2.4vw, 3rem);
+  --fs-3xl:     clamp(2.25rem, 1.4rem + 3.5vw, 4rem);
+  --fs-display: clamp(2.5rem, 1.5rem + 4.5vw, 4.5rem);
+  --fs-display-xl: clamp(3rem, 1.5rem + 6vw, 5.75rem);
+
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-base:    1.65;
+  --lh-loose:   1.8;
+  --lh-display: 1.05;
+
+  --tracking-eyebrow: 0.12em;
+  --tracking-tight:   -0.015em;
+  --tracking-display: -0.025em;
+
+  /* ---------- Spacing (8pt scale) ---------- */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.5rem;
+  --space-6:   2rem;
+  --space-7:   2.5rem;
+  --space-8:   3rem;
+  --space-9:   4rem;
+  --space-10:  5rem;
+  --space-11:  6rem;
+  --space-12:  8rem;
+
+  --section-y: clamp(3rem, 8vw, 6rem);
+
+  /* ---------- Layout ---------- */
+  --container:    1200px;
+  --container-sm: 920px;
+  --content:      68ch;
+  --gutter:       clamp(1rem, 3vw, 1.5rem);
+
+  /* ---------- Radii ---------- */
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-sm: 0 1px 2px rgba(7, 171, 206, 0.06);
+  --shadow:    0 4px 16px rgba(7, 171, 206, 0.09);
+  --shadow-md: 0 8px 32px rgba(7, 171, 206, 0.12);
+  --shadow-lg: 0 16px 48px rgba(7, 171, 206, 0.16);
+
+  /* ---------- Borders ---------- */
+  --border:        1px solid var(--color-line);
+  --border-strong: 1px solid var(--color-cream-deep);
+  --border-sage:   1px solid var(--color-sage-soft);
+
+  /* ---------- Motion ---------- */
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast:    150ms;
+  --dur:         250ms;
+  --dur-slow:    400ms;
+  --dur-slower:  700ms;
+  --stagger:     60ms;
+
+  /* ---------- z-index ---------- */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   2000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur:      0ms;
+    --dur-slow: 0ms;
+  }
+}

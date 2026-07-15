@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract illustration of a person seated in a chair in a calm, sunlit room">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF7F0"/>
+      <stop offset="1" stop-color="#ECE3D2"/>
+    </linearGradient>
+    <linearGradient id="chair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8E3F2C"/>
+      <stop offset="1" stop-color="#6E3022"/>
+    </linearGradient>
+    <linearGradient id="plant" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#93A488"/>
+      <stop offset="1" stop-color="#4F5F49"/>
+    </linearGradient>
+    <linearGradient id="figure" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#07abce"/>
+      <stop offset="1" stop-color="#07abce"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8D9A8"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="750" fill="url(#bg)"/>
+
+  <!-- Window light on the wall -->
+  <rect x="60" y="80" width="180" height="280" rx="8" fill="#F4F9FB" opacity="0.55"/>
+  <line x1="150" y1="80" x2="150" y2="360" stroke="#ECE3D2" stroke-width="2"/>
+  <line x1="60" y1="220" x2="240" y2="220" stroke="#ECE3D2" stroke-width="2"/>
+
+  <!-- Sun glow upper right -->
+  <circle cx="500" cy="160" r="160" fill="url(#sun)"/>
+  <circle cx="500" cy="160" r="44" fill="#C9A24E" opacity="0.6"/>
+
+  <!-- Floor -->
+  <rect x="0" y="580" width="600" height="170" fill="#E5C9BD" opacity="0.45"/>
+
+  <!-- Plant -->
+  <g>
+    <!-- Pot -->
+    <path d="M70 540 L100 540 L96 600 L74 600 Z" fill="#07abce" opacity="0.85"/>
+    <ellipse cx="85" cy="540" rx="15" ry="4" fill="#8E3F2C"/>
+    <!-- Leaves -->
+    <path d="M85 540 Q70 470 50 430 Q80 450 90 510" fill="url(#plant)"/>
+    <path d="M85 540 Q95 460 110 410 Q105 470 95 525" fill="url(#plant)" opacity="0.92"/>
+    <path d="M85 540 Q80 480 75 440 Q90 470 92 530" fill="#6E8265" opacity="0.85"/>
+  </g>
+
+  <!-- Chair (large abstract) -->
+  <g>
+    <!-- Back rest -->
+    <rect x="260" y="220" width="220" height="280" rx="32" fill="url(#chair)"/>
+    <!-- Seat -->
+    <rect x="240" y="450" width="260" height="80" rx="20" fill="#8E3F2C"/>
+    <!-- Legs -->
+    <rect x="260" y="530" width="10" height="100" fill="#5C2A1E"/>
+    <rect x="470" y="530" width="10" height="100" fill="#5C2A1E"/>
+  </g>
+
+  <!-- Figure seated, abstract -->
+  <g>
+    <!-- Body / torso (terracotta curve) -->
+    <path d="M310 460 Q310 360 370 350 Q430 360 430 460 Z" fill="url(#figure)"/>
+    <!-- Shoulders -->
+    <ellipse cx="370" cy="360" rx="68" ry="18" fill="#07abce"/>
+    <!-- Head (warm gold) -->
+    <circle cx="370" cy="305" r="42" fill="#C9A24E"/>
+    <!-- Hair / dark cap suggestion -->
+    <path d="M328 305 Q330 268 370 264 Q410 268 412 305 Q405 290 370 290 Q335 290 328 305 Z" fill="#2B2520"/>
+    <!-- Arm resting -->
+    <path d="M310 400 Q280 420 290 470" stroke="url(#figure)" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <!-- Legs (terracotta) -->
+    <rect x="320" y="460" width="38" height="100" rx="14" fill="#8E3F2C"/>
+    <rect x="382" y="460" width="38" height="100" rx="14" fill="#8E3F2C"/>
+  </g>
+
+  <!-- Small side table with book -->
+  <g>
+    <rect x="500" y="510" width="80" height="10" rx="2" fill="#4F5F49" opacity="0.7"/>
+    <rect x="510" y="520" width="6" height="60" fill="#4F5F49" opacity="0.7"/>
+    <rect x="566" y="520" width="6" height="60" fill="#4F5F49" opacity="0.7"/>
+    <rect x="514" y="495" width="50" height="14" rx="2" fill="#07abce" opacity="0.85"/>
+    <rect x="518" y="498" width="42" height="2" fill="#F4F9FB" opacity="0.6"/>
+  </g>
+
+  <!-- Floating decorative dots -->
+  <circle cx="100" cy="350" r="5" fill="#C9A24E" opacity="0.6"/>
+  <circle cx="540" cy="380" r="4" fill="#6E8265" opacity="0.55"/>
+  <circle cx="160" cy="640" r="3" fill="#07abce" opacity="0.5"/>
+  <circle cx="470" cy="650" r="6" fill="#E8D9A8" opacity="0.7"/>
+</svg>

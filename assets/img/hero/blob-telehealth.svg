@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Abstract illustration representing telepsychiatry">
+  <defs>
+    <linearGradient id="bg-v" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF7F0"/>
+      <stop offset="1" stop-color="#ECE3D2"/>
+    </linearGradient>
+    <radialGradient id="glow-v" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#07abce" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#07abce" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bg-v)" rx="20"/>
+
+  <!-- Soft glow -->
+  <circle cx="200" cy="200" r="180" fill="url(#glow-v)"/>
+
+  <!-- Phone / device frame -->
+  <g transform="translate(200 200)">
+    <!-- Outer phone body -->
+    <rect x="-65" y="-110" width="130" height="220" rx="22" fill="#2B2520"/>
+    <!-- Screen -->
+    <rect x="-56" y="-98" width="112" height="196" rx="14" fill="#FBF7F0"/>
+    <!-- Top notch -->
+    <rect x="-12" y="-94" width="24" height="6" rx="3" fill="#2B2520"/>
+
+    <!-- Person silhouette on screen -->
+    <circle cx="0" cy="-30" r="28" fill="#C9A24E"/>
+    <path d="M-40 60 Q-40 5 0 0 Q40 5 40 60 Z" fill="#07abce"/>
+    <!-- Small waveform / connection lines -->
+    <path d="M-44 80 L-30 80 L-26 70 L-20 90 L-14 76 L-8 86 L0 78 L8 86 L14 76 L20 90 L26 70 L30 80 L44 80"
+          stroke="#6E8265" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Side buttons -->
+    <rect x="-68" y="-60" width="3" height="20" rx="1" fill="#1F1A16"/>
+    <rect x="-68" y="-30" width="3" height="30" rx="1" fill="#1F1A16"/>
+    <rect x="65" y="-50" width="3" height="36" rx="1" fill="#1F1A16"/>
+  </g>
+
+  <!-- Signal / wifi arcs -->
+  <g stroke="#6E8265" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M70 200 Q55 200 50 215"/>
+    <path d="M62 185 Q40 185 32 210"/>
+    <path d="M54 170 Q26 170 14 205"/>
+  </g>
+
+  <!-- Decorative dots -->
+  <circle cx="60" cy="80" r="5" fill="#C9A24E" opacity="0.7"/>
+  <circle cx="350" cy="320" r="6" fill="#6E8265" opacity="0.6"/>
+  <circle cx="340" cy="60" r="3" fill="#07abce" opacity="0.6"/>
+</svg>

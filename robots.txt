@@ -1,0 +1,15 @@
+# robots.txt — Abhaya Behavioral Health
+# https://www.abhayabh.com/
+
+User-agent: *
+Allow: /
+
+# Block the 404 page and any WordPress legacy paths that may be crawled.
+Disallow: /404.html
+Disallow: /hello-world/
+Disallow: /sample-page/
+Disallow: /offerings/
+Disallow: /contact/
+Disallow: /post-*/
+
+Sitemap: https://www.abhayabh.com/sitemap.xml
