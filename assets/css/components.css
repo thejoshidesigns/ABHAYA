@@ -2027,3 +2027,88 @@
   font-size: var(--fs-sm);
   color: var(--color-ink-soft);
 }
+/* ---------- Insurance carousel (infinite scroll with arrows) ---------- */
+.insurance-carousel {
+  position: relative;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+.insurance-carousel__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.insurance-carousel__viewport::-webkit-scrollbar { display: none; }
+.insurance-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding: 0.5rem 0;
+  width: max-content;
+  list-style: none;
+  margin: 0;
+}
+.insurance-carousel__slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 8rem;
+  height: 3rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+.insurance-carousel__slide:hover { opacity: 1; }
+.insurance-carousel__slide img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.insurance-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
+  background: #fff;
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  z-index: 2;
+}
+.insurance-carousel__btn:hover {
+  background: var(--color-teal, #07abce);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(7,171,206,0.28);
+}
+.insurance-carousel__btn:focus-visible {
+  outline: 2px solid var(--color-teal, #07abce);
+  outline-offset: 2px;
+}
+.insurance-carousel__btn--prev { left: 0; }
+.insurance-carousel__btn--next { right: 0; }
+.insurance-carousel__btn svg { width: 1rem; height: 1rem; }
+
+@media (max-width: 560px) {
+  .insurance-carousel { padding: 0 2.5rem; }
+  .insurance-carousel__btn { width: 2.2rem; height: 2.2rem; }
+}
