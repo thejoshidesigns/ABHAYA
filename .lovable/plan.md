@@ -1,56 +1,62 @@
+## Goal
 
-## What I can do (all of it, with one caveat)
+Bring About, Services (index + 3 detail pages), Conditions, Insurance, FAQ, Contact, Intake, Accessibility, Privacy, and 404 in line with the home page — same hero rhythm, same cards, same spacing, same accent usage — without changing any copy or business content.
 
-This is a static multi-page site (plain HTML + vanilla JS, no SPA router). Every item on your list is doable except **Page Transitions** in the strict SPA sense — without a router, "route change" transitions can only be faked as an outgoing fade + link navigation (browser then loads the next page fresh). The overlay-wipe variant works well this way; a true GSAP Flip shared-element morph across pages does not, because the DOM is discarded on navigation.
+## What's inconsistent today
 
-Verdict: **10 of 11 fully, 1 partially.**
+Reviewed every page against the home page. The building blocks (header, footer, buttons, fonts) already match. The drift is in **section-level patterns**:
 
-| # | Effect | Status | Where I'll apply it |
-|---|---|---|---|
-| 1 | Subtle button/card hover (lift + fade, 150ms) | Full | All `.btn`, nav links, small chips, icon tiles |
-| 2 | Standard card hover (scale + shadow, 250ms) | Full | Service cards, condition cards, insurance tiles, testimonials |
-| 3 | Magnetic / 3D tilt hover | Full | Hero visual panel + hero primary CTA only |
-| 4 | Subtle scroll fade-in | Full | Section intros, eyebrows, headings (replaces current CSS reveal) |
-| 5 | Staggered slide-up on scroll | Full | Services grid, insurance strip, why-us items, conditions chips |
-| 6 | Scroll pinning / scrollytelling | Full | Home "Why Abhaya" 3-step section (pin + step through) |
-| 7 | Staggered list/grid entrance | Full | Conditions chips, FAQ items, footer columns |
-| 8 | Bento wave stagger (scale + back.out) | Full | Home services dark grid, services/index cards |
-| 9 | Page transitions | **Partial** — outgoing fade + overlay wipe on link click; no shared-element morph across pages |
-| 10 | Background parallax (scrub) | Full | Hero blobs, section blobs, footer accent |
-| 11 | Skeleton shimmer + morphing spinner loader | Full | Intake form submit state, contact form submit state |
+- **Hero pattern.** Home uses a big serif headline with the *italic accent word* in warm-gold color (e.g. "healthier"). Insurance, Accessibility, and Contact follow this. About, Services, Services detail, Conditions, FAQ, and Intake use plain-ink headlines with no accent word — feels flatter.
+- **Hero visual.** About / Services / Services detail have a large chair illustration on the right. Conditions / Insurance / FAQ / Accessibility / Contact leave the right side empty, so the hero looks unbalanced and the eyebrow floats. Needs a consistent lightweight decorative treatment (soft blob accent) for pages without a real hero image.
+- **Eyebrow.** Home uses `WHY ABHAYA` / `WHAT WE OFFER` (no leading dash). Subpages use `—— SERVICE`, `—— ABOUT THE PRACTICE` with a leading dash. Pick one — standardize on the home style.
+- **Card styling.** Services index uses `.soft-card` (rounded, soft blue, icon + title + copy + CTA). Contact uses similar cards but with different padding. Conditions uses bordered "condition-card". FAQ uses a plain bulleted list. Insurance carousel tiles use their own style. Standardize on the `.soft-card` shape (radius, padding, shadow, icon chip) and a lighter "list-card" variant for text-heavy grids.
+- **Section rhythm.** Home sections use `padding: clamp(5rem,10vw,8rem) 0` and a consistent eyebrow → h2 → lede → grid rhythm. Some subpages use tighter padding and skip the eyebrow.
+- **Image sizing.** The chair illustration renders at very different aspect ratios on About vs. Services vs. Medication. Cap it inside a `.page-hero__media` frame with a fixed max width and aspect ratio.
 
-## How I'll build it
+## What I'll change
 
-1. **Add GSAP via CDN** in every HTML page (`gsap.min.js` + `ScrollTrigger`). ~35 KB gz, no build step needed.
-2. **New file `assets/js/motion-gsap.js`** — one module that:
-   - Reads `prefers-reduced-motion` and no-ops if set.
-   - Auto-wires behaviors from data attributes so pages stay declarative:
-     - `data-hover="subtle" | "card" | "magnetic"`
-     - `data-reveal="fade" | "slide-up"` (upgrades existing markup)
-     - `data-stagger="list" | "bento"`
-     - `data-parallax="0.15"` (speed)
-     - `data-pin` (for the scrollytelling section)
-     - `data-transition-link` on `<a>` (outgoing fade before navigation)
-   - Provides a small `Loader` helper (`shimmer`, `dots`) used by intake/contact JS.
-3. **Retire the overlapping bits of `assets/js/motion.js` / `reveal.js`** for reveals & parallax to avoid double-animating. Keep marquee, counter, header-mode, split-text there.
-4. **Sprinkle data-attributes** onto the existing markup — no structural HTML changes, no restyle. Cards keep their look; hover just adds motion.
-5. **Scrollytelling pin** on the home "Why Abhaya" section: pin the media column, advance the 3 numbered items as the user scrolls. Falls back to normal stacked layout under reduced-motion or narrow viewport (<900px).
-6. **Page transition**: intercept same-origin `<a>` clicks, run a 220ms teal overlay wipe + main fade-out, then `location.href = href`. Incoming page fades main in on load. No history hacks, no SPA.
-7. **Loader states** on intake/contact submit: swap button label for a 3-dot GSAP timeline; render skeleton shimmer rows if a section is awaiting data (currently only submit → success, so mainly the dots spinner).
+Purely presentation — CSS classes and small markup swaps. No copy edits, no route changes, no JS changes.
 
-## Scope guardrails
+### 1. Introduce shared page-level primitives (in `assets/css/pages.css`)
 
-- Motion only. No copy, layout, palette, or component-structure changes.
-- All effects gated by `prefers-reduced-motion: reduce`.
-- Magnetic tilt only on fine pointers (desktop), never on touch.
-- Pinning only on ≥900px viewports.
+```
+.page-hero              // two-column hero: text left, media right
+.page-hero__eyebrow     // matches home eyebrow (no dash, teal, tracked)
+.page-hero__title       // serif clamp(2.4rem, 5vw, 4rem)
+.page-hero__title em    // italic accent word, warm-gold color
+.page-hero__lede        // 1.05rem, muted ink, max 36ch
+.page-hero__media       // aspect-ratio 4/3, max-width 30rem, soft cream frame
+.page-hero__decor       // for pages with no hero image: subtle blob + circle mark, matches Why section
 
-## Files touched
+.section                // vertical rhythm wrapper, clamp(5rem,10vw,8rem) padding
+.section__head          // eyebrow + h2 + lede stack, max 44rem, left-aligned
+.section__grid--3       // 3-col responsive grid, gap 2rem, using .soft-card children
+.section__grid--2       // 2-col responsive grid
 
-- New: `assets/js/motion-gsap.js`
-- Edited: every `.html` file — add GSAP CDN + `motion-gsap.js` script tags, add data attributes to existing hero/cards/sections
-- Edited: `assets/js/motion.js` — remove reveal + parallax responsibilities (kept elsewhere)
-- Edited: `assets/js/intake.js`, `assets/js/contact.js` — hook submit → loader helper
-- Edited: `assets/css/motion.css` — add `.loader-dot`, `.skeleton`, `.page-wipe` styles
+.list-card              // text-heavy card: cream bg, 1.5rem radius, 1.75rem padding, hover lift
+```
 
-Want me to build all 11 as scoped, or trim (e.g. skip scrollytelling pin or page-transition wipe)?
+### 2. Migrate each page to those primitives
+
+For each page I'll:
+1. Wrap the hero in `.page-hero` and normalize eyebrow / title / lede.
+2. Add `<em>` on one word in the headline where an italic accent fits (Conditions → "mental health", Services → "your life", FAQ → "first visit", About → "being seen", Intake → "first visit").
+3. Replace bespoke cards with `.soft-card` or `.list-card` — same padding, radius, shadow, hover.
+4. Wrap major content blocks in `.section` + `.section__head` for the same rhythm as home.
+5. For pages with no real hero image, drop in `.page-hero__decor` (the same simplified circle-mark visual used in the Why section) so the hero never looks empty.
+6. Cap the chair illustration to a single size on About / Services / Medication.
+
+### 3. Pages touched
+
+- `about.html`, `services/index.html`, `services/medication.html`, `services/psychotherapy.html`, `services/telepsychiatry.html`, `conditions.html`, `insurance.html`, `faq.html`, `contact.html`, `intake.html`, `accessibility.html`, `privacy.html`, `404.html`.
+
+### 4. Not changing
+
+- Header, footer, nav, buttons — already consistent.
+- Copy and content order.
+- The insurance logo marquee, stats band, home hero mock, or Why section — all recently approved.
+- Any JS (intake form, nav, motion, stats).
+
+## Deliverable
+
+After the pass, every page will read like a chapter of the same book: same hero silhouette, same accent color usage, same card shape, same section spacing. I'll take before/after screenshots of the 6 most-visible pages (About, Services, Medication, Conditions, Insurance, FAQ, Contact) and share them so you can confirm before I move on to the legal/utility pages.
