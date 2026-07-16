@@ -139,10 +139,7 @@
       else submitBtn.textContent = 'Submitting…';
     }
 
-    // Endpoint configuration:
-    //   action="https://formspree.io/f/XXXXXXX" - replace with real endpoint
-    //   For static demo, we simulate success so the form is testable.
-    setTimeout(() => {
+    const showSuccess = () => {
       form.style.display = 'none';
       document.querySelector('.intake__progress')?.style.setProperty('display', 'none');
       if (success) {
@@ -150,7 +147,41 @@
         success.setAttribute('aria-live', 'polite');
         success.focus();
       }
-    }, 800);
+    };
+
+    const originalLabel = submitBtn ? submitBtn.textContent : '';
+    const accessKey = (form.querySelector('input[name="access_key"]') || {}).value || '';
+    const endpoint = form.getAttribute('action') || '';
+    const useLive = endpoint.includes('web3forms.com') && accessKey && !/REPLACE_WITH/i.test(accessKey);
+
+    if (!useLive) {
+      setTimeout(showSuccess, 800);
+      return;
+    }
+
+    const data = new FormData(form);
+    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then((r) => r.json().catch(() => ({})))
+      .then((res) => {
+        if (res && res.success) {
+          showSuccess();
+        } else {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
+            submitBtn.textContent = originalLabel;
+          }
+          alert((res && res.message) || 'Sorry, something went wrong. Please try again or call the office.');
+        }
+      })
+      .catch(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
+          submitBtn.textContent = originalLabel;
+        }
+        alert('Network error. Please try again or call the office.');
+      });
   });
 
   // Initialize

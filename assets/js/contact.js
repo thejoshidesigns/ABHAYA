@@ -74,23 +74,48 @@
       return;
     }
 
-    // Endpoint configuration:
-    //   Replace action="https://formspree.io/f/XXXXXXX" with your real endpoint
-    //   OR use a mailto: fallback by uncommenting the mailto branch below.
-    // For this static build, we simulate success in-browser so the form is
-    // fully testable without a live endpoint.
-
     submitBtn.disabled = true;
+    const originalLabel = submitBtn.textContent;
     if (window.LoaderDots) window.LoaderDots.attach(submitBtn);
     else submitBtn.textContent = 'Sending…';
 
-    setTimeout(() => {
+    const showSuccess = () => {
       form.style.display = 'none';
       if (success) {
         success.removeAttribute('hidden');
         success.setAttribute('aria-live', 'polite');
         success.focus();
       }
-    }, 600);
+    };
+
+    const accessKey = (form.querySelector('input[name="access_key"]') || {}).value || '';
+    const endpoint = form.getAttribute('action') || '';
+    const useLive = endpoint.includes('web3forms.com') && accessKey && !/REPLACE_WITH/i.test(accessKey);
+
+    if (!useLive) {
+      // No live key configured yet - simulate for local/dev.
+      setTimeout(showSuccess, 600);
+      return;
+    }
+
+    const data = new FormData(form);
+    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then((r) => r.json().catch(() => ({})))
+      .then((res) => {
+        if (res && res.success) {
+          showSuccess();
+        } else {
+          submitBtn.disabled = false;
+          if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
+          submitBtn.textContent = originalLabel;
+          alert((res && res.message) || 'Sorry, something went wrong. Please try again or call the office.');
+        }
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
+        submitBtn.textContent = originalLabel;
+        alert('Network error. Please try again or call the office.');
+      });
   });
 })();
