@@ -468,11 +468,18 @@
 /* --- Unified hero: any .hero-editorial without a media child spans full width --- */
 .hero-editorial__inner:not(:has(.hero-editorial__media)) {
   grid-template-columns: 1fr !important;
-  max-width: 62rem;
+  max-width: 68rem;
 }
 .hero-editorial__inner:not(:has(.hero-editorial__media)) .hero-editorial__copy {
-  max-width: 44ch;
+  max-width: none;
 }
+.hero-editorial__inner:not(:has(.hero-editorial__media)) .hero-editorial__title {
+  max-width: 20ch;
+}
+.hero-editorial__inner:not(:has(.hero-editorial__media)) .hero-editorial__sub {
+  max-width: 60ch;
+}
+
 
 /* --- Unified hero media frame (About / Services / Services detail) --- */
 .hero-editorial__media {
