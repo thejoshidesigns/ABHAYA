@@ -4,6 +4,7 @@
   "description": "Abhaya Behavioral Health — static site",
   "scripts": {
     "build": "node build.js",
+    "build:dev": "node build.js",
     "start": "npx http-server dist -c-1 --silent",
     "dev": "npx http-server . -c-1"
   },
