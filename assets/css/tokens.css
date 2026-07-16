@@ -1,11 +1,11 @@
 /* =========================================================================
-   Abhaya Behavioral Health — Design Tokens V2
+   Abhaya Behavioral Health - Design Tokens V2
    Teal + lime-green brand identity matching logo
    ========================================================================= */
 
 :root {
   /* ---------- Color: Brand palette ---------- */
-  --color-cream:           #F4F9FB;   /* primary background — cool teal-white */
+  --color-cream:           #F4F9FB;   /* primary background - cool teal-white */
   --color-cream-deep:      #E6F2F7;   /* alt background, cards */
   --color-cream-soft:      #F9FCFD;   /* lightest background, modals */
   --color-paper:           #FFFFFF;   /* card surface */
@@ -35,7 +35,7 @@
   --color-gold-soft:       #E8D9A8;
 
   /* Text */
-  --color-ink:             #2a3a40;   /* body text — cool dark charcoal */
+  --color-ink:             #2a3a40;   /* body text - cool dark charcoal */
   --color-ink-soft:        #4e6370;   /* secondary text */
   --color-ink-deep:        #1a252a;   /* deepest footer / contrast surface */
 

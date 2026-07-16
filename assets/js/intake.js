@@ -1,5 +1,5 @@
 /* =========================================================================
-   intake.js — multi-step intake form
+   intake.js - multi-step intake form
    Steps: 1 About you | 2 Reason for visit | 3 Insurance & logistics
           4 Consent & submit
    ========================================================================= */
@@ -140,7 +140,7 @@
     }
 
     // Endpoint configuration:
-    //   action="https://formspree.io/f/XXXXXXX" — replace with real endpoint
+    //   action="https://formspree.io/f/XXXXXXX" - replace with real endpoint
     //   For static demo, we simulate success so the form is testable.
     setTimeout(() => {
       form.style.display = 'none';

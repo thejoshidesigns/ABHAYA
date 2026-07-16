@@ -1,5 +1,5 @@
 /* =========================================================================
-   reveal.js — IntersectionObserver fade-in, respects prefers-reduced-motion
+   reveal.js - IntersectionObserver fade-in, respects prefers-reduced-motion
    ========================================================================= */
 (function () {
   'use strict';

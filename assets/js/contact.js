@@ -1,5 +1,5 @@
 /* =========================================================================
-   contact.js — contact form validation
+   contact.js - contact form validation
    ========================================================================= */
 (function () {
   'use strict';
