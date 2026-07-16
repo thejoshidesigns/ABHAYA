@@ -81,7 +81,8 @@
     // fully testable without a live endpoint.
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+    if (window.LoaderDots) window.LoaderDots.attach(submitBtn);
+    else submitBtn.textContent = 'Sending…';
 
     setTimeout(() => {
       form.style.display = 'none';
