@@ -148,20 +148,6 @@
           <a href="intake.html" class="btn-pill btn-pill--primary">Schedule consultation</a>
           <a href="services/index.html" class="btn-pill btn-pill--outline">Our services</a>
         </div>
-        <div class="hero-glow__stats">
-          <div class="hero-glow__stat">
-            <div class="hero-glow__stat-num">12+</div>
-            <div class="hero-glow__stat-label">Years of clinical practice</div>
-          </div>
-          <div class="hero-glow__stat">
-            <div class="hero-glow__stat-num">4.9/5</div>
-            <div class="hero-glow__stat-label">Patient satisfaction</div>
-          </div>
-          <div class="hero-glow__stat">
-            <div class="hero-glow__stat-num">24h</div>
-            <div class="hero-glow__stat-label">Initial response time</div>
-          </div>
-        </div>
       </div>
 
       <div class="hero-glow__media" aria-hidden="true">
@@ -203,6 +189,33 @@
       </div>
     </div>
   </section>
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section class="stats-band" aria-label="Practice highlights">
+    <div class="stats-band__inner">
+      <div class="stats-band__item" data-stat data-target="12" data-suffix="+">
+        <div class="stats-band__num"><span class="stats-band__value">0</span><span class="stats-band__suffix">+</span></div>
+        <div class="stats-band__label">Years of clinical practice</div>
+      </div>
+      <div class="stats-band__divider" aria-hidden="true"></div>
+      <div class="stats-band__item" data-stat data-target="4.9" data-decimals="1" data-suffix="/5">
+        <div class="stats-band__num"><span class="stats-band__value">0.0</span><span class="stats-band__suffix">/5</span></div>
+        <div class="stats-band__label">Patient satisfaction</div>
+      </div>
+      <div class="stats-band__divider" aria-hidden="true"></div>
+      <div class="stats-band__item" data-stat data-target="24" data-suffix="h">
+        <div class="stats-band__num"><span class="stats-band__value">0</span><span class="stats-band__suffix">h</span></div>
+        <div class="stats-band__label">Initial response time</div>
+      </div>
+      <div class="stats-band__divider" aria-hidden="true"></div>
+      <div class="stats-band__item" data-stat data-target="2000" data-suffix="+">
+        <div class="stats-band__num"><span class="stats-band__value">0</span><span class="stats-band__suffix">+</span></div>
+        <div class="stats-band__label">Patients cared for</div>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- ===================== INSURANCE STRIP ===================== -->
   <div class="insurance-strip">
@@ -473,6 +486,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/motion-gsap.js" defer></script>
 <script src="assets/js/insurance-carousel.js" defer></script>
+<script src="assets/js/stats-band.js" defer></script>
 
 </body>
 </html>
