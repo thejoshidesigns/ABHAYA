@@ -52,14 +52,19 @@
       viewport.scrollTo({ left: target, behavior: 'smooth' });
     }
 
-    // Arrow buttons — stop auto-scroll permanently once the user takes control
+    // Arrow buttons — step manually (auto-scroll resumes when cursor leaves)
     var prev = root.querySelector('.insurance-carousel__btn--prev');
     var next = root.querySelector('.insurance-carousel__btn--next');
-    function userControl(dir) { paused = true; step(dir); }
-    if (prev) prev.addEventListener('click', function () { userControl(-1); });
-    if (next) next.addEventListener('click', function () { userControl(1); });
+    if (prev) prev.addEventListener('click', function () { step(-1); });
+    if (next) next.addEventListener('click', function () { step(1); });
 
-    // Auto-scroll continues on hover/focus; only arrow clicks pause it.
+    // Pause on hover / focus / touch
+    ['pointerenter', 'focusin', 'touchstart'].forEach(function (ev) {
+      root.addEventListener(ev, function () { paused = true; }, { passive: true });
+    });
+    ['pointerleave', 'focusout', 'touchend'].forEach(function (ev) {
+      root.addEventListener(ev, function () { paused = false; }, { passive: true });
+    });
 
     // Pause when off-screen (perf)
     if ('IntersectionObserver' in window) {
