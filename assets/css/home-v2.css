@@ -1,0 +1,463 @@
+/* =========================================================================
+   Home v2 — Clinical Organic Split
+   Locked tokens: teal #07abce + lime #bbd639 on cream #F4F9FB / #E6F2F7
+   Type: Syne (display) + Plus Jakarta Sans (body)
+   ========================================================================= */
+
+/* ---------- Split hero ---------- */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: calc(100vh - 88px);
+  background: var(--color-cream);
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .hero-split { grid-template-columns: 1fr 1fr; }
+}
+
+.hero-split__copy {
+  display: flex;
+  align-items: center;
+  padding: clamp(2.5rem, 6vw, 6rem) clamp(1.25rem, 5vw, 6rem);
+  background: var(--color-cream);
+}
+
+.hero-split__inner { max-width: 36rem; }
+
+.hero-split__badge {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-accent) 22%, transparent);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 2rem;
+}
+
+.hero-split__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-bottom: 1.25rem;
+}
+
+.hero-split__title .accent { color: var(--color-primary); }
+
+.hero-split__sub {
+  font-size: clamp(1.05rem, 1.15vw, 1.2rem);
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-ink) 78%, transparent);
+  margin-bottom: 2.5rem;
+}
+
+.hero-split__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 2.25rem;
+  border-radius: 1.15rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              background var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+  border: 2px solid transparent;
+  text-align: center;
+}
+
+.btn-pill--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-pill--primary:hover,
+.btn-pill--primary:focus-visible {
+  box-shadow: 0 12px 32px -8px color-mix(in oklab, var(--color-primary) 45%, transparent);
+  transform: translateY(-1px);
+}
+
+.btn-pill--ghost {
+  background: #fff;
+  border-color: var(--color-cream-deep);
+  color: var(--color-ink);
+}
+.btn-pill--ghost:hover,
+.btn-pill--ghost:focus-visible {
+  border-color: var(--color-primary);
+}
+
+/* Media panel */
+.hero-split__media {
+  position: relative;
+  background: var(--color-cream-deep);
+  min-height: 32rem;
+  overflow: hidden;
+}
+
+.hero-split__figure {
+  position: absolute;
+  inset: 2rem;
+  border-radius: 3rem;
+  background:
+    radial-gradient(circle at 30% 25%, color-mix(in oklab, var(--color-primary) 30%, transparent) 0%, transparent 55%),
+    linear-gradient(160deg, color-mix(in oklab, var(--color-primary) 18%, var(--color-cream)) 0%,
+                            color-mix(in oklab, var(--color-accent) 22%, var(--color-cream-deep)) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 30px 60px -20px color-mix(in oklab, var(--color-primary) 25%, transparent);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .hero-split__figure { inset: 3rem; border-radius: 4rem; }
+}
+
+.hero-split__figure img {
+  width: 78%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(7, 171, 206, 0.18));
+}
+
+.hero-split__card {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  max-width: 19rem;
+  padding: 1.6rem 1.8rem;
+  background: color-mix(in oklab, #fff 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 40px -15px rgba(7, 171, 206, 0.25);
+}
+
+.hero-split__card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+}
+
+.hero-split__card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+}
+
+/* ---------- Insurance strip ---------- */
+.insurance-strip {
+  background: #fff;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--color-cream-deep);
+}
+.insurance-strip__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: color-mix(in oklab, var(--color-ink) 40%, transparent);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.insurance-strip__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 5rem);
+  opacity: 0.55;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Why us ---------- */
+.why-section { padding: clamp(4rem, 8vw, 6rem) 0; background: var(--color-cream); }
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+  max-width: 76rem;
+  margin: 0 auto;
+}
+@media (min-width: 900px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+
+.why-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -0.015em;
+}
+
+.why-list { display: flex; flex-direction: column; gap: 2rem; list-style: none; padding: 0; margin: 0; }
+.why-item { display: flex; gap: 1.4rem; }
+
+.why-num {
+  flex-shrink: 0;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.why-num--lime  { background: var(--color-accent); color: var(--color-ink); }
+.why-num--teal  { background: var(--color-primary); }
+.why-num--sage  { background: var(--color-sage-deep); }
+
+.why-item h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+  color: var(--color-ink);
+}
+.why-item p { color: color-mix(in oklab, var(--color-ink) 72%, transparent); line-height: 1.6; }
+
+.why-media {
+  border-radius: 2.5rem;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background:
+    radial-gradient(circle at 70% 30%, color-mix(in oklab, var(--color-accent) 35%, transparent) 0%, transparent 60%),
+    linear-gradient(140deg, var(--color-cream-deep), color-mix(in oklab, var(--color-primary) 15%, var(--color-cream)));
+  display: grid;
+  place-items: center;
+  box-shadow: 0 20px 50px -20px color-mix(in oklab, var(--color-primary) 20%, transparent);
+}
+.why-media svg { width: 55%; opacity: 0.85; }
+
+/* ---------- Services dark grid ---------- */
+.services-dark {
+  background: var(--color-ink);
+  color: #fff;
+  padding: clamp(4rem, 8vw, 6rem) 0;
+}
+.services-dark__head { max-width: 76rem; margin: 0 auto 3.5rem; padding-inline: var(--gutter); }
+.services-dark h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: #fff;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.015em;
+}
+.services-dark__lede {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.1rem;
+  max-width: 32rem;
+}
+.services-grid {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 2rem;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.service-card:hover,
+.service-card:focus-visible {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+}
+.service-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: #fff;
+  margin-bottom: 0.9rem;
+}
+.service-card p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  flex: 1;
+}
+.service-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.service-card--soon {
+  background: transparent;
+  border: 2px dashed rgba(255, 255, 255, 0.22);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.6rem;
+}
+.service-card--soon:hover { background: transparent; transform: none; border-color: rgba(255,255,255,0.35); }
+.service-card--soon h3 { color: rgba(255,255,255,0.35); margin: 0; }
+.service-card--soon .badge {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---------- Conditions inline strip ---------- */
+.conditions-band { padding: clamp(3.5rem, 6vw, 5rem) 0; background: var(--color-cream); }
+.conditions-head { text-align: center; max-width: 40rem; margin: 0 auto 2.5rem; }
+.conditions-head h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+.conditions-head p { color: color-mix(in oklab, var(--color-ink) 72%, transparent); }
+.conditions-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  max-width: 68rem;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+.conditions-chips a {
+  display: inline-block;
+  padding: 0.7rem 1.15rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--color-cream-deep);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.conditions-chips a:hover,
+.conditions-chips a:focus-visible {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* ---------- CTA + crisis ---------- */
+.cta-close {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: var(--color-cream);
+}
+.cta-close__inner {
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+  padding-inline: var(--gutter);
+}
+.cta-close h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 1.08;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+}
+.cta-close h2 .accent { color: var(--color-primary); }
+
+.cta-close__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.15rem 2.75rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 16px 34px -12px color-mix(in oklab, var(--color-primary) 45%, transparent);
+  transition: transform var(--dur) var(--ease-spring);
+  margin-bottom: 3rem;
+}
+.cta-close__btn:hover,
+.cta-close__btn:focus-visible { transform: scale(1.04); }
+
+.cta-close__crisis {
+  margin-top: 1rem;
+  padding: 2rem 1.75rem;
+  border-radius: 1.5rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  max-width: 44rem;
+  margin-inline: auto;
+}
+.cta-close__crisis-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #b91c1c;
+  margin-bottom: 0.7rem;
+}
+.cta-close__crisis-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #ef4444;
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.cta-close__crisis p {
+  color: color-mix(in oklab, #7f1d1d 82%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.cta-close__crisis strong { color: #b91c1c; font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-close__crisis-dot { animation: none; }
+}
