@@ -1572,17 +1572,33 @@
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
   background: var(--color-cream-deep);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   font-size: var(--fs-xs);
   font-weight: var(--fw-semi);
   color: var(--color-sage-deep);
   letter-spacing: 0.04em;
+  cursor: default;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .creds-ribbon__item::before {
   content: "✓";
   color: var(--color-sage);
   font-weight: var(--fw-bold);
+  transition: color 0.25s ease;
+}
+
+.creds-ribbon__item:hover {
+  background: color-mix(in oklab, var(--color-accent) 22%, var(--color-paper));
+  border-color: color-mix(in oklab, var(--color-accent-deep) 55%, transparent);
+  color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -14px color-mix(in oklab, var(--color-accent-darker) 60%, transparent);
+}
+
+.creds-ribbon__item:hover::before {
+  color: var(--color-accent-darker);
 }
 
 /* ---------- Affiliations strip (about) ---------- */
