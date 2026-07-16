@@ -40,13 +40,18 @@
 }
 
 .hero-split__title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-family: 'Fraunces', 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.85rem, 5.8vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   color: var(--color-ink);
   margin-bottom: 1.25rem;
+}
+
+.hero-split__title .accent {
+  font-style: italic;
+  font-weight: 400;
 }
 
 .hero-split__title .accent { color: var(--color-primary); }
