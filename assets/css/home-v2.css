@@ -791,8 +791,8 @@
   width: 3rem;
   height: 3rem;
   border-radius: 1rem;
-  background: var(--color-cream-deep);
-  color: var(--color-primary);
+  background: color-mix(in oklab, var(--color-accent) 22%, var(--color-paper));
+  color: var(--color-accent-darker);
   display: grid;
   place-items: center;
   margin-bottom: 1.4rem;
@@ -801,9 +801,10 @@
 .soft-card__icon svg { width: 1.4rem; height: 1.4rem; }
 .soft-card:hover .soft-card__icon,
 .soft-card:focus-visible .soft-card__icon {
-  background: var(--color-primary);
+  background: var(--color-accent);
   color: #fff;
 }
+
 .soft-card h3 {
   font-family: var(--font-display);
   font-weight: 600;
