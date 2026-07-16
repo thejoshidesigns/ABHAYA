@@ -1,5 +1,5 @@
 /* =========================================================================
-   nav.js — sticky header, mobile menu, focus trap
+   nav.js - sticky header, mobile menu, focus trap
    ========================================================================= */
 (function () {
   'use strict';

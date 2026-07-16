@@ -1,5 +1,5 @@
 /* =========================================================================
-   Abhaya Behavioral Health — Page-specific styles
+   Abhaya Behavioral Health - Page-specific styles
    ========================================================================= */
 
 /* ---------- Home ---------- */
@@ -289,7 +289,7 @@
   margin-top: var(--space-5);
 }
 
-.signature::before { content: "— "; }
+.signature::before { content: "- "; }
 
 /* ---------- Coming soon: Spravato section ---------- */
 .coming-soon-section {

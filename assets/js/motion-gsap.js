@@ -1,5 +1,5 @@
 /* =========================================================================
-   motion-gsap.js — GSAP micro-interactions & scroll motion
+   motion-gsap.js - GSAP micro-interactions & scroll motion
    Requires: gsap, ScrollTrigger (loaded via CDN before this file)
    All behavior gated by prefers-reduced-motion and pointer capability.
    Auto-wires from selectors + data-attributes so pages stay declarative.
@@ -12,7 +12,7 @@
   var wide = window.matchMedia('(min-width: 900px)').matches;
 
   if (!window.gsap) {
-    // GSAP not loaded — expose no-op loader helper so forms still work
+    // GSAP not loaded - expose no-op loader helper so forms still work
     window.LoaderDots = { attach: function () {}, detach: function () {} };
     return;
   }
@@ -21,7 +21,7 @@
   var ST = window.ScrollTrigger;
 
   // ---------------------------------------------------------------------
-  // 1. Subtle hover — buttons, chips, nav links
+  // 1. Subtle hover - buttons, chips, nav links
   // ---------------------------------------------------------------------
   function initSubtleHover() {
     if (reduce || !finePointer) return;
@@ -40,7 +40,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 2. Standard card hover — service cards, why items, insurance tiles
+  // 2. Standard card hover - service cards, why items, insurance tiles
   // ---------------------------------------------------------------------
   function initCardHover() {
     if (reduce || !finePointer) return;
@@ -69,7 +69,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 3. Magnetic / tilt hover — hero figure + primary CTA
+  // 3. Magnetic / tilt hover - hero figure + primary CTA
   // ---------------------------------------------------------------------
   function initMagnetic() {
     if (reduce || !finePointer) return;
@@ -97,7 +97,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 4/5. Scroll reveals — fade + slide-up (upgrades existing [data-reveal])
+  // 4/5. Scroll reveals - fade + slide-up (upgrades existing [data-reveal])
   // ---------------------------------------------------------------------
   function initScrollReveals() {
     if (!ST) return;
@@ -107,7 +107,7 @@
       });
       return;
     }
-    // Take over the visual reveal — mark handled so motion.css doesn't double-run
+    // Take over the visual reveal - mark handled so motion.css doesn't double-run
     var els = document.querySelectorAll('[data-reveal], .reveal');
     els.forEach(function (el) {
       // Skip if inside a stagger container (handled below)
@@ -168,7 +168,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 7. Background parallax — blobs + hero figure
+  // 7. Background parallax - blobs + hero figure
   // ---------------------------------------------------------------------
   function initParallax() {
     if (reduce || !ST) return;
@@ -189,7 +189,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 8. Scrollytelling pin — opt-in via [data-pin]
+  // 8. Scrollytelling pin - opt-in via [data-pin]
   // ---------------------------------------------------------------------
   function initPin() {
     if (reduce || !ST || !wide) return;
@@ -204,7 +204,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 9. Page transitions — outgoing fade + teal overlay wipe
+  // 9. Page transitions - outgoing fade + teal overlay wipe
   // ---------------------------------------------------------------------
   function initPageTransition() {
     if (reduce) return;
@@ -242,7 +242,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // 10. Loader helper — dots + shimmer (used by intake/contact submits)
+  // 10. Loader helper - dots + shimmer (used by intake/contact submits)
   // ---------------------------------------------------------------------
   window.LoaderDots = {
     attach: function (btn) {

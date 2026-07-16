@@ -1,5 +1,5 @@
 /* =========================================================================
-   motion.js — Reveal, SplitText, Parallax, Marquee, Counter, Tilt, HeaderMode
+   motion.js - Reveal, SplitText, Parallax, Marquee, Counter, Tilt, HeaderMode
    Vanilla JS, IntersectionObserver + rAF. No dependencies.
    All behaviors gated by prefers-reduced-motion.
    ========================================================================= */
