@@ -6,7 +6,11 @@
     "build": "node build.js",
     "build:dev": "node build.js",
     "start": "npx http-server dist -c-1 --silent",
-    "dev": "npx http-server . -c-1"
+    "dev": "npx http-server . -c-1",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   },
   "private": true
 }
