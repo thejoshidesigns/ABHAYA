@@ -2,7 +2,15 @@ const fs = require("fs");
 const path = require("path");
 
 const DIST = path.join(__dirname, "dist");
-const EXCLUDE = new Set(["dist", "node_modules", ".claude", ".git", "build.js", "package.json", "package-lock.json", ".env", ".gitignore"]);
+const EXCLUDE = new Set([
+  // Build tooling & dev-only artifacts (must NOT ship to GoDaddy public_html)
+  "dist", "node_modules", ".claude", ".git", ".github", ".lovable", ".prettierrc", ".prettierignore",
+  "build.js", "package.json", "package-lock.json", "bun.lock", ".env", ".gitignore",
+  // TanStack template leftovers (source-only, not runtime)
+  "src",
+  // Unreferenced stray source assets at repo root
+  "Untitled.png", "logo.jpeg", "Logo yellow.svg",
+]);
 
 function copyDir(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
