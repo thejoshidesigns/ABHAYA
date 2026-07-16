@@ -116,25 +116,35 @@
         <p>This list is current as of the most recent contracting. If you don't see your plan here, please contact us - we may still be able to help, or we can talk through self-pay options.</p>
       </div>
 
-      <ul class="insurance-grid reveal" aria-label="Accepted insurance carriers">
-        <li class="insurance-chip">Aetna</li>
-        <li class="insurance-chip">Anthem Blue Cross Blue Shield</li>
-        <li class="insurance-chip">Cigna &amp; Evernorth</li>
-        <li class="insurance-chip">ComPsych</li>
-        <li class="insurance-chip">Confluence Health</li>
-        <li class="insurance-chip">First Health</li>
-        <li class="insurance-chip">Healthlink</li>
-        <li class="insurance-chip">Home State Health (Centene)</li>
-        <li class="insurance-chip">Humana</li>
-        <li class="insurance-chip">Magellan</li>
-        <li class="insurance-chip">Medicaid (Missouri)</li>
-        <li class="insurance-chip">Medicare</li>
-        <li class="insurance-chip">MultiPlan</li>
-        <li class="insurance-chip">Optum / United Behavioral Health</li>
-        <li class="insurance-chip">Tricare</li>
-        <li class="insurance-chip">UHC / UnitedHealthcare</li>
-        <li class="insurance-chip">UMR</li>
-      </ul>
+      <div class="insurance-carousel reveal" data-speed="0.35" aria-roledescription="carousel" aria-label="Accepted insurance carriers">
+        <button type="button" class="insurance-carousel__btn insurance-carousel__btn--prev" aria-label="Previous logos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="insurance-carousel__viewport">
+          <ul class="insurance-carousel__track">
+            <li class="insurance-carousel__slide">Aetna</li>
+            <li class="insurance-carousel__slide">Anthem Blue Cross Blue Shield</li>
+            <li class="insurance-carousel__slide">Cigna &amp; Evernorth</li>
+            <li class="insurance-carousel__slide">ComPsych</li>
+            <li class="insurance-carousel__slide">Confluence Health</li>
+            <li class="insurance-carousel__slide">First Health</li>
+            <li class="insurance-carousel__slide">Healthlink</li>
+            <li class="insurance-carousel__slide">Home State Health (Centene)</li>
+            <li class="insurance-carousel__slide">Humana</li>
+            <li class="insurance-carousel__slide">Magellan</li>
+            <li class="insurance-carousel__slide">Medicaid (Missouri)</li>
+            <li class="insurance-carousel__slide">Medicare</li>
+            <li class="insurance-carousel__slide">MultiPlan</li>
+            <li class="insurance-carousel__slide">Optum / United Behavioral Health</li>
+            <li class="insurance-carousel__slide">Tricare</li>
+            <li class="insurance-carousel__slide">UHC / UnitedHealthcare</li>
+            <li class="insurance-carousel__slide">UMR</li>
+          </ul>
+        </div>
+        <button type="button" class="insurance-carousel__btn insurance-carousel__btn--next" aria-label="Next logos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
 
       <p class="insurance-note reveal">Don't see your plan? Reach out - we're adding new contracts regularly, and out-of-network benefits may also apply.</p>
 
