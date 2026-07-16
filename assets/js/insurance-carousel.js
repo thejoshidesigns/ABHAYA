@@ -1,7 +1,8 @@
 /* =========================================================================
-   insurance-carousel.js - Infinite auto-scrolling logo carousel with arrows
-   Auto-inits any element with .insurance-carousel that contains a
-   .insurance-carousel__track holding the slides.
+   insurance-carousel.js — continuous right-to-left logo scroll.
+   - Runs constantly via requestAnimationFrame.
+   - Pauses ONLY while the mouse is hovering the logo strip (viewport).
+   - Left/right arrows nudge by one slide; auto-scroll resumes on mouseleave.
    ========================================================================= */
 (function () {
   'use strict';
@@ -12,26 +13,26 @@
     var track = root.querySelector('.insurance-carousel__track');
     if (!viewport || !track) return;
 
-    // Duplicate slides for seamless loop
-    var originals = Array.from(track.children);
-    if (!originals.length) return;
-    originals.forEach(function (node) {
+    // Duplicate slides for a seamless loop
+    Array.from(track.children).forEach(function (node) {
       var clone = node.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       track.appendChild(clone);
     });
 
-    var speed = parseFloat(root.dataset.speed || '0.5'); // px per frame
-    var paused = false;
+    var speed = parseFloat(root.dataset.speed || '0.5'); // px per frame (~30 px/s)
+    var hovering = false;
     var rafId = null;
+    var visible = true;
 
     function halfWidth() { return track.scrollWidth / 2; }
 
     function tick() {
-      if (!paused && !reduce) {
+      if (!hovering && !reduce && visible) {
         viewport.scrollLeft += speed;
-        if (viewport.scrollLeft >= halfWidth()) {
-          viewport.scrollLeft -= halfWidth();
+        var hw = halfWidth();
+        if (hw > 0 && viewport.scrollLeft >= hw) {
+          viewport.scrollLeft -= hw;
         }
       }
       rafId = requestAnimationFrame(tick);
@@ -39,49 +40,34 @@
 
     function step(dir) {
       var slide = track.children[0];
-      var w = slide ? slide.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') : 200;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') || 0;
+      var w = slide ? slide.getBoundingClientRect().width + gap : 160;
       var target = viewport.scrollLeft + dir * w;
-      // wrap
-      if (target < 0) {
-        viewport.scrollLeft += halfWidth();
-        target += halfWidth();
-      } else if (target >= halfWidth()) {
-        viewport.scrollLeft -= halfWidth();
-        target -= halfWidth();
-      }
+      var hw = halfWidth();
+      if (target < 0) target += hw;
+      else if (target >= hw) target -= hw;
       viewport.scrollTo({ left: target, behavior: 'smooth' });
     }
 
-    // Arrow buttons — step manually (auto-scroll resumes when cursor leaves)
+    // Arrows just nudge — they do not permanently stop the scroll
     var prev = root.querySelector('.insurance-carousel__btn--prev');
     var next = root.querySelector('.insurance-carousel__btn--next');
     if (prev) prev.addEventListener('click', function () { step(-1); });
     if (next) next.addEventListener('click', function () { step(1); });
 
-    // Pause on hover / focus / touch
-    ['pointerenter', 'focusin', 'touchstart'].forEach(function (ev) {
-      root.addEventListener(ev, function () { paused = true; }, { passive: true });
-    });
-    ['pointerleave', 'focusout', 'touchend'].forEach(function (ev) {
-      root.addEventListener(ev, function () { paused = false; }, { passive: true });
-    });
+    // Pause ONLY when the pointer is actually over the logo strip
+    viewport.addEventListener('mouseenter', function () { hovering = true; });
+    viewport.addEventListener('mouseleave', function () { hovering = false; });
 
-    // Pause when off-screen (perf)
+    // Off-screen perf gate
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            if (!rafId) rafId = requestAnimationFrame(tick);
-          } else if (rafId) {
-            cancelAnimationFrame(rafId);
-            rafId = null;
-          }
-        });
-      });
+        entries.forEach(function (e) { visible = e.isIntersecting; });
+      }, { threshold: 0 });
       io.observe(root);
-    } else {
-      rafId = requestAnimationFrame(tick);
     }
+
+    rafId = requestAnimationFrame(tick);
   }
 
   function boot() {
