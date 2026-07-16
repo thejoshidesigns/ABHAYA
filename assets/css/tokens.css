@@ -64,7 +64,7 @@
   --gradient-cream-fade: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-deep) 100%);
 
   /* ---------- Typography ---------- */
-  --font-display: "Syne", "Fraunces", Georgia, serif;
+  --font-display: "Fraunces", "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-body:    "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont,
                   "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
