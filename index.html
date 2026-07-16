@@ -25,13 +25,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&display=swap" />
 
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
   <link rel="stylesheet" href="assets/css/motion.css" />
+  <link rel="stylesheet" href="assets/css/home-v2.css" />
 
   <!-- LocalBusiness + MedicalClinic schema -->
   <script type="application/ld+json">
@@ -129,270 +130,154 @@
 
 <main id="main">
 
-  <!-- ===================== EDITORIAL HERO ===================== -->
-  <section class="hero-editorial grain" aria-labelledby="hero-title">
-    <div class="blob blob--terra" data-parallax data-parallax-speed="0.35" style="width: 520px; height: 520px; top: -140px; right: -140px;" aria-hidden="true"></div>
-    <div class="blob blob--sage" data-parallax data-parallax-speed="0.2" style="width: 360px; height: 360px; bottom: -100px; left: -80px;" aria-hidden="true"></div>
-    <div class="container">
-      <div class="hero-editorial__inner">
-        <div class="hero-editorial__copy">
-          <span class="hero-editorial__eyebrow">Columbia &amp; Osage Beach, Missouri</span>
-          <h1 id="hero-title" class="hero-editorial__title" data-split-text="words">Mental wellness, with <em>you</em> at the center.</h1>
-          <p class="hero-editorial__sub">Personalized psychiatry and supportive psychotherapy for adolescents and adults. Compassionate, evidence-based, and grounded in who you are, in person or by secure video.</p>
-          <div class="hero-editorial__cta">
-            <a href="intake.html" class="btn btn--primary btn--lg">Request an appointment</a>
-            <a href="tel:+15734033544" class="btn btn--ghost btn--lg">Call (573) 403-3544</a>
-          </div>
+  <!-- ===================== SPLIT HERO ===================== -->
+  <section class="hero-split" aria-labelledby="hero-title">
+    <div class="hero-split__copy">
+      <div class="hero-split__inner reveal" data-reveal>
+        <span class="hero-split__badge">Now accepting new patients</span>
+        <h1 id="hero-title" class="hero-split__title">
+          Find your <span class="accent">balance</span> &amp; peace.
+        </h1>
+        <p class="hero-split__sub">
+          Personalized psychiatry and supportive psychotherapy for adolescents and adults in Columbia and Osage Beach, Missouri &mdash; in person or by secure video.
+        </p>
+        <div class="hero-split__cta">
+          <a href="intake.html" class="btn-pill btn-pill--primary">Start intake</a>
+          <a href="services/index.html" class="btn-pill btn-pill--ghost">View services</a>
         </div>
-        <div class="hero-editorial__media" aria-hidden="true">
-          <div class="illustration" data-parallax data-parallax-speed="0.12">
-            <img src="assets/img/hero/hero-figure.svg" alt="" width="600" height="750" />
-          </div>
+      </div>
+    </div>
+    <div class="hero-split__media" aria-hidden="true">
+      <div class="hero-split__figure">
+        <img src="assets/img/hero/hero-figure.svg" alt="" width="600" height="750" />
+      </div>
+      <div class="hero-split__card">
+        <p class="hero-split__card-title">Board-certified psychiatry</p>
+        <p>Whole-person care led by Dr. Swarnatha Yerrapu &mdash; thoughtful, evidence-based, and grounded in who you are.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INSURANCE STRIP ===================== -->
+  <div class="insurance-strip">
+    <div class="container">
+      <p class="insurance-strip__label">In-network with major insurers</p>
+      <div class="insurance-strip__row">
+        <span>AETNA</span>
+        <span>BCBS</span>
+        <span>CIGNA</span>
+        <span>MEDICARE</span>
+        <span>UHC</span>
+        <span>HUMANA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== WHY US ===================== -->
+  <section class="why-section" aria-labelledby="why-title">
+    <div class="container">
+      <div class="why-grid">
+        <div class="reveal" data-reveal>
+          <span class="eyebrow">Why Abhaya</span>
+          <h2 id="why-title" class="why-title">Rooted in science, focused on you.</h2>
+          <ul class="why-list">
+            <li class="why-item">
+              <div class="why-num why-num--lime">1</div>
+              <div>
+                <h4>Comprehensive assessment</h4>
+                <p>A 60&ndash;75 minute first visit where we get to know your history, lifestyle, and goals &mdash; and build a plan that fits your life.</p>
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-num why-num--teal">2</div>
+              <div>
+                <h4>Integrated care model</h4>
+                <p>Medication management and psychotherapy under one roof, working together toward the same outcomes.</p>
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-num why-num--sage">3</div>
+              <div>
+                <h4>Two locations + telehealth</h4>
+                <p>Columbia and Osage Beach offices, plus secure video across Missouri, so the care fits your schedule.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="why-media reveal" data-reveal aria-hidden="true">
+          <img src="assets/img/hero/blob-therapy.svg" alt="" width="480" height="360" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== CREDENTIALS RIBBON ===================== -->
-  <section aria-label="Credentials">
-    <div class="container">
-      <div class="ribbon reveal" data-reveal>
-        <span class="ribbon__item ribbon__item--terra">Board-certified psychiatrist</span>
-        <span class="ribbon__divider" aria-hidden="true"></span>
-        <span class="ribbon__item">Missouri-licensed</span>
-        <span class="ribbon__divider" aria-hidden="true"></span>
-        <span class="ribbon__item ribbon__item--gold">Telehealth available</span>
-        <span class="ribbon__divider" aria-hidden="true"></span>
-        <span class="ribbon__item">16+ insurers accepted</span>
-      </div>
+  <!-- ===================== SERVICES DARK GRID ===================== -->
+  <section class="services-dark" aria-labelledby="services-title">
+    <div class="services-dark__head reveal" data-reveal>
+      <span class="eyebrow" style="color: var(--color-accent);">Services</span>
+      <h2 id="services-title">Clinical excellence, on your terms.</h2>
+      <p class="services-dark__lede">Specialized interventions across the psychiatric spectrum &mdash; combine any of the three, or let us help you decide.</p>
     </div>
-  </section>
-
-  <!-- ===================== WHY US BENTO ===================== -->
-  <section class="section section-why" aria-labelledby="why-title">
-    <div class="container">
-      <div class="reveal" style="text-align: center; max-width: 640px; margin: 0 auto var(--space-9);">
-        <span class="eyebrow">Why Abhaya</span>
-        <h2 id="why-title">Care that fits the whole person.</h2>
-        <p class="lead">Three things we think make the difference, and that patients tell us matter.</p>
-      </div>
-
-      <div class="bento bento--feature-1 reveal" data-reveal>
-        <article class="bento__tile bento__tile--feature" data-tilt>
-          <span class="bento__chip">Whole-person</span>
-          <svg class="bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-          <h3 class="bento__title">Care that sees the whole person.</h3>
-          <p class="bento__body">We don't separate the mind from the rest of your life. Your story, your relationships, your sleep, your work, your medications. All of it matters, and we work with you on the whole picture.</p>
-          <a href="about.html" class="bento__cta">Meet Dr. Yerrapu</a>
-        </article>
-
-        <article class="bento__tile" data-tilt>
-          <svg class="bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <h3 class="bento__title">Two locations + telehealth.</h3>
-          <p class="bento__body">Columbia and Osage Beach offices, plus secure video across Missouri, so the care fits your life, not the other way around.</p>
-          <a href="contact.html" class="bento__cta">Find us</a>
-        </article>
-
-        <article class="bento__tile bento__tile--sage" data-tilt>
-          <svg class="bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>
-          </svg>
-          <h3 class="bento__title">Most major insurance.</h3>
-          <p class="bento__body">Sixteen carriers accepted, transparent self-pay rates, and a clear Good Faith Estimate. No surprise bills.</p>
-          <a href="insurance.html" class="bento__cta">See insurance</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SERVICES BENTO ===================== -->
-  <section class="section section-services" aria-labelledby="services-title">
-    <div class="container">
-      <div class="reveal" style="text-align: center; max-width: 640px; margin: 0 auto var(--space-9);">
-        <span class="eyebrow">Services</span>
-        <h2 id="services-title">Three ways we can work together.</h2>
-        <p class="lead">Choose one, choose a combination, or let us help you figure out what's right when you call.</p>
-      </div>
-
-      <div class="bento bento--feature-2 reveal" data-reveal>
-        <a href="services/psychotherapy.html" class="bento__tile" data-tilt>
-          <span class="chip-dot chip-dot--terra">Talk therapy</span>
-          <h3 class="bento__title">Supportive psychotherapy</h3>
-          <p class="bento__body">CBT, DBT-informed skills, mindfulness-based approaches, and EMDR-informed trauma work. For adolescents and adults, in person or by video.</p>
-          <span class="bento__cta">Learn more</span>
-        </a>
-
-        <a href="services/medication.html" class="bento__tile" data-tilt>
-          <span class="chip-dot chip-dot--gold">Medication</span>
-          <h3 class="bento__title">Medication management</h3>
-          <p class="bento__body">Psychiatric evaluation and ongoing medication care. Thoughtful, conservative, and always paired with conversation.</p>
-          <span class="bento__cta">Learn more</span>
-        </a>
-
-        <a href="services/telepsychiatry.html" class="bento__tile bento__tile--feature" data-tilt>
-          <span class="bento__chip">From anywhere</span>
-          <h3 class="bento__title">Telepsychiatry</h3>
-          <p class="bento__body">Secure video appointments for therapy and medication management, from anywhere in Missouri. No commute, no waiting room.</p>
-          <span class="bento__cta">Learn more</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== STATS ===================== -->
-  <section class="section" aria-label="Practice facts">
-    <div class="container">
-      <div class="stat-row reveal" data-reveal>
-        <div class="stat">
-          <div class="stat__value stat__value--terra"><span data-counter="16" data-counter-suffix="+">0</span></div>
-          <div class="stat__label">Insurance carriers</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value stat__value--sage"><span data-counter="2">0</span></div>
-          <div class="stat__label">Missouri locations</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value"><span data-counter="12" data-counter-suffix="+">0</span></div>
-          <div class="stat__label">Conditions treated</div>
-        </div>
-        <div class="stat">
-          <div class="stat__value"><span data-counter="3">0</span></div>
-          <div class="stat__label">Service modes</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== INSURANCE MARQUEE ===================== -->
-  <section class="section section--alt" aria-label="Accepted insurance carriers">
-    <div class="container">
-      <div class="reveal" style="text-align: center; margin-bottom: var(--space-7);">
-        <span class="eyebrow">In-network</span>
-        <h2>Most major insurance accepted.</h2>
-        <p class="lead">Sixteen carriers, and a clear self-pay path if yours isn't listed.</p>
-      </div>
-      <div class="marquee reveal" data-marquee-duration="40s" aria-label="Accepted insurance carriers">
-        <div class="marquee__track">
-          <span class="chip">Aetna</span>
-          <span class="chip">Anthem</span>
-          <span class="chip">Ambetter</span>
-          <span class="chip">Blue Cross Blue Shield</span>
-          <span class="chip">CHAMPVA</span>
-          <span class="chip">Cigna</span>
-          <span class="chip">Essence</span>
-          <span class="chip">HealthLink</span>
-          <span class="chip">Healthy Blue</span>
-          <span class="chip">Home State Health</span>
-          <span class="chip">Humana</span>
-          <span class="chip">Medicare</span>
-          <span class="chip">MO HealthNet</span>
-          <span class="chip">Tricare West</span>
-          <span class="chip">UMR</span>
-          <span class="chip">United Healthcare</span>
-        </div>
-      </div>
-      <p class="reveal" style="text-align: center; margin-top: var(--space-6);">
-        <a href="insurance.html" class="btn btn--ghost">See full insurance details →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ===================== TIMELINE / HOW IT WORKS ===================== -->
-  <section class="section" aria-labelledby="how-title">
-    <div class="container">
-      <div class="grid grid--2" style="align-items: start; gap: var(--space-10);">
-        <div class="reveal">
-          <span class="eyebrow">How it works</span>
-          <h2 id="how-title">Three steps to get started.</h2>
-          <p class="lead" style="margin-bottom: var(--space-6);">Whether you need one service or all three, the path looks the same, and it starts when you're ready.</p>
-          <p class="reveal testimonial-mini" data-reveal>
-            <span class="testimonial-mini__quote">"The first call was the hardest. After that, everything got a little easier."</span>
-            <span class="testimonial-mini__attr">A note from a patient, with permission</span>
-          </p>
-        </div>
-
-        <ol class="timeline reveal" data-reveal>
-          <span class="timeline__line" aria-hidden="true"></span>
-          <li class="timeline__item is-active">
-            <span class="timeline__node">01</span>
-            <h3 class="timeline__title">Request an appointment</h3>
-            <p class="timeline__body">Fill out our brief intake form, or call us. We'll confirm details and answer questions before your first visit.</p>
-          </li>
-          <li class="timeline__item">
-            <span class="timeline__node">02</span>
-            <h3 class="timeline__title">First visit</h3>
-            <p class="timeline__body">A 60–75 minute evaluation where we get to know you, your history, and your goals. No pressure, no script.</p>
-          </li>
-          <li class="timeline__item">
-            <span class="timeline__node">03</span>
-            <h3 class="timeline__title">Your plan</h3>
-            <p class="timeline__body">We talk through recommendations together. Therapy, medication, lifestyle, or a combination, and we build a plan that fits your life.</p>
-          </li>
-        </ol>
+    <div class="services-grid reveal" data-reveal>
+      <a href="services/medication.html" class="service-card">
+        <h3>Medication management</h3>
+        <p>Psychiatric evaluation and ongoing medication care &mdash; thoughtful, conservative, always paired with conversation.</p>
+        <span class="service-card__cta">Learn more &rarr;</span>
+      </a>
+      <a href="services/psychotherapy.html" class="service-card">
+        <h3>Psychotherapy</h3>
+        <p>CBT, DBT-informed skills, mindfulness, and EMDR-informed trauma work for adolescents and adults.</p>
+        <span class="service-card__cta">Learn more &rarr;</span>
+      </a>
+      <a href="services/telepsychiatry.html" class="service-card">
+        <h3>Telepsychiatry</h3>
+        <p>Secure, HIPAA-compliant video visits for patients anywhere in Missouri. No commute, no waiting room.</p>
+        <span class="service-card__cta">Learn more &rarr;</span>
+      </a>
+      <div class="service-card service-card--soon" aria-label="Spravato coming soon">
+        <h3>Spravato</h3>
+        <span class="badge">Expanding soon</span>
       </div>
     </div>
   </section>
 
   <!-- ===================== CONDITIONS ===================== -->
-  <section class="section section-conditions" aria-labelledby="conditions-title">
+  <section class="conditions-band" aria-labelledby="conditions-title">
     <div class="container">
-      <div class="reveal" style="text-align: center; max-width: 640px; margin-inline: auto; margin-bottom: var(--space-8);">
+      <div class="conditions-head reveal" data-reveal>
         <span class="eyebrow eyebrow--terracotta">We help with</span>
         <h2 id="conditions-title">A wide range of mental health conditions.</h2>
-        <p class="lead">For adolescents and adults. See the full list with descriptions on our conditions page.</p>
+        <p>For adolescents and adults &mdash; see the full list with descriptions on our conditions page.</p>
       </div>
-
-      <ul class="chips reveal" data-reveal style="justify-content: center;">
-        <li><a class="chip" href="conditions.html#adhd">ADHD</a></li>
-        <li><a class="chip" href="conditions.html#anxiety">Anxiety</a></li>
-        <li><a class="chip" href="conditions.html#bipolar">Bipolar disorder</a></li>
-        <li><a class="chip" href="conditions.html#bpd">Borderline personality disorder</a></li>
-        <li><a class="chip" href="conditions.html#depression">Depression</a></li>
-        <li><a class="chip" href="conditions.html#eating-disorders">Eating disorders</a></li>
-        <li><a class="chip" href="conditions.html#grief">Grief</a></li>
-        <li><a class="chip" href="conditions.html#ocd">OCD</a></li>
-        <li><a class="chip" href="conditions.html#panic">Panic disorder</a></li>
-        <li><a class="chip" href="conditions.html#ptsd">PTSD</a></li>
-        <li><a class="chip" href="conditions.html#schizophrenia">Schizophrenia</a></li>
-        <li><a class="chip" href="conditions.html#substance-use">Substance use</a></li>
-        <li><a class="chip" href="conditions.html">See all →</a></li>
+      <ul class="conditions-chips reveal" data-reveal>
+        <li><a href="conditions.html#adhd">ADHD</a></li>
+        <li><a href="conditions.html#anxiety">Anxiety</a></li>
+        <li><a href="conditions.html#bipolar">Bipolar disorder</a></li>
+        <li><a href="conditions.html#depression">Depression</a></li>
+        <li><a href="conditions.html#ocd">OCD</a></li>
+        <li><a href="conditions.html#panic">Panic disorder</a></li>
+        <li><a href="conditions.html#ptsd">PTSD</a></li>
+        <li><a href="conditions.html#grief">Grief</a></li>
+        <li><a href="conditions.html#eating-disorders">Eating disorders</a></li>
+        <li><a href="conditions.html#substance-use">Substance use</a></li>
+        <li><a href="conditions.html">See all &rarr;</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- ===================== ABOUT SNIPPET ===================== -->
-  <section class="section" aria-labelledby="about-snippet-title">
-    <div class="container">
-      <div class="grid grid--2 home-about reveal" data-reveal>
-        <div class="home-about__media">
-          <img src="assets/img/hero/hero-figure.svg" alt="" width="600" height="750" />
+  <!-- ===================== CTA + CRISIS ===================== -->
+  <section class="cta-close" aria-labelledby="cta-title">
+    <div class="cta-close__inner reveal" data-reveal>
+      <h2 id="cta-title">Your healing starts with a <span class="accent">conversation</span>.</h2>
+      <a href="intake.html" class="cta-close__btn">Request initial consultation</a>
+      <div class="cta-close__crisis" role="note" aria-label="Crisis notice">
+        <div class="cta-close__crisis-tag">
+          <span class="cta-close__crisis-dot" aria-hidden="true"></span>
+          Urgent notice
         </div>
-        <div>
-          <span class="eyebrow">About the practice</span>
-          <h2 id="about-snippet-title">Meet Dr. Swarnatha Yerrapu.</h2>
-          <p class="lead">Abhaya means <em>fearless, without fear</em> in Sanskrit. The name is a quiet reminder that healing often starts when we feel safe enough to be honest, and that the relationship between patient and provider is the foundation of that safety.</p>
-          <p>Dr. Yerrapu is a board-certified psychiatrist providing personalized care for adolescents and adults across Missouri. The practice combines thoughtful medication management with evidence-based therapy, in a setting designed to feel more like a conversation than an appointment.</p>
-          <a href="about.html" class="btn btn--secondary">Read full bio →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== EDITORIAL CTA ===================== -->
-  <section aria-labelledby="cta-title">
-    <div class="container">
-      <div class="cta-editorial reveal" data-reveal>
-        <div class="blob blob--cream" style="width: 500px; height: 500px; top: -150px; left: -150px; opacity: 0.4;" aria-hidden="true"></div>
-        <h2 id="cta-title" class="cta-editorial__title" data-split-text="words">New patients <em>welcome.</em></h2>
-        <p class="cta-editorial__sub">Take the first step. We'll be here when you're ready, and we'll meet you where you are.</p>
-        <div class="cta-editorial__actions">
-          <a href="intake.html" class="btn btn--primary btn--lg">Request an appointment</a>
-          <a href="tel:+15734033544" class="btn btn--secondary btn--lg">Call (573) 403-3544</a>
-        </div>
+        <p>
+          Abhaya Behavioral Health is not a crisis center. If you are experiencing suicidal thoughts or a mental health emergency, please dial <strong>988</strong> or visit your nearest emergency room immediately.
+        </p>
       </div>
     </div>
   </section>
