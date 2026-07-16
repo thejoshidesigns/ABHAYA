@@ -459,3 +459,178 @@
   border-radius: 2em;
   z-index: 1;
 }
+
+/* =========================================================================
+   STANDARDIZATION LAYER (v2)
+   Aligns all subpage heroes, sections, and cards to the home page rhythm.
+   ========================================================================= */
+
+/* --- Unified hero: any .hero-editorial without a media child spans full width --- */
+.hero-editorial__inner:not(:has(.hero-editorial__media)) {
+  grid-template-columns: 1fr !important;
+  max-width: 62rem;
+}
+.hero-editorial__inner:not(:has(.hero-editorial__media)) .hero-editorial__copy {
+  max-width: 44ch;
+}
+
+/* --- Unified hero media frame (About / Services / Services detail) --- */
+.hero-editorial__media {
+  aspect-ratio: 4 / 5;
+  max-width: 30rem;
+  margin-inline: auto;
+  border-radius: 2rem;
+  background: color-mix(in oklab, var(--color-cream-deep) 92%, var(--color-primary) 8%);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--color-primary) 25%, transparent);
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .hero-editorial__media { aspect-ratio: 4 / 5; max-width: 32rem; }
+}
+.hero-editorial__media > img,
+.hero-editorial__media > svg,
+.hero-editorial__media .illustration {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  border-radius: 1.25rem;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* --- Unify hero-service-v2 (medication/therapy/tele) media to same frame --- */
+.hero-service-v2__media {
+  aspect-ratio: 4 / 5;
+  max-width: 30rem;
+  margin-inline: auto;
+  border-radius: 2rem;
+  background: color-mix(in oklab, var(--color-cream-deep) 92%, var(--color-primary) 8%);
+  padding: 1.5rem;
+  box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--color-primary) 25%, transparent);
+  overflow: hidden;
+}
+.hero-service-v2__media > img,
+.hero-service-v2__media > svg {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  border-radius: 1.25rem;
+}
+
+/* --- Migrated legacy .hero .hero--small (insurance / accessibility / privacy)
+       inherits the same look via the .hero-editorial classes below.
+       Kept for any legacy markup left behind. --- */
+.hero.hero--small .hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: var(--fw-regular);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-4);
+}
+.hero.hero--small .hero__title em {
+  font-style: italic;
+  color: var(--color-primary-deep);
+  font-weight: var(--fw-regular);
+}
+.hero.hero--small .hero__sub {
+  font-size: var(--fs-md);
+  color: var(--color-ink-soft);
+  max-width: 44ch;
+  line-height: var(--lh-base);
+  margin-inline: auto;
+}
+.hero.hero--small .hero__inner.hero--center {
+  text-align: left;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+.hero.hero--small .hero__inner.hero--center .hero__copy,
+.hero.hero--small .hero__inner.hero--center .hero__sub {
+  text-align: left;
+  margin-inline: 0;
+}
+.hero.hero--small .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-primary-deep);
+  margin-bottom: var(--space-5);
+}
+.hero.hero--small .eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1.5px;
+  background: var(--color-primary);
+  display: inline-block;
+}
+
+/* --- Standardize conditions bento cards to match soft-card language --- */
+.bento__title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-2);
+}
+
+/* --- FAQ <details> as soft card list to match home card language --- */
+.faq-category details,
+details.faq {
+  background: var(--color-paper);
+  border: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent);
+  border-radius: 1.15rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+  transition: border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
+}
+.faq-category details[open],
+details.faq[open] {
+  border-color: color-mix(in oklab, var(--color-primary) 35%, transparent);
+  box-shadow: 0 20px 40px -24px color-mix(in oklab, var(--color-ink) 30%, transparent);
+}
+.faq-category details > summary,
+details.faq > summary {
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: var(--fw-regular);
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+}
+.faq-category details > summary::-webkit-details-marker,
+details.faq > summary::-webkit-details-marker { display: none; }
+.faq-category details > summary::before,
+details.faq > summary::before {
+  content: "+";
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform var(--dur) var(--ease);
+  display: inline-block;
+  width: 1em;
+}
+.faq-category details[open] > summary::before,
+details.faq[open] > summary::before { content: "\2013"; /* en-dash */ }
+.faq-category details > summary + *,
+details.faq > *:not(summary) {
+  margin-top: 0.9rem;
+  color: var(--color-ink-soft);
+  line-height: var(--lh-base);
+}
+
+/* --- Section head rhythm parity (some pages omit spacing before eyebrow) --- */
+.section__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.section__head .eyebrow { margin-bottom: var(--space-3); }
