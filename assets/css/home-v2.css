@@ -473,7 +473,7 @@
 .hero-glow {
   position: relative;
   background: var(--color-cream);
-  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 6rem);
+  padding: clamp(1rem, 2vw, 1.75rem) 0 clamp(3.5rem, 6vw, 6rem);
   overflow: hidden;
 }
 
