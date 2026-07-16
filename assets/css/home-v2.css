@@ -52,9 +52,8 @@
 .hero-split__title .accent {
   font-style: italic;
   font-weight: 400;
+  color: var(--color-primary);
 }
-
-.hero-split__title .accent { color: var(--color-primary); }
 
 .hero-split__sub {
   font-size: clamp(1.05rem, 1.15vw, 1.2rem);
