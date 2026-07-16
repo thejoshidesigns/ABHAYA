@@ -162,13 +162,25 @@
   <div class="insurance-strip">
     <div class="container">
       <p class="insurance-strip__label">In-network with major insurers</p>
-      <div class="insurance-strip__row">
-        <span>AETNA</span>
-        <span>BCBS</span>
-        <span>CIGNA</span>
-        <span>MEDICARE</span>
-        <span>UHC</span>
-        <span>HUMANA</span>
+      <div class="insurance-carousel" data-speed="0.4" aria-roledescription="carousel" aria-label="Accepted insurance carriers">
+        <button type="button" class="insurance-carousel__btn insurance-carousel__btn--prev" aria-label="Previous logos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="insurance-carousel__viewport">
+          <ul class="insurance-carousel__track">
+            <li class="insurance-carousel__slide">AETNA</li>
+            <li class="insurance-carousel__slide">BCBS</li>
+            <li class="insurance-carousel__slide">CIGNA</li>
+            <li class="insurance-carousel__slide">MEDICARE</li>
+            <li class="insurance-carousel__slide">UHC</li>
+            <li class="insurance-carousel__slide">HUMANA</li>
+            <li class="insurance-carousel__slide">OPTUM</li>
+            <li class="insurance-carousel__slide">TRICARE</li>
+          </ul>
+        </div>
+        <button type="button" class="insurance-carousel__btn insurance-carousel__btn--next" aria-label="Next logos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
     </div>
   </div>
