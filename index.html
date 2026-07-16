@@ -217,32 +217,35 @@
 
 
 
-  <!-- ===================== INSURANCE STRIP ===================== -->
+  <!-- ===================== INSURANCE STRIP (marquee) ===================== -->
   <div class="insurance-strip">
     <div class="container">
       <p class="insurance-strip__label">In-network with major insurers</p>
-      <div class="insurance-carousel" data-speed="0.4" aria-roledescription="carousel" aria-label="Accepted insurance carriers">
-        <button type="button" class="insurance-carousel__btn insurance-carousel__btn--prev" aria-label="Previous logos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <div class="insurance-carousel__viewport">
-          <ul class="insurance-carousel__track">
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Aetna" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Blue Cross Blue Shield" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Cigna" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Medicare" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="UnitedHealthcare" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Humana" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Optum" width="140" height="140" loading="lazy"></li>
-            <li class="insurance-carousel__slide"><img src="assets/img/insurance/placeholder.svg" alt="Tricare" width="140" height="140" loading="lazy"></li>
-          </ul>
+      <div class="logo-marquee" aria-label="Accepted insurance carriers">
+        <div class="logo-marquee__track">
+          <!-- set A -->
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Aetna" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Blue Cross Blue Shield" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Cigna" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Medicare" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="UnitedHealthcare" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Humana" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Optum" loading="lazy"></div>
+          <div class="logo-marquee__item"><img src="assets/img/insurance/placeholder.svg" alt="Tricare" loading="lazy"></div>
+          <!-- set B (duplicate for seamless loop) -->
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
+          <div class="logo-marquee__item" aria-hidden="true"><img src="assets/img/insurance/placeholder.svg" alt="" loading="lazy"></div>
         </div>
-        <button type="button" class="insurance-carousel__btn insurance-carousel__btn--next" aria-label="Next logos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
       </div>
     </div>
   </div>
+
 
   <!-- ===================== WHY US ===================== -->
   <section class="why-section" aria-labelledby="why-title">
