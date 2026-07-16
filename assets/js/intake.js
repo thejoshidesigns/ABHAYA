@@ -135,7 +135,8 @@
     const submitBtn = panels[current].querySelector('[data-intake-submit]');
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting…';
+      if (window.LoaderDots) window.LoaderDots.attach(submitBtn);
+      else submitBtn.textContent = 'Submitting…';
     }
 
     // Endpoint configuration:
