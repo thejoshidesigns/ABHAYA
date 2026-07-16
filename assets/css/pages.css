@@ -581,22 +581,25 @@
 }
 
 /* --- FAQ <details> as soft card list to match home card language --- */
+/* --- FAQ accordion cards to match home card language --- */
+.faq-accordion__item,
 .faq-category details,
 details.faq {
   background: var(--color-paper);
   border: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent);
   border-radius: 1.15rem;
-  padding: 1.25rem 1.5rem;
+  padding: 1.15rem 1.5rem;
   margin-bottom: 0.75rem;
   transition: border-color var(--dur) var(--ease),
-              box-shadow var(--dur) var(--ease),
-              transform var(--dur) var(--ease);
+              box-shadow var(--dur) var(--ease);
 }
+.faq-accordion__item[open],
 .faq-category details[open],
 details.faq[open] {
   border-color: color-mix(in oklab, var(--color-primary) 35%, transparent);
   box-shadow: 0 20px 40px -24px color-mix(in oklab, var(--color-ink) 30%, transparent);
 }
+.faq-accordion__summary,
 .faq-category details > summary,
 details.faq > summary {
   list-style: none;
@@ -610,26 +613,34 @@ details.faq > summary {
   gap: 0.75rem;
   padding: 0;
 }
+.faq-accordion__summary::-webkit-details-marker,
 .faq-category details > summary::-webkit-details-marker,
 details.faq > summary::-webkit-details-marker { display: none; }
+.faq-accordion__summary::marker,
+.faq-category details > summary::marker,
+details.faq > summary::marker { content: ""; }
+.faq-accordion__summary::before,
 .faq-category details > summary::before,
 details.faq > summary::before {
   content: "+";
   color: var(--color-primary);
   font-size: 1.4rem;
   line-height: 1;
-  transition: transform var(--dur) var(--ease);
   display: inline-block;
   width: 1em;
+  flex-shrink: 0;
 }
+.faq-accordion__item[open] .faq-accordion__summary::before,
 .faq-category details[open] > summary::before,
-details.faq[open] > summary::before { content: "\2013"; /* en-dash */ }
+details.faq[open] > summary::before { content: "\2013"; }
+.faq-accordion__body,
 .faq-category details > summary + *,
 details.faq > *:not(summary) {
   margin-top: 0.9rem;
   color: var(--color-ink-soft);
   line-height: var(--lh-base);
 }
+
 
 /* --- Section head rhythm parity (some pages omit spacing before eyebrow) --- */
 .section__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
