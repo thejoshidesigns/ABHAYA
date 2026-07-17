@@ -182,18 +182,18 @@
 .nav__phone svg { color: var(--color-primary); }
 
 .nav__logo-full {
-  height: 96px;
+  height: 192px;
   width: auto;
-  max-width: min(70vw, 420px);
+  max-width: min(80vw, 780px);
   object-fit: contain;
   background: transparent;
   display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 72px; }
+  .nav__logo-full { height: 144px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 56px; max-width: 62vw; }
+  .nav__logo-full { height: 112px; max-width: 72vw; }
 }
 
 /* Hamburger */
