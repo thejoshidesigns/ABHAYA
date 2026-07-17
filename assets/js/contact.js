@@ -93,8 +93,18 @@
     const useLive = endpoint.includes('web3forms.com') && accessKey && !/REPLACE_WITH/i.test(accessKey);
 
     if (!useLive) {
-      // No live key configured yet - simulate for local/dev.
-      setTimeout(showSuccess, 600);
+      const host = window.location.hostname;
+      const isDev = host === 'localhost' || host === '127.0.0.1' || host.endsWith('.lovable.app') || host.endsWith('.lovableproject.com');
+      if (isDev) {
+        // Local/preview only - simulate success so the flow can be tested.
+        setTimeout(showSuccess, 600);
+        return;
+      }
+      // Production without a live key: do NOT fake success.
+      submitBtn.disabled = false;
+      if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
+      submitBtn.textContent = originalLabel;
+      alert('This form is not connected yet. Please email us or call the office directly and we will respond within one business day.');
       return;
     }
 

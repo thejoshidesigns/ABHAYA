@@ -155,7 +155,18 @@
     const useLive = endpoint.includes('web3forms.com') && accessKey && !/REPLACE_WITH/i.test(accessKey);
 
     if (!useLive) {
-      setTimeout(showSuccess, 800);
+      const host = window.location.hostname;
+      const isDev = host === 'localhost' || host === '127.0.0.1' || host.endsWith('.lovable.app') || host.endsWith('.lovableproject.com');
+      if (isDev) {
+        setTimeout(showSuccess, 800);
+        return;
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
+        submitBtn.textContent = originalLabel;
+      }
+      alert('This intake form is not connected yet. Please call the office to book your appointment and we will respond within one business day.');
       return;
     }
 
