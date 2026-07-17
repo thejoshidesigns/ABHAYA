@@ -182,18 +182,18 @@
 .nav__phone svg { color: var(--color-primary); }
 
 .nav__logo-full {
-  height: 180px;
+  height: 96px;
   width: auto;
-  max-width: min(60vw, 520px);
+  max-width: min(70vw, 420px);
   object-fit: contain;
-  mix-blend-mode: multiply;
   background: transparent;
+  display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 130px; }
+  .nav__logo-full { height: 72px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 96px; }
+  .nav__logo-full { height: 56px; max-width: 62vw; }
 }
 
 /* Hamburger */
@@ -233,11 +233,15 @@
 /* Mobile menu drawer */
 .mobile-menu {
   position: fixed;
-  inset: 64px 0 0 0;
+  inset: 0;
   z-index: var(--z-overlay);
   background: var(--color-cream-soft);
   transform: translateX(100%);
   transition: transform var(--dur-slow) var(--ease-out);
+  padding: calc(var(--space-8) + 72px) var(--space-6) var(--space-8);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .mobile-menu[aria-hidden="false"] { transform: translateX(0); }
