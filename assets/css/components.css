@@ -182,19 +182,20 @@
 .nav__phone svg { color: var(--color-primary); }
 
 .nav__logo-full {
-  height: 96px;
+  height: 172px;
   width: auto;
-  max-width: min(60vw, 420px);
+  max-width: min(70vw, 520px);
   object-fit: contain;
   background: transparent;
   display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 72px; }
+  .nav__logo-full { height: 128px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 56px; max-width: 60vw; }
+  .nav__logo-full { height: 96px; max-width: 70vw; }
 }
+
 
 /* Hamburger */
 .nav__toggle {
