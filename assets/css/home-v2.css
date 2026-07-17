@@ -579,18 +579,19 @@
 
 .hero-glow__title {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.6rem, 5.4vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
   color: var(--color-ink);
   margin-bottom: 1.25rem;
 }
 .hero-glow__title em {
   font-style: italic;
   color: var(--color-primary);
-  font-weight: 400;
+  font-weight: var(--fw-regular);
 }
+
 
 .hero-glow__sub {
   font-size: clamp(1rem, 1.1vw, 1.15rem);
