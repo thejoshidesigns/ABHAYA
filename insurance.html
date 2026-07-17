@@ -120,46 +120,72 @@
         <p>This list is current as of the most recent contracting. If you don't see your plan here, please contact us - we may still be able to help, or we can talk through self-pay options.</p>
       </div>
 
-      <div class="logo-marquee reveal" aria-label="Accepted insurance carriers">
-        <div class="logo-marquee__track">
-          <!-- set A -->
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Aetna</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Anthem BCBS</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Cigna &amp; Evernorth</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>ComPsych</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Confluence Health</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>First Health</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Healthlink</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Home State Health</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Humana</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Magellan</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Missouri Medicaid</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Medicare</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>MultiPlan</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Optum / UBH</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>Tricare</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>UnitedHealthcare</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text"><span>UMR</span></div>
-          <!-- set B (duplicate for seamless loop) -->
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Aetna</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Anthem BCBS</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Cigna &amp; Evernorth</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>ComPsych</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Confluence Health</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>First Health</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Healthlink</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Home State Health</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Humana</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Magellan</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Missouri Medicaid</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Medicare</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>MultiPlan</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Optum / UBH</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>Tricare</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>UnitedHealthcare</span></div>
-          <div class="logo-marquee__item logo-marquee__item--text" aria-hidden="true"><span>UMR</span></div>
+      <div class="marquee-wrap reveal">
+        <button type="button" class="marquee-arrow marquee-arrow--prev" aria-label="Previous carriers" data-marquee-prev>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="logo-marquee logo-marquee--cards" aria-label="Accepted insurance carriers" data-marquee>
+          <div class="logo-marquee__track" data-marquee-track>
+            <!-- set A -->
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Aetna</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Anthem BCBS</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Cigna &amp; Evernorth</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>ComPsych</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Confluence Health</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>First Health</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Healthlink</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Home State Health</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Humana</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Magellan</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Missouri Medicaid</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Medicare</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>MultiPlan</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Optum / UBH</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>Tricare</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>UnitedHealthcare</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name"><span>UMR</span></div>
+            <!-- set B (duplicate for seamless loop) -->
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Aetna</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Anthem BCBS</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Cigna &amp; Evernorth</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>ComPsych</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Confluence Health</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>First Health</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Healthlink</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Home State Health</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Humana</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Magellan</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Missouri Medicaid</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Medicare</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>MultiPlan</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Optum / UBH</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>Tricare</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>UnitedHealthcare</span></div>
+            <div class="logo-marquee__item logo-marquee__item--name" aria-hidden="true"><span>UMR</span></div>
+          </div>
         </div>
+        <button type="button" class="marquee-arrow marquee-arrow--next" aria-label="Next carriers" data-marquee-next>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
+
+      <script>
+        (function(){
+          var wrap = document.currentScript.previousElementSibling;
+          var track = wrap.querySelector('[data-marquee-track]');
+          var prev = wrap.querySelector('[data-marquee-prev]');
+          var next = wrap.querySelector('[data-marquee-next]');
+          var offset = 0;
+          var step = 200;
+          function nudge(dir){
+            track.style.animationPlayState = 'paused';
+            offset += dir * step;
+            track.style.transform = 'translate3d(calc(-50% + ' + offset + 'px), 0, 0)';
+          }
+          prev && prev.addEventListener('click', function(){ nudge(1); });
+          next && next.addEventListener('click', function(){ nudge(-1); });
+        })();
+      </script>
 
       <p class="insurance-note reveal">Don't see your plan? Reach out - we're adding new contracts regularly, and out-of-network benefits may also apply.</p>
 

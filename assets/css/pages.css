@@ -996,23 +996,25 @@ details.faq-item > *:not(summary) {
   transform: translateY(-2px);
 }
 
-.timeline__node {
+.timeline__node,
+.timeline__item .timeline__node,
+.timeline.is-visible .timeline__item.is-active .timeline__node {
   position: static;
   flex-shrink: 0;
   margin-top: 0.15rem;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: var(--color-accent);
-  color: var(--color-ink);
+  background: var(--color-primary, #07abce);
+  color: #fff;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1;
   border: none;
-  box-shadow: none;
+  box-shadow: 0 6px 16px -8px color-mix(in oklab, var(--color-primary, #07abce) 60%, transparent);
 }
 
 .timeline__title {
