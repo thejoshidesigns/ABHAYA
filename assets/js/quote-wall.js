@@ -32,6 +32,24 @@
       author: 'D.P.',
       role: 'Medication management',
       context: 'Ongoing care'
+    },
+    '6': {
+      text: 'Telehealth was the only way I could keep appointments during a difficult stretch, and the quality of care never dropped. Same attentiveness, same follow-through, from my living room.',
+      author: 'S.B.',
+      role: 'Telepsychiatry patient',
+      context: 'Missouri, remote care'
+    },
+    '7': {
+      text: 'I\u2019ve been to a lot of providers. Dr. Yerrapu is the first one who felt like a real partner in my care \u2014 not someone hurrying me through a checklist. We revisit the plan together, and it shows.',
+      author: 'R.H.',
+      role: 'Adult psychiatry patient',
+      context: 'Long-term care'
+    },
+    '8': {
+      text: 'Compassionate, evidence-based, and refreshingly honest. I always leave with a clearer sense of the next step, and never with the feeling that a decision was made for me.',
+      author: 'E.M.',
+      role: 'Psychotherapy patient',
+      context: 'Ongoing therapy'
     }
   };
 
