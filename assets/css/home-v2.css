@@ -493,8 +493,8 @@
   margin-top: 1rem;
   padding: 2rem 1.75rem;
   border-radius: 1.5rem;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+  background: color-mix(in oklab, var(--color-crisis) 6%, var(--color-paper));
+  border: 1px solid color-mix(in oklab, var(--color-crisis) 22%, transparent);
   max-width: 44rem;
   margin-inline: auto;
 }
@@ -507,14 +507,14 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #b91c1c;
+  color: var(--color-crisis);
   margin-bottom: 0.7rem;
 }
 .cta-close__crisis-dot {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: #ef4444;
+  background: var(--color-crisis);
   animation: pulse-dot 1.6s ease-in-out infinite;
 }
 @keyframes pulse-dot {
@@ -522,11 +522,12 @@
   50%      { opacity: 0.35; }
 }
 .cta-close__crisis p {
-  color: color-mix(in oklab, #7f1d1d 82%, transparent);
+  color: color-mix(in oklab, var(--color-crisis-deep) 82%, transparent);
   font-size: 0.95rem;
   line-height: 1.6;
 }
-.cta-close__crisis strong { color: #b91c1c; font-weight: 700; }
+.cta-close__crisis strong { color: var(--color-crisis); font-weight: 700; }
+
 
 @media (prefers-reduced-motion: reduce) {
   .cta-close__crisis-dot { animation: none; }
