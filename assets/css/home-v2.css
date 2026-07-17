@@ -1030,6 +1030,28 @@
   filter: grayscale(0%);
   opacity: 1;
 }
+/* Text-only variant (used when carrier logo images aren't uploaded yet) */
+.logo-marquee__item--text {
+  width: auto;
+  min-width: clamp(9rem, 14vw, 12rem);
+  height: clamp(3.25rem, 5vw, 4rem);
+  aspect-ratio: auto;
+  padding: 0 clamp(1rem, 2vw, 1.5rem);
+  border-radius: 999px;
+}
+.logo-marquee__item--text span {
+  font-family: var(--font-body, inherit);
+  font-weight: 600;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  letter-spacing: 0.01em;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.logo-marquee__item--text:hover span,
+.logo-marquee:hover .logo-marquee__item--text span {
+  color: var(--color-ink);
+}
 @media (prefers-reduced-motion: reduce) {
   .logo-marquee__track { animation: none; transform: translate3d(-25%, 0, 0); }
 }
