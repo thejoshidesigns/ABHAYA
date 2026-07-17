@@ -388,6 +388,90 @@
     </div>
   </section>
 
+  <!-- ===================== TESTIMONIAL WALL ===================== -->
+  <section class="quote-wall" aria-labelledby="quote-wall-title">
+    <div class="container">
+      <div class="quote-wall__head reveal" data-reveal>
+        <span class="eyebrow"><span class="eyebrow__dash" aria-hidden="true"></span>In their words</span>
+        <h2 id="quote-wall-title" class="quote-wall__title">
+          Stories of <em>steady</em> progress.
+        </h2>
+        <p class="quote-wall__lede">Anonymized reflections from patients who have shared their journey with us.</p>
+      </div>
+
+      <div class="quote-wall__grid reveal" data-reveal>
+        <button class="quote-card quote-card--tall" type="button" data-quote="1">
+          <svg class="quote-card__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 8C6 8 4 12 4 16v8h10V16H8c0-4 2-5 4-6zm14 0c-4 0-6 4-6 8v8h10V16h-6c0-4 2-5 4-6z" fill="currentColor"/></svg>
+          <p class="quote-card__text">For the first time in years, I feel like I'm moving forward instead of just surviving each day.</p>
+          <div class="quote-card__meta">
+            <span class="quote-card__author">M.R.</span>
+            <span class="quote-card__role">Adult psychiatry patient</span>
+          </div>
+          <span class="quote-card__more">Read full story <span aria-hidden="true">&rarr;</span></span>
+        </button>
+
+        <button class="quote-card" type="button" data-quote="2">
+          <svg class="quote-card__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 8C6 8 4 12 4 16v8h10V16H8c0-4 2-5 4-6zm14 0c-4 0-6 4-6 8v8h10V16h-6c0-4 2-5 4-6z" fill="currentColor"/></svg>
+          <p class="quote-card__text">Dr. Puvvadi actually listens. I never felt rushed.</p>
+          <div class="quote-card__meta">
+            <span class="quote-card__author">J.T.</span>
+            <span class="quote-card__role">Telepsychiatry patient</span>
+          </div>
+          <span class="quote-card__more">Read full story <span aria-hidden="true">&rarr;</span></span>
+        </button>
+
+        <button class="quote-card quote-card--dark" type="button" data-quote="3">
+          <svg class="quote-card__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 8C6 8 4 12 4 16v8h10V16H8c0-4 2-5 4-6zm14 0c-4 0-6 4-6 8v8h10V16h-6c0-4 2-5 4-6z" fill="currentColor"/></svg>
+          <p class="quote-card__text">My son finally has a provider who understands adolescents. The change at home has been remarkable.</p>
+          <div class="quote-card__meta">
+            <span class="quote-card__author">Parent of A.S.</span>
+            <span class="quote-card__role">Adolescent care</span>
+          </div>
+          <span class="quote-card__more">Read full story <span aria-hidden="true">&rarr;</span></span>
+        </button>
+
+        <button class="quote-card" type="button" data-quote="4">
+          <svg class="quote-card__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 8C6 8 4 12 4 16v8h10V16H8c0-4 2-5 4-6zm14 0c-4 0-6 4-6 8v8h10V16h-6c0-4 2-5 4-6z" fill="currentColor"/></svg>
+          <p class="quote-card__text">The intake process was thoughtful. I felt seen before we even met.</p>
+          <div class="quote-card__meta">
+            <span class="quote-card__author">L.K.</span>
+            <span class="quote-card__role">Psychotherapy patient</span>
+          </div>
+          <span class="quote-card__more">Read full story <span aria-hidden="true">&rarr;</span></span>
+        </button>
+
+        <button class="quote-card quote-card--wide" type="button" data-quote="5">
+          <svg class="quote-card__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 8C6 8 4 12 4 16v8h10V16H8c0-4 2-5 4-6zm14 0c-4 0-6 4-6 8v8h10V16h-6c0-4 2-5 4-6z" fill="currentColor"/></svg>
+          <p class="quote-card__text">Medication management done carefully — not just a prescription pad. We revisited, adjusted, and found what actually worked for me.</p>
+          <div class="quote-card__meta">
+            <span class="quote-card__author">D.P.</span>
+            <span class="quote-card__role">Medication management</span>
+          </div>
+          <span class="quote-card__more">Read full story <span aria-hidden="true">&rarr;</span></span>
+        </button>
+      </div>
+
+      <p class="quote-wall__note">Testimonials shared with permission. Names abbreviated to protect patient privacy.</p>
+    </div>
+  </section>
+
+  <!-- Quote modal -->
+  <div class="quote-modal" id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="quote-modal-author" hidden>
+    <div class="quote-modal__backdrop" data-quote-close></div>
+    <div class="quote-modal__panel" role="document">
+      <button class="quote-modal__close" type="button" aria-label="Close" data-quote-close>&times;</button>
+      <svg class="quote-modal__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 8C6 8 4 12 4 16v8h10V16H8c0-4 2-5 4-6zm14 0c-4 0-6 4-6 8v8h10V16h-6c0-4 2-5 4-6z" fill="currentColor"/></svg>
+      <blockquote class="quote-modal__text" id="quote-modal-text"></blockquote>
+      <footer class="quote-modal__meta">
+        <div>
+          <div class="quote-modal__author" id="quote-modal-author"></div>
+          <div class="quote-modal__role" id="quote-modal-role"></div>
+        </div>
+        <div class="quote-modal__context" id="quote-modal-context"></div>
+      </footer>
+    </div>
+  </div>
+
   <!-- ===================== CTA + CRISIS ===================== -->
   <section class="cta-close" aria-labelledby="cta-title">
     <div class="cta-close__inner reveal" data-reveal>
@@ -501,6 +585,7 @@
 <script src="assets/js/motion-gsap.js" defer></script>
 
 <script src="assets/js/stats-band.js" defer></script>
+<script src="assets/js/quote-wall.js" defer></script>
 
 </body>
 </html>
