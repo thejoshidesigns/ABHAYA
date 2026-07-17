@@ -169,52 +169,8 @@
         </button>
       </div>
 
-      <script>
-        (function(){
-          var wrap = document.querySelector('.marquee-wrap');
-          if (!wrap) return;
-          var track = wrap.querySelector('[data-marquee-track]');
-          var prev = wrap.querySelector('[data-marquee-prev]');
-          var next = wrap.querySelector('[data-marquee-next]');
-          if (!track) return;
 
-          // Freeze CSS animation, take over with JS transform.
-          var halfWidth = track.scrollWidth / 2;
-          var offset = halfWidth * 0.5; // start mid-way for symmetry
-          track.style.animation = 'none';
-          track.style.willChange = 'transform';
-          track.style.transition = 'transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1)';
 
-          function apply(){
-            // Wrap offset so the duplicated set creates a seamless loop.
-            if (offset < 0) offset += halfWidth;
-            if (offset >= halfWidth) offset -= halfWidth;
-            track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
-          }
-          apply();
-
-          function step(dir){
-            var itemW = 200;
-            var first = track.querySelector('.logo-marquee__item');
-            if (first) {
-              var rect = first.getBoundingClientRect();
-              var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 24;
-              itemW = rect.width + gap;
-            }
-            var perClick = itemW * 2;
-            offset += dir * perClick;
-            apply();
-          }
-
-          prev && prev.addEventListener('click', function(){ step(-1); });
-          next && next.addEventListener('click', function(){ step(1); });
-
-          // Recompute half width on resize (fonts, breakpoints).
-          window.addEventListener('resize', function(){
-            halfWidth = track.scrollWidth / 2;
-          });
-        })();
-      </script>
 
       <p class="insurance-note reveal">Don't see your plan? Reach out - we're adding new contracts regularly, and out-of-network benefits may also apply.</p>
 
