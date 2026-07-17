@@ -46,7 +46,7 @@
         <li><a href="services/index.html" class="nav__link">Services</a></li>
         <li><a href="conditions.html" class="nav__link">Conditions</a></li>
         <li><a href="insurance.html" class="nav__link">Insurance</a></li>
-        <li><a href="testimonials.html" class="nav__link">Care</a></li>
+        <li><a href="care.html" class="nav__link">Care</a></li>
         <li><a href="faq.html" class="nav__link">FAQ</a></li>
         <li><a href="contact.html" class="nav__link">Contact</a></li>
       </ul>
@@ -75,7 +75,7 @@
     <li><a href="services/index.html" class="mobile-menu__link">Services</a></li>
     <li><a href="conditions.html" class="mobile-menu__link">Conditions</a></li>
     <li><a href="insurance.html" class="mobile-menu__link">Insurance</a></li>
-    <li><a href="testimonials.html" class="mobile-menu__link">Care</a></li>
+    <li><a href="care.html" class="mobile-menu__link">Care</a></li>
     <li><a href="faq.html" class="mobile-menu__link">FAQ</a></li>
     <li><a href="contact.html" class="mobile-menu__link">Contact</a></li>
   </ul>
@@ -204,72 +204,34 @@
         <!-- ============ STEP 2: REASON FOR VISIT ============ -->
         <div class="intake__panel" data-step="2">
           <h2 class="intake__panel-title">Reason for visit</h2>
-          <p class="intake__panel-intro">This helps us match you with the right clinician and prepare for our first conversation. Nothing here is set in stone - we'll go deeper at your first visit.</p>
+          <p class="intake__panel-intro">A short note is enough to get us started. Clinical details are best discussed in your first visit, not through a public form. Please do not include diagnoses, medication lists, or sensitive history here.</p>
 
           <div class="form">
 
             <div class="field">
-              <label class="field__label" for="primary-concern">Primary concern <span class="req" aria-hidden="true">*</span></label>
-              <select id="primary-concern" name="primary_concern" class="select" required>
-                <option value="">- Choose one -</option>
-                <option>ADHD</option>
-                <option>Anxiety</option>
-                <option>Bipolar disorder</option>
-                <option>Borderline personality disorder</option>
-                <option>Depression</option>
-                <option>Eating disorder</option>
-                <option>Grief or loss</option>
-                <option>OCD</option>
-                <option>Panic disorder</option>
-                <option>PTSD or trauma</option>
-                <option>Schizophrenia or psychotic symptoms</option>
-                <option>Substance use</option>
-                <option>Other / not sure</option>
-              </select>
+              <label class="field__label" for="reason-brief">Briefly, what would you like help with? <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="reason-brief" name="reason_brief" class="textarea" required maxlength="500" placeholder="A sentence or two is plenty. Example: I'd like to talk with a psychiatrist about anxiety that has been building up." aria-describedby="reason-brief-hint"></textarea>
+              <p id="reason-brief-hint" class="field__hint">Please avoid sharing detailed medical history, medications, or anything sensitive. We'll cover that safely during your first visit.</p>
               <span class="field__error" aria-live="polite"></span>
             </div>
 
             <div class="field">
-              <label class="field__label" for="symptom-duration">How long have you been experiencing this?</label>
-              <select id="symptom-duration" name="symptom_duration" class="select">
-                <option value="">- Choose one (optional) -</option>
-                <option>Less than a month</option>
-                <option>1–6 months</option>
-                <option>6–12 months</option>
-                <option>1–2 years</option>
-                <option>More than 2 years</option>
-                <option>Not sure</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label class="field__label" for="previous-treatment">Have you received treatment for this before?</label>
-              <textarea id="previous-treatment" name="previous_treatment" class="textarea" placeholder="e.g., prior therapy, medications tried, what helped or didn't. (Optional)"></textarea>
-            </div>
-
-            <div class="field">
-              <label class="field__label" for="urgency">How urgent does this feel to you? <span class="req" aria-hidden="true">*</span></label>
+              <label class="field__label" for="urgency">How soon are you hoping to be seen? <span class="req" aria-hidden="true">*</span></label>
               <select id="urgency" name="urgency" class="select" required>
                 <option value="">- Choose one -</option>
-                <option>Just exploring - no rush</option>
-                <option>I'd like to be seen in the next few weeks</option>
-                <option>It's affecting daily life - I'd like help soon</option>
-                <option>It's urgent - please prioritize my request</option>
+                <option>Just exploring, no rush</option>
+                <option>Within the next few weeks</option>
+                <option>As soon as reasonably possible</option>
               </select>
-              <p class="field__hint">If you are in crisis or having thoughts of harming yourself, please call, text, or chat <a href="tel:988">988</a>, or dial <a href="tel:911">911</a>. This form is for non-urgent requests.</p>
+              <p class="field__hint">If you are in crisis or having thoughts of harming yourself, please call or text <a href="tel:988">988</a>, or dial <a href="tel:911">911</a>. This form is for non-urgent requests only.</p>
               <span class="field__error" aria-live="polite"></span>
-            </div>
-
-            <div class="field">
-              <label class="field__label" for="goals">Anything else you'd like us to know?</label>
-              <textarea id="goals" name="goals" class="textarea" placeholder="What would make this a good experience for you? What are you hoping for? (Optional)"></textarea>
             </div>
 
           </div>
 
           <div class="intake__actions">
             <button type="button" class="btn btn--secondary" data-intake-prev>← Back</button>
-            <button type="button" class="btn btn--primary" data-intake-next>Next: Insurance & logistics →</button>
+            <button type="button" class="btn btn--primary" data-intake-next>Next: Insurance &amp; logistics →</button>
           </div>
         </div>
 
@@ -454,7 +416,7 @@
           <li><a href="services/index.html">Services</a></li>
           <li><a href="conditions.html">Conditions</a></li>
           <li><a href="insurance.html">Insurance</a></li>
-          <li><a href="testimonials.html">Care</a></li>
+          <li><a href="care.html">Care</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>

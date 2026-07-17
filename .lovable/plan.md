@@ -1,62 +1,93 @@
-## Goal
 
-Bring About, Services (index + 3 detail pages), Conditions, Insurance, FAQ, Contact, Intake, Accessibility, Privacy, and 404 in line with the home page — same hero rhythm, same cards, same spacing, same accent usage — without changing any copy or business content.
+# Abhaya Behavioral Health — Audit & Implementation Plan
 
-## What's inconsistent today
+## 1. Audit findings
 
-Reviewed every page against the home page. The building blocks (header, footer, buttons, fonts) already match. The drift is in **section-level patterns**:
+### Critical (compliance / trust risk)
+1. **Fabricated testimonials still live.** `assets/js/quote-wall.js` and `testimonials.html` present anonymized stories in a card/modal pattern that reads as patient reviews. Even with disclaimers, the "Care" nav label + modal author fields (`quote-modal-author`, `quote-modal-role`, `quote-modal-context`) mimic a review UI. Must be reframed as "Our care principles" with no author/role/context slots.
+2. **Unverified HIPAA compliance claim.** `index.html:335` — "Secure, HIPAA-compliant video consultations". Website cannot self-assert HIPAA compliance; must be softened to "confidential telehealth using a HIPAA-aligned platform" or similar factual phrasing.
+3. **Web3Forms simulation on localhost.** `assets/js/contact.js` / `intake.js` simulate success without a backend. Per brief, must never simulate success; must show a graceful "online submission temporarily unavailable — please call/email" fallback until access key is configured server-side.
+4. **Intake form collects sensitive data** (checkbox `consent_hipaa`, symptom fields, medication text areas per intake.html line counts). Needs minimization — public unverified form should collect name, contact, best time, and short reason only.
 
-- **Hero pattern.** Home uses a big serif headline with the *italic accent word* in warm-gold color (e.g. "healthier"). Insurance, Accessibility, and Contact follow this. About, Services, Services detail, Conditions, FAQ, and Intake use plain-ink headlines with no accent word — feels flatter.
-- **Hero visual.** About / Services / Services detail have a large chair illustration on the right. Conditions / Insurance / FAQ / Accessibility / Contact leave the right side empty, so the hero looks unbalanced and the eyebrow floats. Needs a consistent lightweight decorative treatment (soft blob accent) for pages without a real hero image.
-- **Eyebrow.** Home uses `WHY ABHAYA` / `WHAT WE OFFER` (no leading dash). Subpages use `—— SERVICE`, `—— ABOUT THE PRACTICE` with a leading dash. Pick one — standardize on the home style.
-- **Card styling.** Services index uses `.soft-card` (rounded, soft blue, icon + title + copy + CTA). Contact uses similar cards but with different padding. Conditions uses bordered "condition-card". FAQ uses a plain bulleted list. Insurance carousel tiles use their own style. Standardize on the `.soft-card` shape (radius, padding, shadow, icon chip) and a lighter "list-card" variant for text-heavy grids.
-- **Section rhythm.** Home sections use `padding: clamp(5rem,10vw,8rem) 0` and a consistent eyebrow → h2 → lede → grid rhythm. Some subpages use tighter padding and skip the eyebrow.
-- **Image sizing.** The chair illustration renders at very different aspect ratios on About vs. Services vs. Medication. Cap it inside a `.page-hero__media` frame with a fixed max width and aspect ratio.
+### High (design system / consistency)
+5. **Duplicate/legacy CSS.** `home-v2.css` (1285 lines) + `pages.css` (1528) + `components.css` (2185) contain overlapping hero, card, and carousel definitions. Two carousel implementations (`insurance-carousel.js` + `.logo-marquee`) exist; `insurance-carousel.js` is now unused.
+6. **Two motion engines running.** `motion.js` (249) + `motion-gsap.js` (290) + GSAP CDN load on every page. GSAP only needed for a few pages; motion.js reveal duplicates GSAP ScrollTrigger reveals.
+7. **Duplicated inline SVG icons** across every page (`quote-card__mark` repeats 8× per page). Should use `<use href="assets/img/icons/sprite.svg#...">`.
+8. **Nav/footer drift risk.** Nav duplicated verbatim across 15 HTML files — must be verified identical, active states use `aria-current="page"` consistently.
 
-## What I'll change
+### Medium (a11y / perf)
+9. Lime `#bbd639` on cream fails AA for small text; needs audit of any small-text usage.
+10. Fonts loaded via `<link rel="preload" as="style">` without `onload` swap — no benefit, and Fraunces weight range is broad; subset to used weights.
+11. `data-split-text="words"` runs on every page's hero H1; if JS fails, text still renders (good), but motion should be gated behind `prefers-reduced-motion`.
+12. `404.html` uses full editorial hero; verify it loads no GSAP unnecessarily.
+13. `.htaccess` is minimal — missing cache headers, security headers (X-Content-Type-Options, Referrer-Policy), and gzip.
 
-Purely presentation — CSS classes and small markup swaps. No copy edits, no route changes, no JS changes.
+### Low
+14. `og:image` points to `og-default.svg` — most social platforms don't render SVG OG images; needs a raster fallback (or accept degraded preview).
+15. `sitemap.xml` includes `testimonials.html` — will need URL update when renamed.
+16. `build.js` excludes `src/` and `node_modules` but not `.github`, `.lovable`, `.workspace`, `.prettierrc`, `.prettierignore`, `bun.lock`, `.gitignore`, `README*`. Must be widened.
 
-### 1. Introduce shared page-level primitives (in `assets/css/pages.css`)
+## 2. Design system decisions (no code yet)
 
-```
-.page-hero              // two-column hero: text left, media right
-.page-hero__eyebrow     // matches home eyebrow (no dash, teal, tracked)
-.page-hero__title       // serif clamp(2.4rem, 5vw, 4rem)
-.page-hero__title em    // italic accent word, warm-gold color
-.page-hero__lede        // 1.05rem, muted ink, max 36ch
-.page-hero__media       // aspect-ratio 4/3, max-width 30rem, soft cream frame
-.page-hero__decor       // for pages with no hero image: subtle blob + circle mark, matches Why section
+- Keep tokens: teal `#07abce`, lime `#bbd639`, cream `#F4F9FB`, ink `#2a3a40`, Fraunces + Plus Jakarta Sans.
+- Lime restricted to: numbered markers, small icon accents, illustration highlights. Never body text on cream.
+- Consolidate to **one** hero pattern (`hero-editorial`), **one** card pattern, **one** carousel (`logo-marquee`), **one** reveal system (IntersectionObserver in `motion.js`), GSAP retained only for the About sticky-approach sequence.
+- Icons: single `sprite.svg` referenced via `<use>`; remove per-page inline SVG duplication for repeating marks.
 
-.section                // vertical rhythm wrapper, clamp(5rem,10vw,8rem) padding
-.section__head          // eyebrow + h2 + lede stack, max 44rem, left-aligned
-.section__grid--3       // 3-col responsive grid, gap 2rem, using .soft-card children
-.section__grid--2       // 2-col responsive grid
+## 3. Implementation sequence (phased, reviewable)
 
-.list-card              // text-heavy card: cream bg, 1.5rem radius, 1.75rem padding, hover lift
-```
+**Phase A — Compliance & content safety (do first, blocks publish)**
+- Rewrite `testimonials.html` as `care.html` ("Our care principles") — remove author/role/context fields, remove quotation-mark visual, remove modal or repurpose to expanded principle text only.
+- Update all nav/footer/sitemap references: label "Care", href `care.html`, drop from testimonials wording.
+- Fix HIPAA phrasing on `index.html` and any other page.
+- Rework `contact.js` / `intake.js`: remove localhost simulation; if `access_key` empty → show "Online form temporarily unavailable — call (573) 403-3544 or email contactus@abhayabh.com" and keep phone/email as primary CTAs.
+- Minimize `intake.html` fields to non-PHI (name, phone, email, preferred contact, brief note, adult/minor, insurance name only — no member ID, no medication list, no symptom details).
 
-### 2. Migrate each page to those primitives
+**Phase B — Design system cleanup (no visual regressions)**
+- Delete `insurance-carousel.js` (unused).
+- Move all repeated inline SVG marks to `sprite.svg`; replace with `<use>`.
+- Merge overlapping hero/card/carousel CSS; keep single source in `components.css` (base) + `home-v2.css` (home-only) + `pages.css` (subpage-only). Remove dead selectors validated by grep.
+- Reduce GSAP loading to only About page; other pages use `motion.js` reveal.
+- Widen `build.js` EXCLUDE list; add `.htaccess` cache/security headers.
 
-For each page I'll:
-1. Wrap the hero in `.page-hero` and normalize eyebrow / title / lede.
-2. Add `<em>` on one word in the headline where an italic accent fits (Conditions → "mental health", Services → "your life", FAQ → "first visit", About → "being seen", Intake → "first visit").
-3. Replace bespoke cards with `.soft-card` or `.list-card` — same padding, radius, shadow, hover.
-4. Wrap major content blocks in `.section` + `.section__head` for the same rhythm as home.
-5. For pages with no real hero image, drop in `.page-hero__decor` (the same simplified circle-mark visual used in the Why section) so the hero never looks empty.
-6. Cap the chair illustration to a single size on About / Services / Medication.
+**Phase C — Premium page refinements**
+- **Home**: quieter hero (single kinetic word, static fallback), founder intro block with accessible video modal wired but showing "Video coming soon" state (no fake play), 4-step "What to expect" timeline (Request → Intake → First visit → Ongoing care), standardized services grid, care-principles teaser linking to `/care.html`, trust strip (verified only), crisis band, footer.
+- **About**: keep sticky approach, tighten copy, ensure Dr. Yerrapu naming.
+- **Services (overview + 3 detail pages)**: unified card layout, consistent icon per service, single CTA pattern, clear scope statements.
+- **Conditions**: accessible `<details>` list with educational disclaimer; no self-assessment scoring.
+- **Insurance**: `.logo-marquee` as text pills until logos supplied; clean steps list (no double numbering).
+- **FAQ**: existing accordion audited for a11y (already uses `<details>`, good).
+- **Contact / Intake**: per Phase A.
+- **Privacy / Accessibility**: content review only, formatting to match system.
+- **404**: original lightweight SVG, standard header/footer, links to Home/Services/Contact/Intake.
 
-### 3. Pages touched
+**Phase D — QA**
+- Manual page walkthrough at 320/375/768/1024/1440 via Playwright screenshots.
+- Keyboard, reduced-motion, 200% zoom checks.
+- `node build.js` → inspect `dist/` for stray files.
+- Verify all internal links, tel:/mailto:.
 
-- `about.html`, `services/index.html`, `services/medication.html`, `services/psychotherapy.html`, `services/telepsychiatry.html`, `conditions.html`, `insurance.html`, `faq.html`, `contact.html`, `intake.html`, `accessibility.html`, `privacy.html`, `404.html`.
+## 4. Items I will NOT do without your confirmation
 
-### 4. Not changing
+- **Deleting `testimonials.html`** vs renaming to `care.html` with 301-style redirect note (static host — needs `.htaccess` `Redirect` rule). Please confirm rename.
+- **Removing the modal** on the care page entirely, or keeping it to expand principle text only.
+- **Intake field list**: I'll cut to the minimal set above unless you specify additional fields you want kept.
+- **GSAP removal from Home**: I'll keep only reveal + one word kinetic; confirm you're OK losing any current GSAP flourishes on home.
 
-- Header, footer, nav, buttons — already consistent.
-- Copy and content order.
-- The insurance logo marquee, stats band, home hero mock, or Why section — all recently approved.
-- Any JS (intake form, nav, motion, stats).
+## 5. Assets I still need from you
 
-## Deliverable
+1. Verified phone number confirmation (repo shows `(573) 403-3544` — confirm correct).
+2. Dr. Yerrapu portrait (JPG/PNG, ≥800×1000) and 30-90s intro video (MP4 + captions .vtt) when ready.
+3. Verified credentials list (degrees, board certifications, licenses, affiliations).
+4. Verified insurance carrier list + logo files (SVG preferred).
+5. Confirmation of telehealth scope (Missouri only, or additional states).
+6. Confirmation of age scope (adults only? adolescents? minimum age).
+7. Any documented, authorized patient testimonials (only if legally cleared).
 
-After the pass, every page will read like a chapter of the same book: same hero silhouette, same accent color usage, same card shape, same section spacing. I'll take before/after screenshots of the 6 most-visible pages (About, Services, Medication, Conditions, Insurance, FAQ, Contact) and share them so you can confirm before I move on to the legal/utility pages.
+## 6. Deliverable on completion
+
+Full changed-files list, page-by-page change log, a11y/security/perf check summary, unresolved verification items, and `dist/` contents ready for GoDaddy upload.
+
+---
+
+**Please confirm** the four decisions in §4, then I'll implement in the phase order above. If you want to skip any phase or reorder, tell me now.

@@ -155,18 +155,13 @@
     const useLive = endpoint.includes('web3forms.com') && accessKey.trim().length > 0;
 
     if (!useLive) {
-      const host = window.location.hostname;
-      const isDev = host === 'localhost' || host === '127.0.0.1' || host.endsWith('.lovable.app') || host.endsWith('.lovableproject.com');
-      if (isDev) {
-        setTimeout(showSuccess, 800);
-        return;
-      }
+      // No configured backend: never simulate success. Direct visitor to phone/email.
       if (submitBtn) {
         submitBtn.disabled = false;
         if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
         submitBtn.textContent = originalLabel;
       }
-      alert('This intake form is not connected yet. Please call the office to book your appointment and we will respond within one business day.');
+      alert('Online intake is temporarily unavailable. Please call (573) 403-3544 or email contactus@abhayabh.com to request an appointment. We will respond within one business day.');
       return;
     }
 

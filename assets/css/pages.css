@@ -1526,3 +1526,73 @@ details.faq-item > *:not(summary) {
   .approach__step[data-active="false"] { opacity: 1; }
   .approach__quote-text.is-swapping { opacity: 1; }
 }
+
+/* =========================================================================
+   Care principles - static, non-review presentation
+   ========================================================================= */
+.care-principles {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  background: var(--color-cream, #F4F9FB);
+}
+.care-principles--home {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+.care-principles__list {
+  list-style: none;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.care-principle {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: #fff;
+  border: 1px solid rgba(42, 58, 64, 0.08);
+  border-radius: 20px;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.care-principle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -20px rgba(42, 58, 64, 0.35);
+  border-color: rgba(7, 171, 206, 0.35);
+}
+.care-principle__num {
+  display: inline-block;
+  font-family: var(--font-display, "Fraunces", serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #07abce;
+  background: rgba(187, 214, 57, 0.18);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+.care-principle__title {
+  font-family: var(--font-display, "Fraunces", serif);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 500;
+  color: #2a3a40;
+  margin: 0 0 0.6rem;
+  line-height: 1.25;
+}
+.care-principle__body {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #4a5a60;
+  margin: 0;
+}
+.care-principles__note {
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #6b7a80;
+}
+@media (prefers-reduced-motion: reduce) {
+  .care-principle { transition: none; }
+  .care-principle:hover { transform: none; }
+}
