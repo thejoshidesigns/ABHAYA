@@ -129,42 +129,70 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICE BENTO ===================== -->
+  <!-- ===================== SERVICE BENTO (EDITORIAL) ===================== -->
   <section class="section">
     <div class="container">
-      <div class="reveal" style="text-align: center; max-width: 640px; margin: 0 auto var(--space-8);">
-        <span class="eyebrow">What we offer</span>
-        <h2>Three ways we can work together.</h2>
+      <div class="bento-ed__head reveal">
+        <span class="eyebrow eyebrow--gold">Our services</span>
+        <h2 class="bento-ed__heading">
+          Three ways we can <em>work together</em>
+        </h2>
       </div>
 
-      <div class="bento bento--feature-1 reveal">
-        <a href="psychotherapy.html" class="bento__tile bento__tile--feature" data-tilt>
-          <span class="bento__chip">Most popular</span>
-          <svg class="bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-          <h3 class="bento__title">Supportive psychotherapy</h3>
-          <p class="bento__body">Talk therapy for adolescents and adults - in person or by video. CBT, DBT-informed skills, mindfulness-based approaches, and EMDR-informed trauma work.</p>
-          <span class="bento__cta">Learn more about therapy</span>
+      <div class="bento-ed reveal">
+        <!-- Feature: Supportive psychotherapy -->
+        <a href="psychotherapy.html" class="bento-ed__tile bento-ed__tile--feature">
+          <div class="bento-ed__wash" aria-hidden="true"></div>
+
+          <div class="bento-ed__top">
+            <span class="bento-ed__chip">Most popular</span>
+            <svg class="bento-ed__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+
+          <div class="bento-ed__body">
+            <span class="bento-ed__eyebrow">In-person &amp; Telehealth</span>
+            <h3 class="bento-ed__title">Supportive psychotherapy</h3>
+            <p class="bento-ed__lede">A collaborative space to explore life's challenges, build enduring resilience, and foster emotional growth through evidence-based talk therapy tailored to your story.</p>
+            <span class="bento-ed__cta bento-ed__cta--underline">
+              Learn more about therapy
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </span>
+          </div>
         </a>
 
-        <a href="medication.html" class="bento__tile" data-tilt>
-          <svg class="bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10.5 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7l5 5v3"/>
-            <circle cx="17" cy="17" r="5"/><path d="M17 14v6M14 17h6"/>
-          </svg>
-          <h3 class="bento__title">Medication management</h3>
-          <p class="bento__body">Psychiatric evaluation and ongoing medication care. Thoughtful, conservative, and always paired with conversation.</p>
-          <span class="bento__cta">Learn more about medication</span>
+        <!-- Medication management -->
+        <a href="medication.html" class="bento-ed__tile bento-ed__tile--light">
+          <div class="bento-ed__body">
+            <div class="bento-ed__rule">
+              <span class="bento-ed__rule-line" aria-hidden="true"></span>
+              <span class="bento-ed__rule-label">Clinical assessment</span>
+            </div>
+            <h3 class="bento-ed__title bento-ed__title--sm">Medication management</h3>
+            <p class="bento-ed__body-text">Expert psychiatric evaluations and personalized medication care, integrated with a holistic view of your mental health.</p>
+          </div>
+          <span class="bento-ed__cta">
+            View clinical approach
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </span>
         </a>
 
-        <a href="telepsychiatry.html" class="bento__tile bento__tile--sage" data-tilt>
-          <svg class="bento__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-          </svg>
-          <h3 class="bento__title">Telepsychiatry</h3>
-          <p class="bento__body">Secure video appointments for therapy and medication management, from anywhere in Missouri.</p>
-          <span class="bento__cta">Learn more about telehealth</span>
+        <!-- Telepsychiatry (dark) -->
+        <a href="telepsychiatry.html" class="bento-ed__tile bento-ed__tile--dark">
+          <div class="bento-ed__glow" aria-hidden="true"></div>
+          <div class="bento-ed__body">
+            <div class="bento-ed__rule">
+              <span class="bento-ed__rule-line" aria-hidden="true"></span>
+              <span class="bento-ed__rule-label bento-ed__rule-label--lime">Remote care</span>
+            </div>
+            <h3 class="bento-ed__title bento-ed__title--sm bento-ed__title--on-dark">Telepsychiatry</h3>
+            <p class="bento-ed__body-text bento-ed__body-text--on-dark">High-quality, compassionate care delivered securely to the comfort of your home anywhere in Missouri.</p>
+          </div>
+          <span class="bento-ed__cta bento-ed__cta--on-dark">
+            Book virtual session
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </span>
         </a>
       </div>
     </div>
