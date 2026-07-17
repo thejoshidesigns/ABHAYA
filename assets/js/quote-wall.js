@@ -1,55 +1,55 @@
-/* Quote wall — click to open full quote modal */
+/* Care-experience modal for principle cards. */
 (function () {
   'use strict';
 
   var stories = {
     '1': {
-      text: 'For the first time in years, I feel like I\u2019m moving forward instead of just surviving each day. The care I received here wasn\u2019t transactional \u2014 it was thoughtful, patient, and deeply human. We worked through what wasn\u2019t working, adjusted along the way, and I finally have tools I actually use.',
-      author: 'M.R.',
-      role: 'Adult psychiatry patient',
-      context: 'In care since 2023'
+      text: 'Visits are designed to leave room for context, questions, and shared decision-making. The goal is to understand what has been happening, what has helped before, and what needs to change next.',
+      author: 'Time to be heard',
+      role: 'Care principle',
+      context: 'Abhaya Behavioral Health'
     },
     '2': {
-      text: 'Dr. Yerrapu actually listens. I never felt rushed, never felt like a number. Telepsychiatry made it possible for me to keep appointments during a season of life when in-person just wasn\u2019t going to happen \u2014 and the quality of care never dropped.',
-      author: 'J.T.',
-      role: 'Telepsychiatry patient',
-      context: 'Missouri, remote care'
+      text: 'Appointments focus on clarity. Patients should leave with a practical understanding of the plan, what to watch for, and how follow-up decisions will be made.',
+      author: 'Clear next steps',
+      role: 'Care principle',
+      context: 'Treatment planning'
     },
     '3': {
-      text: 'My son finally has a provider who understands adolescents. The change at home has been remarkable \u2014 not overnight, but steady. We were treated like partners in his care, and every visit built on the last one.',
-      author: 'Parent of A.S.',
-      role: 'Adolescent care',
-      context: 'Family-involved treatment'
+      text: 'When clinically appropriate, adolescent care includes family context while protecting the patient\'s dignity, privacy, and trust.',
+      author: 'Family-aware adolescent care',
+      role: 'Care principle',
+      context: 'Adolescents and families'
     },
     '4': {
-      text: 'The intake process was thoughtful. I felt seen before we even met. When we did meet, the questions were the right ones \u2014 and the plan we built together felt like mine, not something handed to me.',
-      author: 'L.K.',
-      role: 'Psychotherapy patient',
-      context: 'Supportive psychotherapy'
+      text: 'The intake process asks for enough information to prepare for a first conversation without turning a public website form into a full medical record.',
+      author: 'Thoughtful intake',
+      role: 'Care principle',
+      context: 'Privacy-conscious process'
     },
     '5': {
-      text: 'Medication management done carefully \u2014 not just a prescription pad. We revisited, adjusted, and found what actually worked for me. I was included in every decision and never felt hurried through a checklist.',
-      author: 'D.P.',
-      role: 'Medication management',
+      text: 'Medication decisions are revisited over time. Benefits, side effects, comfort level, and goals all matter when adjusting a treatment plan.',
+      author: 'Careful medication management',
+      role: 'Care principle',
       context: 'Ongoing care'
     },
     '6': {
-      text: 'Telehealth was the only way I could keep appointments during a difficult stretch, and the quality of care never dropped. Same attentiveness, same follow-through, from my living room.',
-      author: 'S.B.',
-      role: 'Telepsychiatry patient',
-      context: 'Missouri, remote care'
+      text: 'Telepsychiatry can make care easier to keep up with for eligible patients in Missouri while preserving the same thoughtful approach to assessment and follow-up.',
+      author: 'Telehealth access',
+      role: 'Care principle',
+      context: 'Missouri telepsychiatry'
     },
     '7': {
-      text: 'I\u2019ve been to a lot of providers. Dr. Yerrapu is the first one who felt like a real partner in my care \u2014 not someone hurrying me through a checklist. We revisit the plan together, and it shows.',
-      author: 'R.H.',
-      role: 'Adult psychiatry patient',
-      context: 'Long-term care'
+      text: 'Good psychiatric care works best when the patient is an active participant. The plan should be explained clearly and adjusted collaboratively.',
+      author: 'Collaborative planning',
+      role: 'Care principle',
+      context: 'Shared decisions'
     },
     '8': {
-      text: 'Compassionate, evidence-based, and refreshingly honest. I always leave with a clearer sense of the next step, and never with the feeling that a decision was made for me.',
-      author: 'E.M.',
-      role: 'Psychotherapy patient',
-      context: 'Ongoing therapy'
+      text: 'Care is grounded in evidence while still making room for the realities of daily life, relationships, stress, sleep, work, school, and family.',
+      author: 'Evidence-informed support',
+      role: 'Care principle',
+      context: 'Whole-person care'
     }
   };
 

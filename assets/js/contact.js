@@ -90,7 +90,7 @@
 
     const accessKey = (form.querySelector('input[name="access_key"]') || {}).value || '';
     const endpoint = form.getAttribute('action') || '';
-    const useLive = endpoint.includes('web3forms.com') && accessKey && !/REPLACE_WITH/i.test(accessKey);
+    const useLive = endpoint.includes('web3forms.com') && accessKey.trim().length > 0;
 
     if (!useLive) {
       const host = window.location.hostname;

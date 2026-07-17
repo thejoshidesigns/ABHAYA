@@ -8,34 +8,26 @@ desktop.ini
 *.swo
 *~
 
-# Claude local state (per-machine, not part of the site)
-.claude/settings.local.json
-.claude/launch.json.bak
-
-# Local node (if anyone adds tooling later)
+# Local node and package caches
 node_modules/
 .npm/
 .cache/
 
-# Don't ignore .claude/ entirely — launch.json is shared team config.
-# Only the per-machine settings.local.json is excluded above.
-
-# Generated / build artifacts (none yet, but reserve the slots)
+# Generated / build artifacts
 dist/
 build/
 *.log
 .env
 .env.local
 
-# Planning / working documents (kept locally, not in the repo)
+# Planning / working documents kept out of source
 *.docx
 *.pdf
 Abhaya-Website-Plan-Client-Review.html
 Abhaya-Website-Plan-GoogleDoc.txt
 "ABHAYA BEHAVIORAL HEALTH - WEBSITE PLAN.docx"
 "Website Plan draft.pdf"
-.claude/skills/
 
-# Internal smoke tests (v2 system test page, etc.)
+# Internal smoke tests
 v2-system.html
 v2-*.html
