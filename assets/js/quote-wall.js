@@ -10,7 +10,7 @@
       context: 'In care since 2023'
     },
     '2': {
-      text: 'Dr. Puvvadi actually listens. I never felt rushed, never felt like a number. Telepsychiatry made it possible for me to keep appointments during a season of life when in-person just wasn\u2019t going to happen \u2014 and the quality of care never dropped.',
+      text: 'Dr. Yerrapu actually listens. I never felt rushed, never felt like a number. Telepsychiatry made it possible for me to keep appointments during a season of life when in-person just wasn\u2019t going to happen \u2014 and the quality of care never dropped.',
       author: 'J.T.',
       role: 'Telepsychiatry patient',
       context: 'Missouri, remote care'
