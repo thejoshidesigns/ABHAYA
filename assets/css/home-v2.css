@@ -1059,10 +1059,7 @@
 /* =========================================================================
    Quote wall — clickable testimonial cards + modal
    ========================================================================= */
-.quote-wall {
-  padding: var(--section-y) 0;
-  background: var(--color-cream);
-}
+/* Kept: shared heading/foot primitives used by home and care principles sections. */
 .quote-wall__head {
   max-width: 720px;
   margin: 0 auto var(--space-8);
@@ -1086,86 +1083,6 @@
   line-height: var(--lh-base);
   margin: 0;
 }
-.quote-wall__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(220px, auto);
-  gap: var(--space-5);
-}
-.quote-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-5);
-  padding: var(--space-6);
-  background: var(--color-paper);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  text-align: left;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  transition: transform var(--dur) var(--ease-out),
-              border-color var(--dur) var(--ease-out),
-              box-shadow var(--dur) var(--ease-out),
-              background var(--dur) var(--ease-out);
-}
-.quote-card:hover,
-.quote-card:focus-visible {
-  transform: translateY(-4px);
-  border-color: var(--color-primary);
-  box-shadow: 0 24px 48px -32px rgba(7, 171, 206, 0.35);
-  outline: none;
-}
-.quote-card--tall { grid-row: span 2; }
-.quote-card--wide { grid-column: span 2; }
-.quote-card--dark {
-  background: var(--color-ink-deep);
-  color: var(--color-cream);
-  border-color: var(--color-ink-deep);
-}
-.quote-card--dark .quote-card__role { color: rgba(244, 249, 251, 0.7); }
-.quote-card--dark .quote-card__more { color: var(--color-accent); }
-.quote-card__mark {
-  width: 32px;
-  height: 32px;
-  color: var(--color-accent);
-  opacity: 0.9;
-}
-.quote-card__text {
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  line-height: var(--lh-snug);
-  letter-spacing: var(--tracking-tight);
-  margin: 0;
-  color: inherit;
-}
-.quote-card--tall .quote-card__text { font-size: var(--fs-xl); }
-.quote-card__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.quote-card__author {
-  font-weight: var(--fw-semi);
-  font-size: var(--fs-sm);
-  color: inherit;
-}
-.quote-card__role {
-  font-size: var(--fs-xs);
-  color: var(--color-ink-soft);
-  letter-spacing: 0.02em;
-}
-.quote-card__more {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semi);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--color-primary-deep);
-  transition: transform var(--dur) var(--ease-out);
-}
-.quote-card:hover .quote-card__more span { display: inline-block; transform: translateX(4px); }
 .quote-wall__note {
   margin-top: var(--space-6);
   text-align: center;
@@ -1173,107 +1090,6 @@
   color: var(--color-ink-soft);
   letter-spacing: 0.02em;
 }
-
-@media (max-width: 900px) {
-  .quote-wall__grid { grid-template-columns: repeat(2, 1fr); }
-  .quote-card--tall { grid-row: auto; }
-  .quote-card--wide { grid-column: span 2; }
-}
-@media (max-width: 600px) {
-  .quote-wall__grid { grid-template-columns: 1fr; }
-  .quote-card--wide { grid-column: auto; }
-}
-
-/* Modal */
-.quote-modal {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-modal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-5);
-}
-.quote-modal[hidden] { display: none; }
-.quote-modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 37, 42, 0.65);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  transition: opacity var(--dur) var(--ease-out);
-}
-.quote-modal.is-open .quote-modal__backdrop { opacity: 1; }
-.quote-modal__panel {
-  position: relative;
-  max-width: 640px;
-  width: 100%;
-  background: var(--color-paper);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8) var(--space-7);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(16px) scale(0.98);
-  opacity: 0;
-  transition: transform var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
-}
-.quote-modal.is-open .quote-modal__panel {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-.quote-modal__close {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--color-line);
-  background: var(--color-cream);
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--color-ink);
-  cursor: pointer;
-  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
-}
-.quote-modal__close:hover {
-  background: var(--color-ink-deep);
-  color: var(--color-cream);
-}
-.quote-modal__mark {
-  width: 40px;
-  height: 40px;
-  color: var(--color-accent);
-  margin-bottom: var(--space-4);
-}
-.quote-modal__text {
-  font-family: var(--font-display);
-  font-size: var(--fs-xl);
-  line-height: var(--lh-snug);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-ink);
-  margin: 0 0 var(--space-6);
-  font-style: italic;
-}
-.quote-modal__meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: var(--space-4);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-line);
-}
-.quote-modal__author {
-  font-weight: var(--fw-semi);
-  color: var(--color-ink);
-}
-.quote-modal__role,
-.quote-modal__context {
-  font-size: var(--fs-xs);
-  color: var(--color-ink-soft);
-  letter-spacing: 0.02em;
-}
-.quote-modal__context { text-align: right; }
-
 .quote-wall__foot {
   margin-top: var(--space-7);
   display: flex;
@@ -1283,3 +1099,4 @@
   text-align: center;
 }
 .quote-wall__foot .quote-wall__note { margin-top: 0; }
+
