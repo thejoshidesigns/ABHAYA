@@ -182,18 +182,18 @@
 .nav__phone svg { color: var(--color-primary); }
 
 .nav__logo-full {
-  height: 88px;
+  height: 176px;
   width: auto;
-  max-width: min(60vw, 340px);
+  max-width: min(70vw, 560px);
   object-fit: contain;
   background: transparent;
   display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 72px; }
+  .nav__logo-full { height: 128px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 60px; max-width: 60vw; }
+  .nav__logo-full { height: 96px; max-width: 70vw; }
 }
 
 
@@ -1859,7 +1859,7 @@
 }
 
 .hero-service-v2__title {
-  font-size: var(--fs-display);
+  font-size: var(--fs-display-xl);
   line-height: var(--lh-display);
   letter-spacing: var(--tracking-display);
   font-weight: var(--fw-regular);
@@ -2195,4 +2195,19 @@
 @media (max-width: 560px) {
   .insurance-carousel { padding: 0 2.5rem; }
   .insurance-carousel__btn { width: 2.2rem; height: 2.2rem; }
+}
+
+/* Simple check list */
+.check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+.check-list li { position: relative; padding-left: 1.75rem; color: var(--color-ink-soft); line-height: var(--lh-base); }
+.check-list li::before {
+  content: ""; position: absolute; left: 0; top: 0.55em;
+  width: 1rem; height: 1rem; border-radius: 999px;
+  background: color-mix(in oklab, var(--color-primary) 18%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--color-primary);
+}
+.check-list li::after {
+  content: ""; position: absolute; left: 0.28rem; top: 0.78em;
+  width: 0.45rem; height: 0.22rem; border-left: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary); transform: rotate(-45deg);
 }
