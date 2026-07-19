@@ -1859,7 +1859,7 @@
 }
 
 .hero-service-v2__title {
-  font-size: var(--fs-display);
+  font-size: var(--fs-display-xl);
   line-height: var(--lh-display);
   letter-spacing: var(--tracking-display);
   font-weight: var(--fw-regular);
