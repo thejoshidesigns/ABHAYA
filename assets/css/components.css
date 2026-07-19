@@ -182,18 +182,18 @@
 .nav__phone svg { color: var(--color-primary); }
 
 .nav__logo-full {
-  height: 88px;
+  height: 176px;
   width: auto;
-  max-width: min(60vw, 340px);
+  max-width: min(70vw, 560px);
   object-fit: contain;
   background: transparent;
   display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 72px; }
+  .nav__logo-full { height: 128px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 60px; max-width: 60vw; }
+  .nav__logo-full { height: 96px; max-width: 70vw; }
 }
 
 
