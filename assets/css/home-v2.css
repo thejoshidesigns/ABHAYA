@@ -977,7 +977,7 @@
   .stats-band__inner { grid-template-columns: 1fr; }
 }
 
-/* ============ LOGO MARQUEE (Clients carousel — grayscale, right) ============ */
+/* ============ LOGO MARQUEE (Clients carousel, grayscale, right) ============ */
 .logo-marquee {
   position: relative;
   width: 100%;
@@ -1120,7 +1120,7 @@
 }
 
 /* =========================================================================
-   Quote wall — clickable testimonial cards + modal
+   Quote wall, clickable testimonial cards + modal
    ========================================================================= */
 /* Kept: shared heading/foot primitives used by home and care principles sections. */
 .quote-wall__head {
