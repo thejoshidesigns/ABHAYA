@@ -73,39 +73,22 @@
   background: rgba(244, 249, 251, 0.88);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 0;
+  border-bottom: 1px solid transparent;
   transition: border-color var(--dur) var(--ease),
               background-color var(--dur) var(--ease);
-  overflow: visible;
-}
-
-.site-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: transparent;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .site-header.is-scrolled {
   background: rgba(244, 249, 251, 0.97);
+  border-bottom-color: var(--color-line);
 }
-
-.site-header.is-scrolled::after { background: var(--color-line); }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: var(--space-4);
   padding-block: var(--space-2);
-  position: relative;
-  z-index: 1;
-  overflow: visible;
 }
 
 .nav__brand {
@@ -113,26 +96,8 @@
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
-  position: relative;
-  z-index: 3;
-  /* Reserve slim inline space so menu stays put; logo overflows vertically */
-  height: 56px;
-  width: clamp(250px, 27vw, 350px);
-  overflow: visible;
 }
 
-.nav__brand::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: -8px;
-  bottom: -68px;
-  width: calc(100% + 18px);
-  background: rgba(244, 249, 251, 0.96);
-  border-radius: var(--radius-md);
-  z-index: 1;
-  pointer-events: none;
-}
 
 .nav__logo {
   width: 44px;
@@ -164,12 +129,13 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: var(--space-6);
+  gap: clamp(var(--space-4), 2.2vw, var(--space-6));
 }
 
 @media (min-width: 1024px) {
   .nav__links { display: flex; }
 }
+
 
 .nav__link {
   font-size: var(--fs-sm);
@@ -233,26 +199,19 @@
 }
 
 .nav__logo-full {
-  height: 124px;                       /* visually large */
+  height: 72px;
   width: auto;
-  max-width: min(72vw, 380px);
+  max-width: min(72vw, 340px);
   object-fit: contain;
-  background: transparent;
   display: block;
-  position: absolute;
-  left: 0;
-  top: -4px;
-  z-index: 2;
-  filter: drop-shadow(0 4px 12px rgba(7, 171, 206, 0.12));
 }
 @media (max-width: 900px) {
-  .nav__brand { width: clamp(220px, 42vw, 300px); }
-  .nav__logo-full { height: 104px; }
+  .nav__logo-full { height: 60px; }
 }
 @media (max-width: 640px) {
-  .nav__brand { width: min(68vw, 260px); }
-  .nav__logo-full { height: 84px; max-width: 100%; }
+  .nav__logo-full { height: 52px; max-width: 100%; }
 }
+
 
 
 /* Hamburger */
