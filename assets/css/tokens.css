@@ -112,11 +112,11 @@
   --section-y: clamp(3rem, 8vw, 6rem);
 
   /* ---------- Layout ---------- */
-  --container:    1760px;
-  --container-sm: 1200px;
+  --container:    1560px;
+  --container-sm: 1120px;
 
   --content:      68ch;
-  --gutter:       clamp(1.5rem, 3.75vw, 3rem);
+  --gutter:       clamp(2rem, 6vw, 6rem);
 
   /* ---------- Radii ---------- */
   --radius-sm: 4px;
