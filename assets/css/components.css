@@ -73,16 +73,29 @@
   background: rgba(244, 249, 251, 0.88);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid transparent;
+  border-bottom: 0;
   transition: border-color var(--dur) var(--ease),
               background-color var(--dur) var(--ease);
   overflow: visible;
 }
 
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .site-header.is-scrolled {
-  border-bottom-color: var(--color-line);
   background: rgba(244, 249, 251, 0.97);
 }
+
+.site-header.is-scrolled::after { background: var(--color-line); }
 
 .nav {
   display: flex;
@@ -90,6 +103,8 @@
   justify-content: space-between;
   gap: var(--space-5);
   padding-block: var(--space-2);
+  position: relative;
+  z-index: 1;
   overflow: visible;
 }
 
@@ -98,8 +113,11 @@
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
+  position: relative;
+  z-index: 3;
   /* Reserve slim inline space so menu stays put; logo overflows vertically */
   height: 56px;
+  width: clamp(250px, 27vw, 350px);
   overflow: visible;
 }
 
@@ -202,23 +220,26 @@
 }
 
 .nav__logo-full {
-  height: 130px;                       /* visually large */
+  height: 124px;                       /* visually large */
   width: auto;
-  max-width: min(70vw, 380px);
+  max-width: min(72vw, 380px);
   object-fit: contain;
   background: transparent;
   display: block;
-  /* Overflow the slim 56px header band evenly above & below */
-  margin-block: -36px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
   filter: drop-shadow(0 4px 12px rgba(7, 171, 206, 0.12));
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 104px; margin-block: -24px; }
+  .nav__brand { width: clamp(220px, 42vw, 300px); }
+  .nav__logo-full { height: 104px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 84px; margin-block: -16px; max-width: 60vw; }
+  .nav__brand { width: min(68vw, 260px); }
+  .nav__logo-full { height: 84px; max-width: 100%; }
 }
 
 
