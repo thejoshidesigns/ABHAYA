@@ -116,7 +116,7 @@
   --container-sm: 1200px;
 
   --content:      68ch;
-  --gutter:       clamp(1.3rem, 3.25vw, 2.6rem);
+  --gutter:       clamp(1.5rem, 3.75vw, 3rem);
 
   /* ---------- Radii ---------- */
   --radius-sm: 4px;
