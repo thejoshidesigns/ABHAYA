@@ -155,13 +155,21 @@
     const useLive = endpoint.includes('web3forms.com') && accessKey.trim().length > 0;
 
     if (!useLive) {
-      // No configured backend: never simulate success. Direct visitor to phone/email.
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
-        submitBtn.textContent = originalLabel;
-      }
-      alert('Online intake is temporarily unavailable. Please call (573) 403-3544 or email contactus@abhayabh.com to request an appointment. We will respond within one business day.');
+      // No configured backend: fall back to opening the user's email client
+      // pre-filled with their intake details so the request still reaches us.
+      const data = new FormData(form);
+      const lines = [];
+      data.forEach((value, key) => {
+        if (key === 'access_key' || key === 'subject' || key === 'from_name' ||
+            key === 'redirect' || key === 'botcheck') return;
+        lines.push(key + ': ' + value);
+      });
+      const patientName = (form.querySelector('[name="name"]') || {}).value || 'New patient';
+      const subject = encodeURIComponent('Appointment request | ' + patientName);
+      const body = encodeURIComponent(lines.join('\n') + '\n');
+      window.location.href = 'mailto:contactus@abhayabh.com?subject=' + subject + '&body=' + body;
+      // Show success UI immediately so the visitor has confirmation.
+      showSuccess();
       return;
     }
 

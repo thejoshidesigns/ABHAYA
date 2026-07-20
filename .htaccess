@@ -22,7 +22,7 @@ Redirect 301 /testimonials.html /care.html
   Header always set Cross-Origin-Resource-Policy "same-site"
   # Content Security Policy: allows Google Fonts (styles + font files),
   # Google Maps embed (contact page iframe), and Web3Forms submissions.
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://api.web3forms.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://maps.google.com; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://maps.google.com; upgrade-insecure-requests"
 </IfModule>
 
 # --- Compression ---
