@@ -121,6 +121,19 @@
   overflow: visible;
 }
 
+.nav__brand::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -8px;
+  bottom: -68px;
+  width: calc(100% + 18px);
+  background: rgba(244, 249, 251, 0.96);
+  border-radius: var(--radius-md);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .nav__logo {
   width: 44px;
   height: 44px;
@@ -228,8 +241,7 @@
   display: block;
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: -4px;
   z-index: 2;
   filter: drop-shadow(0 4px 12px rgba(7, 171, 206, 0.12));
 }
