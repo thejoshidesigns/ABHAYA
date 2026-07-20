@@ -199,18 +199,19 @@
 }
 
 .nav__logo-full {
-  height: 72px;
+  height: 144px;
   width: auto;
-  max-width: min(72vw, 340px);
+  max-width: min(80vw, 560px);
   object-fit: contain;
   display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 60px; }
+  .nav__logo-full { height: 112px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 52px; max-width: 100%; }
+  .nav__logo-full { height: 88px; max-width: 100%; }
 }
+
 
 
 
