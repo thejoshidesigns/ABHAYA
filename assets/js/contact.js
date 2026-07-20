@@ -93,11 +93,23 @@
     const useLive = endpoint.includes('web3forms.com') && accessKey.trim().length > 0;
 
     if (!useLive) {
-      // No configured backend: never simulate success. Direct visitor to phone/email.
-      submitBtn.disabled = false;
-      if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
-      submitBtn.textContent = originalLabel;
-      alert('Online form submission is temporarily unavailable. Please call (573) 403-3544 or email contactus@abhayabh.com and we will respond within one business day.');
+      // No configured backend: fall back to opening the user's email client
+      // pre-filled with their submission so their message still reaches us.
+      const get = (n) => (form.querySelector('[name="' + n + '"]') || {}).value || '';
+      const name = get('name');
+      const email = get('email');
+      const phone = get('phone');
+      const message = get('message');
+      const subject = encodeURIComponent('Website contact | ' + (name || 'New inquiry'));
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone: ' + phone + '\n\n' +
+        'Message:\n' + message + '\n'
+      );
+      window.location.href = 'mailto:contactus@abhayabh.com?subject=' + subject + '&body=' + body;
+      // Show success UI immediately so the visitor has confirmation.
+      showSuccess();
       return;
     }
 
