@@ -112,8 +112,9 @@
   --section-y: clamp(3rem, 8vw, 6rem);
 
   /* ---------- Layout ---------- */
-  --container:    1440px;
-  --container-sm: 1040px;
+  --container:    1760px;
+  --container-sm: 1200px;
+
   --content:      68ch;
   --gutter:       clamp(1rem, 2.5vw, 2rem);
 
