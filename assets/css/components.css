@@ -202,18 +202,23 @@
 }
 
 .nav__logo-full {
-  height: 68px;
+  height: 130px;                       /* visually large */
   width: auto;
-  max-width: min(70vw, 260px);
+  max-width: min(70vw, 380px);
   object-fit: contain;
   background: transparent;
   display: block;
+  /* Overflow the slim 56px header band evenly above & below */
+  margin-block: -36px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4px 12px rgba(7, 171, 206, 0.12));
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 60px; }
+  .nav__logo-full { height: 104px; margin-block: -24px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 52px; max-width: 60vw; }
+  .nav__logo-full { height: 84px; margin-block: -16px; max-width: 60vw; }
 }
 
 
