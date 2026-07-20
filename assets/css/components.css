@@ -197,18 +197,18 @@
 }
 
 .nav__logo-full {
-  height: 176px;
+  height: 68px;
   width: auto;
-  max-width: min(70vw, 560px);
+  max-width: min(70vw, 260px);
   object-fit: contain;
   background: transparent;
   display: block;
 }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 128px; }
+  .nav__logo-full { height: 60px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 96px; max-width: 70vw; }
+  .nav__logo-full { height: 52px; max-width: 60vw; }
 }
 
 
