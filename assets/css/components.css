@@ -199,26 +199,19 @@
 }
 
 .nav__logo-full {
-  height: 124px;                       /* visually large */
+  height: 72px;
   width: auto;
-  max-width: min(72vw, 380px);
+  max-width: min(72vw, 340px);
   object-fit: contain;
-  background: transparent;
   display: block;
-  position: absolute;
-  left: 0;
-  top: -4px;
-  z-index: 2;
-  filter: drop-shadow(0 4px 12px rgba(7, 171, 206, 0.12));
 }
 @media (max-width: 900px) {
-  .nav__brand { width: clamp(220px, 42vw, 300px); }
-  .nav__logo-full { height: 104px; }
+  .nav__logo-full { height: 60px; }
 }
 @media (max-width: 640px) {
-  .nav__brand { width: min(68vw, 260px); }
-  .nav__logo-full { height: 84px; max-width: 100%; }
+  .nav__logo-full { height: 52px; max-width: 100%; }
 }
+
 
 
 /* Hamburger */
