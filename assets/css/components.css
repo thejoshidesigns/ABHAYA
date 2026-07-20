@@ -129,12 +129,13 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: var(--space-6);
+  gap: clamp(var(--space-4), 2.2vw, var(--space-6));
 }
 
 @media (min-width: 1024px) {
   .nav__links { display: flex; }
 }
+
 
 .nav__link {
   font-size: var(--fs-sm);
