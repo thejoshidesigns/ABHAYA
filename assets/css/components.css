@@ -205,16 +205,13 @@
   object-fit: contain;
   object-position: left center;
   display: block;
-  /* Offset the SVG's internal left whitespace so the wordmark aligns
-     flush-left with the container edge (and text below in hero/sections). */
-  margin-left: -28px;
 }
-.nav__brand { margin-left: -8px; }
+.nav__brand { margin-left: 0; }
 @media (max-width: 900px) {
-  .nav__logo-full { height: 112px; margin-left: -22px; }
+  .nav__logo-full { height: 112px; }
 }
 @media (max-width: 640px) {
-  .nav__logo-full { height: 88px; max-width: 100%; margin-left: -18px; }
+  .nav__logo-full { height: 88px; max-width: 100%; }
 }
 
 
