@@ -1056,7 +1056,7 @@
   z-index: 2;
   display: grid;
   gap: var(--space-8);
-  align-items: center;
+  align-items: start;
 }
 
 @media (min-width: 1024px) {
