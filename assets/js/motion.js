@@ -239,7 +239,8 @@
     initMarquee();
     initCounters();
     initTilt();
-    initHeaderMode();
+    // Header stays light on all sections (no dark swap) for a consistent bar.
+    void initHeaderMode;
   }
 
   if (document.readyState === 'loading') {
