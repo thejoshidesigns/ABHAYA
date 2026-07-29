@@ -178,7 +178,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: color-mix(in oklab, var(--color-ink) 40%, transparent);
+  color: var(--color-ink-soft);
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -278,7 +278,7 @@
   margin: 0;
 }
 .why-item p {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   max-width: 32rem;
   margin: 0;
@@ -640,7 +640,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--color-ink) 55%, transparent);
+  color: var(--color-ink-soft);
   max-width: 10rem;
 }
 
@@ -746,7 +746,7 @@
 .hero-glow__tile--lime { background: color-mix(in oklab, var(--color-accent) 15%, transparent); }
 .hero-glow__tile--lime .hero-glow__tile-num { color: var(--color-ink); }
 .hero-glow__tile-num { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
-.hero-glow__tile-label { font-size: 0.68rem; color: color-mix(in oklab, var(--color-ink) 50%, transparent); }
+.hero-glow__tile-label { font-size: 0.68rem; color: var(--color-ink-soft); }
 
 /* Floating "next session" card */
 .hero-glow__float {
@@ -780,7 +780,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--color-ink) 45%, transparent);
+  color: var(--color-ink-soft);
 }
 .hero-glow__float-value {
   font-weight: 700;
@@ -822,7 +822,7 @@
   font-weight: 500;
 }
 .services-soft__lede {
-  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  color: var(--color-ink-soft);
   font-size: 1.05rem;
   line-height: 1.6;
 }
@@ -883,7 +883,7 @@
 .soft-card p {
   font-size: 0.92rem;
   line-height: 1.6;
-  color: color-mix(in oklab, var(--color-ink) 62%, transparent);
+  color: var(--color-ink-soft);
   flex: 1;
 }
 .soft-card__cta {

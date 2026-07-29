@@ -10,10 +10,10 @@
   --color-cream-soft:      #F9FCFD;   /* lightest background, modals */
   --color-paper:           #FFFFFF;   /* card surface */
 
-  /* Primary: teal #07abce */
-  --color-primary:         #07abce;   /* primary brand, CTA fill */
-  --color-primary-deep:    #069ab9;   /* CTA hover (10% darker) */
-  --color-primary-darker:  #0689a5;   /* 20% darker */
+  /* Primary: accessible teal, darkened to support light text at WCAG AA */
+  --color-primary:         #057c96;   /* primary brand, CTA fill */
+  --color-primary-deep:    #05758e;   /* CTA hover */
+  --color-primary-darker:  #056b82;   /* strongest teal */
   --color-primary-soft:    #c7e8f1;   /* tints, hairlines */
   --color-primary-glow:    #4ac5e4;   /* gradient accent */
 
@@ -51,7 +51,7 @@
   /* Semantic */
   --color-error:           #9E2A2A;
   --color-success:         #3f7a85;   /* sage-deep */
-  --color-focus:           #07abce;   /* focus ring = primary teal */
+  --color-focus:           #057c96;   /* focus ring = primary teal */
 
   /* Section alt background */
   --color-section-alt:     #EBF5F9;   /* slightly deeper teal tint */
