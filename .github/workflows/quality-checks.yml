@@ -1,0 +1,37 @@
+name: Website quality checks
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Verify website build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download website code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install project tools
+        run: npm ci
+
+      - name: Check for high-risk dependency problems
+        run: npm audit --audit-level=high
+
+      - name: Build website
+        run: npm run build
