@@ -730,7 +730,7 @@ details.faq > *:not(summary) {
   line-height: 1.25;
 }
 .how-item p {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   max-width: 44rem;
   margin: 0;
@@ -909,7 +909,7 @@ details.faq > *:not(summary) {
 .rate-card__unit {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  color: var(--color-ink-soft);
   margin: 0;
 }
 .rate-card__note {
@@ -1026,7 +1026,7 @@ details.faq-item > *:not(summary) {
   line-height: 1.25;
 }
 .timeline__body {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   margin: 0;
   max-width: 44rem;
