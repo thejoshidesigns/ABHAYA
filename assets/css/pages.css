@@ -569,7 +569,7 @@
 }
 .hero.hero--small .hero__title em {
   font-style: italic;
-  color: var(--color-primary-deep);
+  color: var(--color-primary-accessible);
   font-weight: var(--fw-regular);
 }
 .hero.hero--small .hero__sub {
@@ -1007,7 +1007,9 @@ details.faq-item > *:not(summary) {
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: var(--color-primary, #07abce);
+  /* White on bright cyan is 2.72:1; the accessible teal gives 5.14:1.
+     The cyan is kept in the glow below, where it carries no text. */
+  background: var(--color-primary-accessible);
   color: #fff;
   font-family: var(--font-body);
   font-weight: 700;
@@ -1234,9 +1236,9 @@ details.faq-item > *:not(summary) {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-/* Lime (#bbd639) is 1.64:1 on white, so it is never used as label text on a
-   light surface. Dark ink carries the meaning; lime stays decorative. */
-.bento-ed__rule-label--lime { color: var(--color-ink); }
+/* This variant is only used on the dark tile, where lime reads at 11.9:1.
+   Do not reuse it on a light surface: lime is 1.64:1 on white. */
+.bento-ed__rule-label--lime { color: var(--color-accent); }
 
 /* CTA */
 .bento-ed__cta {

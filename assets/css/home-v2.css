@@ -823,7 +823,7 @@
 }
 .services-soft__title em {
   font-style: italic;
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-weight: 500;
 }
 .services-soft__lede {
@@ -1142,7 +1142,7 @@
 }
 .quote-wall__title em {
   font-style: italic;
-  color: var(--color-primary-deep);
+  color: var(--color-primary-accessible);
 }
 .quote-wall__lede {
   color: var(--color-ink-soft);
