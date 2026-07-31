@@ -12,16 +12,32 @@ Options -Indexes -MultiViews
 Redirect 301 /testimonials.html /care.html
 
 # --- Security headers (safe defaults for a static site) ---
+# Full explanation of every directive, and the rollback procedure if the site
+# returns HTTP 500 after an upload, are in SECURITY-HEADERS.md.
+# Emergency rollback: rename this file to htaccess.broken in cPanel File
+# Manager (enable "Show Hidden Files" first). The site returns immediately.
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
-  Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains" env=HTTPS
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
   Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Resource-Policy "same-site"
-  # Content Security Policy: allows Google Fonts (styles + font files),
-  # Google Maps embed (contact page iframe), and Web3Forms submissions.
+
+  # HSTS is intentionally DISABLED until HTTPS is verified on the live domain.
+  # It is sticky and cannot be undone from the server: once a browser sees it,
+  # that browser refuses plain HTTP for the whole max-age. Enable only after
+  # step 5 of DEPLOYMENT-CHECKLIST.md passes, and start with a short max-age.
+  # Header always set Strict-Transport-Security "max-age=300" env=HTTPS
+
+  # Content Security Policy. Third parties, in full:
+  #   fonts.googleapis.com / fonts.gstatic.com - Google Fonts, all pages
+  #   cdn.jsdelivr.net                         - GSAP animation, about.html only
+  #   www.google.com / maps.google.com         - map iframe, contact.html only
+  #   api.web3forms.com                        - form delivery (not yet active)
+  # No 'unsafe-inline' for scripts and no 'unsafe-eval': all JavaScript lives
+  # in external files under assets/js/. Do not add either to fix a console
+  # error; add the specific origin instead.
   Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://maps.google.com; upgrade-insecure-requests"
 </IfModule>
 
@@ -45,6 +61,15 @@ Redirect 301 /testimonials.html /care.html
 </IfModule>
 
 # --- Block access to sensitive files ---
+# Defence in depth: scripts/check-dist.js already prevents these from being
+# built into dist/, but this blocks them if one is ever uploaded by hand.
 <FilesMatch "^(\.|package\.json|package-lock\.json|bun\.lock|build\.js|README|\.env)">
   Require all denied
+</FilesMatch>
+<FilesMatch "\.(md|json|lock|log|bak|orig|map|ts|sh|yml|yaml)$">
+  Require all denied
+</FilesMatch>
+# ...but the manifest, sitemap and site config must stay reachable.
+<FilesMatch "^(sitemap\.xml|robots\.txt|site\.webmanifest|manifest\.json)$">
+  Require all granted
 </FilesMatch>

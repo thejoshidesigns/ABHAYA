@@ -17,6 +17,14 @@
   --color-primary-soft:    #c7e8f1;   /* tints, hairlines */
   --color-primary-glow:    #4ac5e4;   /* gradient accent */
 
+  /* Accessible teal: the ONLY teal allowed to carry meaning against
+     white/cream. #07abce above stays the true logo cyan and is reserved for
+     decorative gradients, glows, illustrations and non-essential accents.
+       #00788F -> 5.14:1 on #FFFFFF, 4.85:1 on #F4F9FB cream (WCAG AA)
+       #006B80 -> 6.15:1 on #FFFFFF, 5.80:1 on cream (hover/active) */
+  --color-primary-accessible:       #00788F;
+  --color-primary-accessible-hover: #006B80;
+
   /* Accent: lime-green #bbd639 (logo leaves) */
   --color-accent:          #bbd639;   /* secondary accent */
   --color-accent-deep:     #a8c133;   /* 10% darker */
@@ -26,12 +34,13 @@
 
   /* Sage: kept as tertiary neutral green */
   --color-sage:            #5b9ca8;   /* tertiary, muted teal-blue */
-  --color-sage-deep:       #3f7a85;   /* heading on cream */
+  --color-sage-deep:       #356b76;   /* heading on cream, 5.63:1 */
   --color-sage-soft:       #c2dfe5;   /* sage tints */
   --color-sage-glow:       #80bbc7;   /* gradient accent */
 
   /* Gold: laurel/sun motif accent */
-  --color-gold:            #C9A24E;
+  --color-gold:            #C9A24E;   /* decorative only, 2.4:1 on cream */
+  --color-gold-deep:       #6b5314;   /* AA text/numerals on light surfaces */
   --color-gold-soft:       #E8D9A8;
 
   /* Text */
@@ -50,8 +59,8 @@
 
   /* Semantic */
   --color-error:           #9E2A2A;
-  --color-success:         #3f7a85;   /* sage-deep */
-  --color-focus:           #07abce;   /* focus ring = primary teal */
+  --color-success:         var(--color-sage-deep);
+  --color-focus:           var(--color-primary-accessible);  /* 3:1+ ring */
 
   /* Section alt background */
   --color-section-alt:     #EBF5F9;   /* slightly deeper teal tint */

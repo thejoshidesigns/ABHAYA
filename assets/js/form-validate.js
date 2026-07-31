@@ -17,7 +17,7 @@
   const MESSAGES = {
     required: 'This field is required.',
     requiredCheckbox: 'Please check this box to continue.',
-    email: 'Please enter a valid email address, for example name@example.org.',
+    email: 'Please enter a valid email address, for example name@example.org.', // RFC 2606 reserved sample domain, intentional -- check-content-ignore
     tel: 'Please enter a valid phone number, for example (573) 403-3544.',
   };
 
