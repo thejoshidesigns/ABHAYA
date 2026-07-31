@@ -163,15 +163,24 @@ ul.bare, ol.bare { list-style: none; padding: 0; }
 
 .grid { display: grid; gap: var(--space-6); }
 
-.grid--2 { grid-template-columns: 1fr; }
-.grid--3 { grid-template-columns: 1fr; }
-.grid--4 { grid-template-columns: 1fr; }
+.grid--2 { grid-template-columns: minmax(0, 1fr); }
+.grid--3 { grid-template-columns: minmax(0, 1fr); }
+.grid--4 { grid-template-columns: minmax(0, 1fr); }
 
-@media (min-width: 640px) {
-  .grid--2 { grid-template-columns: repeat(2, 1fr); }
-  .grid--3 { grid-template-columns: repeat(2, 1fr); }
-  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+/* minmax(0, 1fr) rather than 1fr: a plain 1fr track refuses to shrink below
+   its content's min-content width, so long addresses, phone links and
+   unbreakable strings push the grid wider than the viewport. This is what
+   caused horizontal overflow at 200% browser zoom.
+
+   The two-up breakpoint sits at 720px, not 640px, because 640px is exactly
+   the effective viewport at 200% zoom on a 1280px screen, where two columns
+   leave too little room per card. */
+@media (min-width: 720px) {
+  .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
 
 @media (min-width: 1024px) {
   .grid--3 { grid-template-columns: repeat(3, 1fr); }
