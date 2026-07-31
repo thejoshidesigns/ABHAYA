@@ -1200,7 +1200,9 @@
 
 .bento__cta {
   font-weight: var(--fw-semi);
-  color: var(--color-primary-deep);
+  /* Appears on white tiles and on sage-soft callouts; the deep step clears
+     4.5:1 on both. */
+  color: var(--color-primary-accessible-deep);
   margin-top: auto;
   padding-top: var(--space-3);
   display: inline-flex;
@@ -2089,7 +2091,8 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px;
-  background: var(--color-teal, #07abce);
+  /* White on bright cyan is 2.72:1; on the accessible teal it is 5.14:1. */
+  background: var(--color-primary-accessible);
   color: #fff;
   display: inline-flex;
   align-items: center;

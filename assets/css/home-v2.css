@@ -53,7 +53,7 @@
 .hero-split__title .accent {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
 }
 
 .hero-split__sub {
@@ -472,7 +472,7 @@
   margin-bottom: 2.5rem;
   letter-spacing: -0.02em;
 }
-.cta-close h2 .accent { color: var(--color-primary); }
+.cta-close h2 .accent { color: var(--color-primary-accessible); }
 
 .cta-close__btn {
   display: inline-flex;
@@ -480,7 +480,8 @@
   justify-content: center;
   padding: 1.15rem 2.75rem;
   border-radius: 999px;
-  background: var(--color-primary);
+  /* White on bright cyan is 2.72:1. Keep the cyan for the glow only. */
+  background: var(--color-primary-accessible);
   color: #fff;
   font-weight: 700;
   font-size: 1.1rem;
@@ -896,7 +897,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
 }
 
 /* ============ STATS BAND (full-width) ============ */

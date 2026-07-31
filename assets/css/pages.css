@@ -327,7 +327,7 @@
 }
 
 .eyebrow--accent {
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-weight: 600;
 }
 
@@ -1173,7 +1173,7 @@ details.faq-item > *:not(summary) {
 
 .bento-ed__eyebrow {
   display: block;
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -1570,7 +1570,8 @@ details.faq-item > *:not(summary) {
   font-family: var(--font-display, "Fraunces", serif);
   font-size: 1.125rem;
   font-weight: 600;
-  color: #07abce;
+  /* 4.72:1 against the lime tint below. Bright cyan was 2.49:1. */
+  color: var(--color-primary-accessible);
   background: rgba(187, 214, 57, 0.18);
   border-radius: 999px;
   padding: 0.15rem 0.6rem;
