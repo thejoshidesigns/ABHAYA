@@ -2280,6 +2280,8 @@
   border-bottom: 2px solid var(--color-primary); transform: rotate(-45deg);
 }
 
+#good-faith-estimate { scroll-margin-top: 140px; }
+
 /* Compact crisis notice (contact page, above ordinary contact details) */
 .crisis-note {
   background: color-mix(in oklab, var(--color-crisis) 8%, var(--color-cream));
