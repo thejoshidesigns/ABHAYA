@@ -1,5 +1,7 @@
 /* =========================================================================
-   contact.js - contact form validation
+   contact.js - contact form validation and submission.
+   Delivery is only attempted when a Web3Forms access key is configured.
+   Without one the form never claims success; it points to phone and email.
    ========================================================================= */
 (function () {
   'use strict';
@@ -7,17 +9,30 @@
   const form = document.querySelector('[data-contact-form]');
   if (!form) return;
 
+  const V = window.FormValidate;
   const success = document.getElementById('contact-success');
+  const status = form.querySelector('[data-form-status]');
   const submitBtn = form.querySelector('button[type="submit"]');
+  let submitting = false;
+  let errorSeq = 0;
+
+  const errorNodeFor = (field) => {
+    const wrap = field.closest('.field');
+    return wrap ? wrap.querySelector('.field__error') : null;
+  };
 
   const showError = (field, msg) => {
     const wrap = field.closest('.field');
     if (!wrap) return;
     wrap.classList.add('field--error');
-    const err = wrap.querySelector('.field__error');
+    const err = errorNodeFor(field);
     if (err) {
+      if (!err.id) err.id = 'field-error-' + ++errorSeq;
       err.textContent = msg;
-      err.setAttribute('role', 'alert');
+      const described = (field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      if (!described.includes(err.id)) {
+        field.setAttribute('aria-describedby', described.concat(err.id).join(' '));
+      }
     }
     field.setAttribute('aria-invalid', 'true');
   };
@@ -26,111 +41,113 @@
     const wrap = field.closest('.field');
     if (!wrap) return;
     wrap.classList.remove('field--error');
-    const err = wrap.querySelector('.field__error');
+    const err = errorNodeFor(field);
     if (err) err.textContent = '';
     field.removeAttribute('aria-invalid');
   };
 
-  const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
-  const isPhone = (v) => /^[0-9+()\-\s.]{7,}$/.test(v.trim());
-
-  const validate = () => {
-    let ok = true;
-    const required = form.querySelectorAll('[required]');
-    required.forEach((field) => {
-      clearError(field);
-      const v = (field.value || '').trim();
-      if (!v) {
-        showError(field, 'This field is required.');
-        ok = false;
-        return;
-      }
-      if (field.type === 'email' && !isEmail(v)) {
-        showError(field, 'Please enter a valid email address.');
-        ok = false;
-      }
-      if (field.type === 'tel' && !isPhone(v)) {
-        showError(field, 'Please enter a valid phone number.');
-        ok = false;
-      }
-    });
-    return ok;
+  const setStatus = (msg, tone) => {
+    if (!status) return;
+    status.textContent = msg;
+    status.hidden = !msg;
+    status.classList.toggle('form__status--error', tone === 'error');
   };
 
-  // Live clear
+  const fields = () =>
+    Array.from(form.querySelectorAll('input[required], select[required], textarea[required], input[type="email"], input[type="tel"]')).filter(
+      (el) => el.type !== 'hidden' && el.name !== 'botcheck' && el.name !== '_gotcha'
+    );
+
+  const validate = () => {
+    const els = fields();
+    els.forEach(clearError);
+    const errors = V.validateFields(
+      els.map((el) => ({
+        type: el.type,
+        value: el.value,
+        required: el.hasAttribute('required'),
+        checked: el.checked,
+      }))
+    );
+    errors.forEach(({ index, message }) => showError(els[index], message));
+    return { ok: errors.length === 0, first: errors.length ? els[errors[0].index] : null, count: errors.length };
+  };
+
   form.addEventListener('input', (e) => {
-    const f = e.target;
-    if (f.matches('[required], [type="email"], [type="tel"]')) {
-      const wrap = f.closest('.field');
-      if (wrap && wrap.classList.contains('field--error')) clearError(f);
-    }
+    const wrap = e.target.closest && e.target.closest('.field');
+    if (wrap && wrap.classList.contains('field--error')) clearError(e.target);
+  });
+  form.addEventListener('change', (e) => {
+    const wrap = e.target.closest && e.target.closest('.field');
+    if (wrap && wrap.classList.contains('field--error')) clearError(e.target);
   });
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!validate()) {
-      const firstError = form.querySelector('.field--error input, .field--error textarea, .field--error select');
-      if (firstError) firstError.focus();
+    if (submitting) return;
+
+    const result = validate();
+    if (!result.ok) {
+      setStatus(
+        result.count === 1
+          ? 'One field needs your attention before this can be sent.'
+          : result.count + ' fields need your attention before this can be sent.',
+        'error'
+      );
+      if (result.first) result.first.focus();
       return;
     }
-
-    submitBtn.disabled = true;
-    const originalLabel = submitBtn.textContent;
-    if (window.LoaderDots) window.LoaderDots.attach(submitBtn);
-    else submitBtn.textContent = 'Sending…';
-
-    const showSuccess = () => {
-      form.style.display = 'none';
-      if (success) {
-        success.removeAttribute('hidden');
-        success.setAttribute('aria-live', 'polite');
-        success.focus();
-      }
-    };
 
     const accessKey = (form.querySelector('input[name="access_key"]') || {}).value || '';
     const endpoint = form.getAttribute('action') || '';
-    const useLive = endpoint.includes('web3forms.com') && accessKey.trim().length > 0;
 
-    if (!useLive) {
-      // No configured backend: fall back to opening the user's email client
-      // pre-filled with their submission so their message still reaches us.
-      const get = (n) => (form.querySelector('[name="' + n + '"]') || {}).value || '';
-      const name = get('name');
-      const email = get('email');
-      const phone = get('phone');
-      const message = get('message');
-      const subject = encodeURIComponent('Website contact | ' + (name || 'New inquiry'));
-      const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Phone: ' + phone + '\n\n' +
-        'Message:\n' + message + '\n'
+    if (V.deliveryMode(endpoint, accessKey) !== 'live') {
+      setStatus(
+        'Online message delivery is not active yet. Please call (573) 403-3544 or email contactus@abhayabh.com and we will respond within one business day.',
+        'error'
       );
-      window.location.href = 'mailto:contactus@abhayabh.com?subject=' + subject + '&body=' + body;
-      // Show success UI immediately so the visitor has confirmation.
-      showSuccess();
+      if (status) status.focus();
       return;
     }
 
-    const data = new FormData(form);
-    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+    submitting = true;
+    submitBtn.disabled = true;
+    const originalLabel = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    setStatus('Sending your message...');
+
+    const reset = () => {
+      submitting = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    };
+
+    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
       .then((r) => r.json().catch(() => ({})))
       .then((res) => {
         if (res && res.success) {
-          showSuccess();
+          setStatus('');
+          form.hidden = true;
+          if (success) {
+            success.removeAttribute('hidden');
+            success.setAttribute('tabindex', '-1');
+            success.focus();
+          }
         } else {
-          submitBtn.disabled = false;
-          if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
-          submitBtn.textContent = originalLabel;
-          alert((res && res.message) || 'Sorry, something went wrong. Please try again or call the office.');
+          reset();
+          setStatus(
+            (res && res.message) ||
+              'Sorry, your message could not be sent. Please call (573) 403-3544 or email contactus@abhayabh.com.',
+            'error'
+          );
         }
       })
       .catch(() => {
-        submitBtn.disabled = false;
-        if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
-        submitBtn.textContent = originalLabel;
-        alert('Network error. Please try again or call the office.');
+        reset();
+        setStatus(
+          'Network error. Please try again, or call (573) 403-3544 or email contactus@abhayabh.com.',
+          'error'
+        );
       });
   });
 })();
