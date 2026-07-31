@@ -301,7 +301,7 @@
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.7;
-  color: color-mix(in oklab, var(--color-ink) 78%, transparent);
+  color: var(--color-ink-soft);
   margin: 0 0 1rem;
   max-width: 58ch;
 }
@@ -730,7 +730,7 @@ details.faq > *:not(summary) {
   line-height: 1.25;
 }
 .how-item p {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   max-width: 44rem;
   margin: 0;
@@ -909,13 +909,13 @@ details.faq > *:not(summary) {
 .rate-card__unit {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  color: var(--color-ink-soft);
   margin: 0;
 }
 .rate-card__note {
   font-size: 0.9rem;
   line-height: 1.55;
-  color: color-mix(in oklab, var(--color-ink) 72%, transparent);
+  color: var(--color-ink-soft);
   margin: 0.4rem 0 0;
 }
 
@@ -1028,7 +1028,7 @@ details.faq-item > *:not(summary) {
   line-height: 1.25;
 }
 .timeline__body {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   margin: 0;
   max-width: 44rem;

@@ -59,7 +59,7 @@
 .hero-split__sub {
   font-size: clamp(1.05rem, 1.15vw, 1.2rem);
   line-height: 1.65;
-  color: color-mix(in oklab, var(--color-ink) 78%, transparent);
+  color: var(--color-ink-soft);
   margin-bottom: 2.5rem;
 }
 
@@ -166,7 +166,7 @@
 .hero-split__card p {
   font-size: 0.9rem;
   line-height: 1.55;
-  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+  color: var(--color-ink-soft);
 }
 
 /* ---------- Insurance strip ---------- */
@@ -280,7 +280,7 @@
   margin: 0;
 }
 .why-item p {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   max-width: 32rem;
   margin: 0;
@@ -424,7 +424,7 @@
   font-size: clamp(1.85rem, 3vw, 2.5rem);
   margin-bottom: 0.75rem;
 }
-.conditions-head p { color: color-mix(in oklab, var(--color-ink) 72%, transparent); }
+.conditions-head p { color: var(--color-ink-soft); }
 .conditions-chips {
   display: flex;
   flex-wrap: wrap;
@@ -645,7 +645,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--color-ink) 55%, transparent);
+  color: var(--color-ink-soft);
   max-width: 10rem;
 }
 
@@ -827,7 +827,7 @@
   font-weight: 500;
 }
 .services-soft__lede {
-  color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  color: var(--color-ink-soft);
   font-size: 1.05rem;
   line-height: 1.6;
 }
@@ -888,7 +888,7 @@
 .soft-card p {
   font-size: 0.92rem;
   line-height: 1.6;
-  color: color-mix(in oklab, var(--color-ink) 62%, transparent);
+  color: var(--color-ink-soft);
   flex: 1;
 }
 .soft-card__cta {
@@ -1048,7 +1048,7 @@
   font-weight: 600;
   font-size: clamp(0.85rem, 1vw, 0.95rem);
   letter-spacing: 0.01em;
-  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+  color: var(--color-ink-soft);
   white-space: nowrap;
   transition: color 0.25s ease;
 }
@@ -1114,7 +1114,7 @@
   font-weight: 600;
   font-size: clamp(0.9rem, 1.05vw, 1rem);
   letter-spacing: 0.01em;
-  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.25;
   transition: color 0.25s ease;
 }
