@@ -31,6 +31,7 @@
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-label', 'Close menu');
     menu.setAttribute('aria-hidden', 'false');
+    menu.removeAttribute('inert');
     document.body.style.overflow = 'hidden';
     // Focus first focusable
     const first = menu.querySelector('a, button');
@@ -42,6 +43,7 @@
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open menu');
     menu.setAttribute('aria-hidden', 'true');
+    menu.setAttribute('inert', '');
     document.body.style.overflow = '';
     document.removeEventListener('keydown', onKey);
     if (lastFocused && typeof lastFocused.focus === 'function') {

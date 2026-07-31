@@ -1,7 +1,12 @@
 /* =========================================================================
-   intake.js - multi-step intake form
+   intake.js - multi-step appointment request form.
    Steps: 1 About you | 2 Reason for visit | 3 Insurance & logistics
           4 Consent & submit
+
+   IMPORTANT: online delivery for this form stays inactive until the practice
+   confirms in writing that the chosen provider meets its HIPAA/BAA
+   requirements. Until then the form validates, but never claims a request
+   was received; it directs the visitor to phone or email.
    ========================================================================= */
 (function () {
   'use strict';
@@ -9,63 +14,37 @@
   const form = document.getElementById('intake-form');
   if (!form) return;
 
+  const V = window.FormValidate;
   const panels = form.querySelectorAll('.intake__panel');
   const steps = form.querySelectorAll('.intake__step');
-  // Each panel has its own Next / Back / Submit buttons. We look them up
-  // dynamically per step rather than caching one form-wide button, since
-  // `form.querySelector(...)` only ever returns the first match.
   const nextBtns = form.querySelectorAll('[data-intake-next]');
   const prevBtns = form.querySelectorAll('[data-intake-prev]');
-  const submitBtns = form.querySelectorAll('[data-intake-submit]');
+  const status = form.querySelector('[data-form-status]');
   const success = document.getElementById('intake-success');
   let current = 0;
+  let submitting = false;
+  let errorSeq = 0;
   const total = panels.length;
 
+  const setStatus = (msg, tone) => {
+    if (!status) return;
+    status.textContent = msg;
+    status.hidden = !msg;
+    status.classList.toggle('form__status--error', tone === 'error');
+  };
+
   const showStep = (idx) => {
-    panels.forEach((p, i) => {
-      p.classList.toggle('is-active', i === idx);
-    });
+    panels.forEach((p, i) => p.classList.toggle('is-active', i === idx));
     steps.forEach((s, i) => {
       s.classList.toggle('is-active', i === idx);
       s.classList.toggle('is-done', i < idx);
     });
-    // Focus the heading of the active panel for screen readers
     const heading = panels[idx].querySelector('.intake__panel-title');
     if (heading) {
       heading.setAttribute('tabindex', '-1');
       heading.focus();
     }
-
     current = idx;
-  };
-
-  // -------- Validation per step --------
-  const validateStep = (idx) => {
-    const panel = panels[idx];
-    let ok = true;
-    const fields = panel.querySelectorAll('input[required], select[required], textarea[required]');
-    fields.forEach((field) => {
-      clearError(field);
-      const v = (field.value || '').trim();
-      if (!v) {
-        showError(field, 'This field is required.');
-        ok = false;
-        return;
-      }
-      if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-        showError(field, 'Please enter a valid email address.');
-        ok = false;
-      }
-      if (field.type === 'tel' && !/^[0-9+()\-\s.]{7,}$/.test(v)) {
-        showError(field, 'Please enter a valid phone number.');
-        ok = false;
-      }
-      if (field.type === 'checkbox' && !field.checked) {
-        showError(field, 'You must agree to continue.');
-        ok = false;
-      }
-    });
-    return ok;
   };
 
   const showError = (field, msg) => {
@@ -74,8 +53,12 @@
     wrap.classList.add('field--error');
     const err = wrap.querySelector('.field__error');
     if (err) {
+      if (!err.id) err.id = 'intake-error-' + ++errorSeq;
       err.textContent = msg;
-      err.setAttribute('role', 'alert');
+      const described = (field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      if (!described.includes(err.id)) {
+        field.setAttribute('aria-describedby', described.concat(err.id).join(' '));
+      }
     }
     field.setAttribute('aria-invalid', 'true');
   };
@@ -89,28 +72,51 @@
     field.removeAttribute('aria-invalid');
   };
 
-  // Live error clearing
+  const stepFields = (idx) =>
+    Array.from(
+      panels[idx].querySelectorAll(
+        'input[required], select[required], textarea[required], input[type="email"], input[type="tel"]'
+      )
+    ).filter((el) => el.type !== 'hidden');
+
+  const validateStep = (idx) => {
+    const els = stepFields(idx);
+    els.forEach(clearError);
+    const errors = V.validateFields(
+      els.map((el) => ({
+        type: el.type,
+        value: el.value,
+        required: el.hasAttribute('required'),
+        checked: el.checked,
+      }))
+    );
+    errors.forEach(({ index, message }) => showError(els[index], message));
+    if (errors.length) {
+      setStatus(
+        errors.length === 1
+          ? 'One field on this step needs your attention.'
+          : errors.length + ' fields on this step need your attention.',
+        'error'
+      );
+      els[errors[0].index].focus();
+      return false;
+    }
+    setStatus('');
+    return true;
+  };
+
   form.addEventListener('input', (e) => {
-    const f = e.target;
-    const wrap = f.closest('.field');
-    if (wrap && wrap.classList.contains('field--error')) clearError(f);
+    const wrap = e.target.closest && e.target.closest('.field');
+    if (wrap && wrap.classList.contains('field--error')) clearError(e.target);
   });
   form.addEventListener('change', (e) => {
-    const f = e.target;
-    const wrap = f.closest('.field');
-    if (wrap && wrap.classList.contains('field--error')) clearError(f);
+    const wrap = e.target.closest && e.target.closest('.field');
+    if (wrap && wrap.classList.contains('field--error')) clearError(e.target);
   });
 
-  // -------- Navigation --------
-  // Attach a click listener to each Next / Back / Submit button across all
-  // panels. Each button knows its own panel via the closest .intake__panel.
   nextBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      if (!validateStep(current)) {
-        const firstError = panels[current].querySelector('.field--error input, .field--error select, .field--error textarea');
-        if (firstError) firstError.focus();
-        return;
-      }
+      if (!validateStep(current)) return;
       if (current < total - 1) showStep(current + 1);
     });
   });
@@ -121,83 +127,66 @@
     });
   });
 
-  // -------- Submit --------
-  // Submit listener lives on the form so it catches both Enter-key submits
-  // and click-submits from any panel.
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!validateStep(current)) {
-      const firstError = panels[current].querySelector('.field--error input, .field--error select, .field--error textarea');
-      if (firstError) firstError.focus();
+    if (submitting) return;
+    if (!validateStep(current)) return;
+
+    const submitBtn = panels[current].querySelector('[data-intake-submit]');
+    const accessKey = (form.querySelector('input[name="access_key"]') || {}).value || '';
+    const endpoint = form.getAttribute('action') || '';
+
+    if (V.deliveryMode(endpoint, accessKey) !== 'live') {
+      setStatus(
+        'Online appointment requests are not active yet. Please call (573) 403-3544 (Mon-Fri, 9 AM-4 PM) or email contactus@abhayabh.com to request a visit.',
+        'error'
+      );
+      if (status) status.focus();
       return;
     }
 
-    const submitBtn = panels[current].querySelector('[data-intake-submit]');
+    submitting = true;
+    const originalLabel = submitBtn ? submitBtn.textContent : '';
     if (submitBtn) {
       submitBtn.disabled = true;
-      if (window.LoaderDots) window.LoaderDots.attach(submitBtn);
-      else submitBtn.textContent = 'Submitting…';
+      submitBtn.textContent = 'Submitting...';
     }
+    setStatus('Sending your request...');
 
-    const showSuccess = () => {
-      form.style.display = 'none';
-      document.querySelector('.intake__progress')?.style.setProperty('display', 'none');
-      if (success) {
-        success.classList.add('is-active');
-        success.setAttribute('aria-live', 'polite');
-        success.focus();
+    const reset = () => {
+      submitting = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
       }
     };
 
-    const originalLabel = submitBtn ? submitBtn.textContent : '';
-    const accessKey = (form.querySelector('input[name="access_key"]') || {}).value || '';
-    const endpoint = form.getAttribute('action') || '';
-    const useLive = endpoint.includes('web3forms.com') && accessKey.trim().length > 0;
-
-    if (!useLive) {
-      // No configured backend: fall back to opening the user's email client
-      // pre-filled with their intake details so the request still reaches us.
-      const data = new FormData(form);
-      const lines = [];
-      data.forEach((value, key) => {
-        if (key === 'access_key' || key === 'subject' || key === 'from_name' ||
-            key === 'redirect' || key === 'botcheck') return;
-        lines.push(key + ': ' + value);
-      });
-      const patientName = (form.querySelector('[name="name"]') || {}).value || 'New patient';
-      const subject = encodeURIComponent('Appointment request | ' + patientName);
-      const body = encodeURIComponent(lines.join('\n') + '\n');
-      window.location.href = 'mailto:contactus@abhayabh.com?subject=' + subject + '&body=' + body;
-      // Show success UI immediately so the visitor has confirmation.
-      showSuccess();
-      return;
-    }
-
-    const data = new FormData(form);
-    fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
       .then((r) => r.json().catch(() => ({})))
       .then((res) => {
         if (res && res.success) {
-          showSuccess();
-        } else {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
-            submitBtn.textContent = originalLabel;
+          setStatus('');
+          form.hidden = true;
+          const progress = document.querySelector('.intake__progress');
+          if (progress) progress.hidden = true;
+          if (success) {
+            success.classList.add('is-active');
+            success.focus();
           }
-          alert((res && res.message) || 'Sorry, something went wrong. Please try again or call the office.');
+        } else {
+          reset();
+          setStatus(
+            (res && res.message) ||
+              'Sorry, your request could not be sent. Please call (573) 403-3544.',
+            'error'
+          );
         }
       })
       .catch(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          if (window.LoaderDots) window.LoaderDots.detach?.(submitBtn);
-          submitBtn.textContent = originalLabel;
-        }
-        alert('Network error. Please try again or call the office.');
+        reset();
+        setStatus('Network error. Please try again, or call (573) 403-3544.', 'error');
       });
   });
 
-  // Initialize
   showStep(0);
 })();

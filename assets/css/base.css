@@ -253,6 +253,6 @@ a:focus-visible {
 /* ---------- Print ---------- */
 @media print {
   body { background: #fff; color: #000; }
-  .site-header, .site-footer, .crisis-block, nav, .cta-band { display: none; }
+  .site-header, .site-footer, .crisis-editorial, nav, .cta-band { display: none; }
   a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
 }

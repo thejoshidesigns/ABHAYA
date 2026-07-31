@@ -28,9 +28,10 @@
 .btn:active { transform: translateY(1px); }
 
 .btn--primary {
-  background: var(--color-primary);
+  /* Deepened from the brand cyan so cream text clears WCAG AA (4.5:1). */
+  background: var(--color-primary-deep, #0b6a80);
   color: var(--color-cream);
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-deep, #0b6a80);
 }
 
 .btn--primary:hover { background: var(--color-primary-deep); border-color: var(--color-primary-deep); }
@@ -176,7 +177,7 @@
 
 /* Top utility bar (above header) */
 .topbar {
-  background: var(--color-primary-deep, #0f5b6b);
+  background: #0b4453;
   color: #fff;
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium, 500);
@@ -195,7 +196,7 @@
   text-decoration: none;
 }
 .topbar__phone:hover { text-decoration: underline; }
-.topbar__hours { opacity: .85; }
+.topbar__hours { color: #e8f4f7; }
 @media (max-width: 640px) {
   .topbar__inner { justify-content: center; gap: var(--space-3); font-size: 12px; }
 }
@@ -215,8 +216,6 @@
 @media (max-width: 640px) {
   .nav__logo-full { height: 88px; max-width: 100%; }
 }
-
-
 
 
 /* Hamburger */
@@ -716,83 +715,6 @@
   margin: 0 auto var(--space-5);
 }
 
-/* ---------- Crisis block ---------- */
-.crisis-block {
-  background: var(--color-crisis);
-  color: var(--color-crisis-ink);
-  padding-block: var(--space-7);
-}
-
-.crisis-block__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  align-items: flex-start;
-}
-
-@media (min-width: 768px) {
-  .crisis-block__inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-7);
-  }
-}
-
-.crisis-block__text {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.crisis-block__icon {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-}
-
-.crisis-block__title {
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-medium);
-  color: var(--color-crisis-ink);
-  margin: 0;
-  line-height: var(--lh-snug);
-}
-
-.crisis-block__body {
-  font-size: var(--fs-sm);
-  color: var(--color-crisis-ink);
-  opacity: 0.95;
-  margin-top: var(--space-1);
-}
-
-.crisis-block__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  flex-shrink: 0;
-}
-
-.crisis-block .btn {
-  background: var(--color-cream);
-  color: var(--color-crisis);
-  border-color: var(--color-cream);
-  font-weight: var(--fw-bold);
-}
-
-.crisis-block .btn:hover { background: var(--color-paper); }
-
-.crisis-block .btn--ghost {
-  color: var(--color-crisis-ink);
-  border: 1.5px solid var(--color-crisis-ink);
-  background: transparent;
-  padding-inline: var(--space-6);
-}
-
-.crisis-block .btn--ghost:hover {
-  background: rgba(246, 240, 231, 0.12);
-}
 
 /* ---------- Footer ---------- */
 .site-footer {
@@ -885,51 +807,6 @@
 }
 
 .footer__legal-links { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-
-/* ---------- GitHub sync indicator ---------- */
-.github-sync {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-  margin-top: var(--space-6);
-  padding: var(--space-3) var(--space-4);
-  background: rgba(246, 240, 231, 0.06);
-  border: 1px solid rgba(246, 240, 231, 0.08);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-xs);
-  color: var(--color-cream);
-  opacity: 0.85;
-}
-
-.github-sync__status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-weight: var(--fw-semi);
-}
-
-.github-sync__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-sage);
-  box-shadow: 0 0 0 2px rgba(128, 160, 128, 0.25);
-}
-
-.github-sync__dot.is-pending { background: var(--color-amber); }
-.github-sync__dot.is-error { background: var(--color-coral); }
-
-.github-sync__time,
-.github-sync__commit {
-  color: var(--color-cream);
-  opacity: 0.8;
-}
-
-.github-sync__commit {
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
-  letter-spacing: 0.02em;
-}
 
 
 /* ---------- FAQ ---------- */
@@ -2307,4 +2184,30 @@
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* ---------- Form status region ---------- */
+.form__status {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface-2, #f6f7f6);
+  color: var(--color-ink);
+  font-size: var(--fs-sm);
+}
+
+.form__status[hidden] { display: none; }
+
+.form__status--error {
+  border-color: #a3312a;
+  background: #fdf3f2;
+  color: #7a231e;
+}
+
+/* Long button labels must wrap on narrow screens instead of forcing
+   horizontal page scroll (checked by tests/e2e/responsive.spec.js). */
+.btn { max-width: 100%; }
+@media (max-width: 560px) {
+  .btn { white-space: normal; text-wrap: balance; }
 }
