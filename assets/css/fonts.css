@@ -1,3 +1,19 @@
+/* =========================================================================
+   fonts.css - self-hosted webfonts
+
+   Generated from the Google Fonts CSS API, with every remote gstatic URL
+   rewritten to a local file in assets/fonts/. The .woff2 binaries are the
+   exact files Google serves, so rendering is byte-identical to the previous
+   CDN setup. Nothing here reaches a third-party origin.
+
+   Both families are SIL Open Font License 1.1. Licence texts live in
+   assets/fonts/OFL-*.txt and are recorded in THIRD-PARTY-LICENSES.md.
+   Those files are a licence obligation: do not delete them.
+
+   To regenerate: re-run the Google Fonts CSS request, download the woff2
+   files it references into assets/fonts/, and rewrite the src URLs.
+   ========================================================================= */
+
 /* vietnamese */
 @font-face {
   font-family: 'Fraunces';
