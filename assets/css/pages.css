@@ -1061,7 +1061,9 @@ details.faq-item > *:not(summary) {
   text-align: left;
 }
 .bento-ed__head .eyebrow--gold {
-  color: var(--color-gold);
+  /* Decorative gold (#C9A24E) is only 2.26:1 on cream; this is a heading
+     eyebrow, so it uses the AA-rated deep gold instead. */
+  color: var(--color-gold-deep);
   letter-spacing: 0.2em;
 }
 .bento-ed__heading {
