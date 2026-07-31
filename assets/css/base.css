@@ -101,7 +101,7 @@ p { color: var(--color-ink); }
   display: inline-block;
 }
 
-.eyebrow--terracotta { color: var(--color-primary-deep); }
+.eyebrow--terracotta { color: var(--color-primary-accessible); }
 
 .italic-serif {
   font-family: var(--font-display);

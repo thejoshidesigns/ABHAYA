@@ -301,7 +301,7 @@
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.7;
-  color: color-mix(in oklab, var(--color-ink) 78%, transparent);
+  color: var(--color-ink-soft);
   margin: 0 0 1rem;
   max-width: 58ch;
 }
@@ -327,7 +327,7 @@
 }
 
 .eyebrow--accent {
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-weight: 600;
 }
 
@@ -569,7 +569,7 @@
 }
 .hero.hero--small .hero__title em {
   font-style: italic;
-  color: var(--color-primary-deep);
+  color: var(--color-primary-accessible);
   font-weight: var(--fw-regular);
 }
 .hero.hero--small .hero__sub {
@@ -730,7 +730,7 @@ details.faq > *:not(summary) {
   line-height: 1.25;
 }
 .how-item p {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   max-width: 44rem;
   margin: 0;
@@ -909,13 +909,13 @@ details.faq > *:not(summary) {
 .rate-card__unit {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  color: var(--color-ink-soft);
   margin: 0;
 }
 .rate-card__note {
   font-size: 0.9rem;
   line-height: 1.55;
-  color: color-mix(in oklab, var(--color-ink) 72%, transparent);
+  color: var(--color-ink-soft);
   margin: 0.4rem 0 0;
 }
 
@@ -1007,7 +1007,9 @@ details.faq-item > *:not(summary) {
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: var(--color-primary, #07abce);
+  /* White on bright cyan is 2.72:1; the accessible teal gives 5.14:1.
+     The cyan is kept in the glow below, where it carries no text. */
+  background: var(--color-primary-accessible);
   color: #fff;
   font-family: var(--font-body);
   font-weight: 700;
@@ -1026,7 +1028,7 @@ details.faq-item > *:not(summary) {
   line-height: 1.25;
 }
 .timeline__body {
-  color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  color: var(--color-ink-soft);
   line-height: 1.65;
   margin: 0;
   max-width: 44rem;
@@ -1061,7 +1063,9 @@ details.faq-item > *:not(summary) {
   text-align: left;
 }
 .bento-ed__head .eyebrow--gold {
-  color: var(--color-gold);
+  /* Decorative gold (#C9A24E) is only 2.26:1 on cream; this is a heading
+     eyebrow, so it uses the AA-rated deep gold instead. */
+  color: var(--color-gold-deep);
   letter-spacing: 0.2em;
 }
 .bento-ed__heading {
@@ -1171,7 +1175,7 @@ details.faq-item > *:not(summary) {
 
 .bento-ed__eyebrow {
   display: block;
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -1225,13 +1229,15 @@ details.faq-item > *:not(summary) {
   background: var(--color-gold);
 }
 .bento-ed__rule-label {
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+/* This variant is only used on the dark tile, where lime reads at 11.9:1.
+   Do not reuse it on a light surface: lime is 1.64:1 on white. */
 .bento-ed__rule-label--lime { color: var(--color-accent); }
 
 /* CTA */
@@ -1568,7 +1574,8 @@ details.faq-item > *:not(summary) {
   font-family: var(--font-display, "Fraunces", serif);
   font-size: 1.125rem;
   font-weight: 600;
-  color: #07abce;
+  /* 4.72:1 against the lime tint below. Bright cyan was 2.49:1. */
+  color: var(--color-primary-accessible);
   background: rgba(187, 214, 57, 0.18);
   border-radius: 999px;
   padding: 0.15rem 0.6rem;

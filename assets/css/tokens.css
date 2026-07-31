@@ -22,8 +22,12 @@
      decorative gradients, glows, illustrations and non-essential accents.
        #00788F -> 5.14:1 on #FFFFFF, 4.85:1 on #F4F9FB cream (WCAG AA)
        #006B80 -> 6.15:1 on #FFFFFF, 5.80:1 on cream (hover/active) */
-  --color-primary-accessible:       #00788F;
+  --color-primary-accessible:       #00788F;  /* 5.14:1 on white, 4.85:1 on cream */
   --color-primary-accessible-hover: #006B80;
+  /* For text on tinted surfaces. #00788F only reaches 3.67:1 on sage-soft
+     (#c2dfe5), so callouts and tinted tiles need this deeper step: 4.89:1 on
+     sage-soft, 6.85:1 on white. */
+  --color-primary-accessible-deep:  #00637A;
 
   /* Accent: lime-green #bbd639 (logo leaves) */
   --color-accent:          #bbd639;   /* secondary accent */
@@ -45,7 +49,7 @@
 
   /* Text */
   --color-ink:             #2a3a40;   /* body text - cool dark charcoal */
-  --color-ink-soft:        #4e6370;   /* secondary text */
+  --color-ink-soft:        #4a5e6a;   /* secondary text; 4.83:1 on sage-soft */
   --color-ink-deep:        #1a252a;   /* deepest footer / contrast surface */
 
   /* Borders/lines */

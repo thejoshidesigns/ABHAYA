@@ -25,20 +25,33 @@ Redirect 301 /testimonials.html /care.html
   Header always set Cross-Origin-Resource-Policy "same-site"
 
   # HSTS is intentionally DISABLED until HTTPS is verified on the live domain.
-  # It is sticky and cannot be undone from the server: once a browser sees it,
-  # that browser refuses plain HTTP for the whole max-age. Enable only after
-  # step 5 of DEPLOYMENT-CHECKLIST.md passes, and start with a short max-age.
+  # HSTS is cached by browsers for its configured max-age. It can be revoked by
+  # serving max-age=0, but previously cached policies may remain until the
+  # browser receives that response. Preloading requires a separate removal
+  # process. Enable only after step 5 of DEPLOYMENT-CHECKLIST.md passes, and
+  # start with a short max-age.
   # Header always set Strict-Transport-Security "max-age=300" env=HTTPS
 
-  # Content Security Policy. Third parties, in full:
-  #   fonts.googleapis.com / fonts.gstatic.com - Google Fonts, all pages
-  #   cdn.jsdelivr.net                         - GSAP animation, about.html only
-  #   www.google.com / maps.google.com         - map iframe, contact.html only
-  #   api.web3forms.com                        - form delivery (not yet active)
-  # No 'unsafe-inline' for scripts and no 'unsafe-eval': all JavaScript lives
-  # in external files under assets/js/. Do not add either to fix a console
-  # error; add the specific origin instead.
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://maps.google.com; upgrade-insecure-requests"
+  # Content Security Policy.
+  #
+  # Fonts and GSAP are self-hosted (assets/fonts/, assets/js/vendor/), so
+  # fonts.googleapis.com, fonts.gstatic.com and cdn.jsdelivr.net have all been
+  # removed. Do not add them back: re-adding an origin re-opens it for every
+  # page, not just the one that needed it.
+  #
+  # Remaining third-party origins, in full:
+  #   www.google.com / maps.google.com - frame-src only, for the click-to-load
+  #                                      map on contact.html. Nothing is
+  #                                      requested until the visitor presses
+  #                                      "Load interactive map".
+  #   api.web3forms.com                - form delivery (not yet active)
+  #
+  # 'unsafe-inline' remains on style-src only, for the inline style="..."
+  # attributes still present in the markup. There is no 'unsafe-inline' or
+  # 'unsafe-eval' for scripts: all JavaScript lives in external files under
+  # assets/js/. Do not add either to fix a console error; add the specific
+  # origin instead.
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://api.web3forms.com; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://maps.google.com; upgrade-insecure-requests"
 </IfModule>
 
 # --- Compression ---

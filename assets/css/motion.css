@@ -224,10 +224,14 @@
   background: currentColor;
   opacity: 0.85;
 }
+/* Default: dots bounce while a form is submitting. */
+.loader-dots > span:nth-child(1) { animation: loader-bounce 0.9s ease-in-out infinite; }
+.loader-dots > span:nth-child(2) { animation: loader-bounce 0.9s ease-in-out 0.15s infinite; }
+.loader-dots > span:nth-child(3) { animation: loader-bounce 0.9s ease-in-out 0.3s infinite; }
+/* Reduced motion: hold the dots still. The submit state is still conveyed by
+   the button label and the aria-live status message, so no meaning is lost. */
 @media (prefers-reduced-motion: reduce) {
-  .loader-dots > span:nth-child(1) { animation: loader-bounce 0.9s ease-in-out infinite; }
-  .loader-dots > span:nth-child(2) { animation: loader-bounce 0.9s ease-in-out 0.15s infinite; }
-  .loader-dots > span:nth-child(3) { animation: loader-bounce 0.9s ease-in-out 0.3s infinite; }
+  .loader-dots > span { animation: none !important; opacity: 0.85; }
 }
 @keyframes loader-bounce {
   0%, 100% { transform: translateY(0); opacity: 0.5; }
