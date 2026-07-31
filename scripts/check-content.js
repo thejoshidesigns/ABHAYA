@@ -44,6 +44,10 @@ function walk(dir) {
       continue;
     }
     if (!EXTENSIONS.includes(path.extname(entry.name))) continue;
+    // Built JS in dist/ is minified, which strips the per-line
+    // "check-content-ignore" markers this scanner relies on. The authored
+    // sources under assets/js are scanned instead, so nothing is skipped.
+    if (full.includes(`dist${path.sep}assets${path.sep}js`)) continue;
     const text = fs.readFileSync(full, 'utf8');
     text.split(/\r?\n/).forEach((line, i) => {
       if (line.includes('check-content-ignore')) return;
