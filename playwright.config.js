@@ -15,7 +15,7 @@ module.exports = defineConfig({
     screenshot: 'only-on-failure',
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'chromium', use: { ...devices['Desktop Chrome'], headless: true } },
   ],
   webServer: {
     command: `npx http-server dist -p ${PORT} -c-1 --silent`,
