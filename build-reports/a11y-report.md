@@ -1,6 +1,6 @@
 # Accessibility audit
 
-Generated: 2026-07-31T22:04:55.137Z
+Generated: 2026-07-31T22:09:34.604Z
 Pages: 15 | Viewports: desktop, mobile
 Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 
