@@ -217,8 +217,6 @@
 }
 
 
-
-
 /* Hamburger */
 .nav__toggle {
   display: inline-flex;
@@ -716,19 +714,6 @@
   margin: 0 auto var(--space-5);
 }
 
-/* ---------- Crisis block ---------- */
-
-
-@media (min-width: 768px) {
-}
-
-
-
-
-
-
-
-
 
 /* ---------- Footer ---------- */
 .site-footer {
@@ -821,10 +806,6 @@
 }
 
 .footer__legal-links { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-
-
-
-
 
 
 /* ---------- FAQ ---------- */
