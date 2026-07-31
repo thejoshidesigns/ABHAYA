@@ -273,17 +273,3 @@
   .page-wipe { display: none; }
 }
 
-/* ---------- Above-the-fold hero copy paints on the first frame ----------
-   Hero blocks sit in the initial viewport, so a JS-driven reveal starting at
-   opacity 0 pushes Largest Contentful Paint out by the whole script + fade
-   window with nothing gained: the visitor never scrolls these into view.
-   They render immediately; every reveal further down the page is untouched. */
-section[class*="hero"] [data-reveal],
-section[class*="hero"] .reveal,
-section[class*="hero"][data-reveal],
-section[class*="hero"].reveal {
-  opacity: 1;
-  transform: none;
-  transition: none;
-  will-change: auto;
-}
