@@ -2282,9 +2282,9 @@
 
 /* Compact crisis notice (contact page, above ordinary contact details) */
 .crisis-note {
-  background: color-mix(in oklab, var(--color-terracotta) 10%, var(--color-surface));
-  border-top: 1px solid color-mix(in oklab, var(--color-terracotta) 30%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, var(--color-terracotta) 30%, transparent);
+  background: color-mix(in oklab, var(--color-crisis) 8%, var(--color-cream));
+  border-top: 1px solid color-mix(in oklab, var(--color-crisis) 32%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-crisis) 32%, transparent);
   padding: var(--space-5) 0;
 }
 .crisis-note__title {
