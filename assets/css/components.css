@@ -1958,6 +1958,34 @@
 
 .location__map iframe { width: 100%; height: 100%; border: 0; }
 
+/* ---------- Click-to-load map consent block ---------- */
+.map-consent {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md, 12px);
+  background: var(--color-cream);
+  padding: var(--space-4);
+}
+.map-consent__note {
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  line-height: var(--lh-loose);
+}
+.map-consent__load { min-height: 44px; }
+.map-consent__status {
+  margin: var(--space-2) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+}
+.map-consent__status:empty { margin: 0; }
+.map-consent__alt {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-sm);
+}
+.map-consent__alt a { color: var(--color-primary-accessible); }
+/* The map container is hidden until the visitor loads it. */
+.location__map[hidden] { display: none; }
+
 /* ---------- Definition list (provider creds) ---------- */
 .creds {
   list-style: none;
