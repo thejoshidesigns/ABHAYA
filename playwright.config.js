@@ -14,6 +14,10 @@ module.exports = defineConfig({
     baseURL: `http://127.0.0.1:${PORT}`,
     screenshot: 'only-on-failure',
   },
+  // Chromium is the default local gate. Firefox and WebKit are opt-in via
+  // `npm run test:cross-browser`, which passes --project explicitly. Playwright
+  // WebKit is the WebKit engine used by Safari; it is NOT Safari itself and is
+  // NOT iOS. Treat it as engine coverage, not as a substitute for device QA.
   projects: [
     {
       name: 'chromium',
@@ -26,6 +30,14 @@ module.exports = defineConfig({
           ? { executablePath: process.env.CHROME_PATH, args: ['--no-sandbox'] }
           : {},
       },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'], headless: true },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], headless: true },
     },
   ],
 
