@@ -49,7 +49,7 @@
 
   /* Text */
   --color-ink:             #2a3a40;   /* body text - cool dark charcoal */
-  --color-ink-soft:        #4e6370;   /* secondary text */
+  --color-ink-soft:        #4a5e6a;   /* secondary text; 4.83:1 on sage-soft */
   --color-ink-deep:        #1a252a;   /* deepest footer / contrast surface */
 
   /* Borders/lines */
