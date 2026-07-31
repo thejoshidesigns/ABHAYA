@@ -16,10 +16,9 @@
     "check:html": "html-validate \"dist/**/*.html\"",
     "check:dist": "node scripts/check-dist.js",
     "test:unit": "node --test tests/*.test.js",
-    "test:a11y": "playwright test tests/e2e/a11y.spec.js",
-    "test:responsive": "playwright test tests/e2e/responsive.spec.js",
-    "test:privacy": "playwright test tests/e2e/privacy-forms.spec.js",
-
+    "test:a11y": "playwright test --project=chromium tests/e2e/a11y.spec.js",
+    "test:responsive": "playwright test --project=chromium tests/e2e/responsive.spec.js",
+    "test:privacy": "playwright test --project=chromium tests/e2e/privacy-forms.spec.js",
     "test": "npm run test:unit && npm run test:a11y && npm run test:responsive",
     "check": "npm run build && npm run check:content && npm run check:links && npm run check:html && npm run test:unit && npm run test:a11y && npm run test:responsive && npm run test:privacy && npm run check:dist",
     "check:deps": "node scripts/check-deps.js",
@@ -27,13 +26,15 @@
     "lighthouse:local": "npm run build && node scripts/lighthouse-local.mjs",
     "lighthouse:live": "node scripts/lighthouse-live.mjs",
     "verify:production": "node scripts/verify-production.js",
-    "prelaunch": "npm run check:deps:strict && npm run check && npm run lighthouse:local"
-
+    "prelaunch": "npm run check:deps:strict && npm run check && npm run lighthouse:local",
+    "test:cross-browser": "playwright test --project=firefox --project=webkit",
+    "test:browsers:install": "playwright install firefox webkit"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.62.1",
     "chrome-launcher": "^1.2.1",
+    "esbuild": "^0.28.1",
     "html-validate": "^11.6.0",
     "lighthouse": "^13.4.1",
     "prettier": "^3.3.3"

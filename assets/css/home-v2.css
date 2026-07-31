@@ -272,7 +272,7 @@
   line-height: 1;
 }
 
-.why-item h4 {
+.why-item h3 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.25rem;

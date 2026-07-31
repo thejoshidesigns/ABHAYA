@@ -152,6 +152,103 @@ function copyDir(src, dest, rel = "") {
 if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true });
 copyDir(ROOT, DIST);
 
+// ---------------------------------------------------------------------------
+// Asset optimisation
+//
+// The authored CSS is split across seven files for maintainability. Shipping
+// seven render-blocking stylesheets costs roughly two seconds of blocking time
+// on a throttled mobile connection, so the build concatenates them, in the
+// authored cascade order, into one minified `site.css` and rewrites every page
+// to load that single file. Source files stay split in the repo; only dist/
+// is bundled. Nothing about the cascade, the selectors or the design changes.
+// ---------------------------------------------------------------------------
+const esbuild = require("esbuild");
+
+// Cascade order. Must match the order the <link> tags were authored in.
+const CSS_ORDER = [
+  "tokens.css",
+  "fonts.css",
+  "base.css",
+  "components.css",
+  "pages.css",
+  "motion.css",
+  "home-v2.css",
+];
+
+const CSS_DIR = path.join(DIST, "assets", "css");
+
+function bundleCss() {
+  const parts = [];
+  for (const name of CSS_ORDER) {
+    const file = path.join(CSS_DIR, name);
+    if (!fs.existsSync(file)) {
+      console.error(`build: expected stylesheet assets/css/${name}`);
+      process.exit(1);
+    }
+    parts.push(`/* ${name} */\n${fs.readFileSync(file, "utf8")}`);
+  }
+  const { code } = esbuild.transformSync(parts.join("\n"), {
+    loader: "css",
+    minify: true,
+    // Match the browser floor the site already targets.
+    target: ["chrome100", "firefox100", "safari15", "edge100"],
+  });
+  fs.writeFileSync(path.join(CSS_DIR, "site.css"), code);
+  // The individual files are now dead weight in the bundle.
+  for (const name of CSS_ORDER) fs.rmSync(path.join(CSS_DIR, name));
+}
+
+function minifyJs(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      minifyJs(p);
+      continue;
+    }
+    if (!entry.name.endsWith(".js")) continue;
+    // Vendor bundles ship pre-minified; re-processing them buys nothing.
+    if (entry.name.endsWith(".min.js")) continue;
+    const src = fs.readFileSync(p, "utf8");
+    const { code } = esbuild.transformSync(src, {
+      loader: "js",
+      minify: true,
+      target: ["chrome100", "firefox100", "safari15", "edge100"],
+    });
+    fs.writeFileSync(p, code);
+  }
+}
+
+/** Collapse the per-file stylesheet links in one page down to site.css. */
+function rewriteCssLinks(html, relPath) {
+  const depth = relPath.split("/").length - 1;
+  const base = "../".repeat(depth);
+  const linkRe = new RegExp(
+    `[ \\t]*<link rel="stylesheet" href="[^"]*assets/css/(${CSS_ORDER.join("|").replace(/\./g, "\\.")})"[^>]*>\\n?`,
+    "g"
+  );
+  if (!linkRe.test(html)) return html;
+  let first = true;
+  return html.replace(linkRe, () => {
+    if (!first) return "";
+    first = false;
+    return `  <link rel="stylesheet" href="${base}assets/css/site.css" />\n`;
+  });
+}
+
+function forEachHtml(dir, fn) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, entry.name);
+    if (entry.isDirectory()) forEachHtml(p, fn);
+    else if (entry.name.endsWith(".html")) fn(p, path.relative(DIST, p).split(path.sep).join("/"));
+  }
+}
+
+bundleCss();
+minifyJs(path.join(DIST, "assets", "js"));
+forEachHtml(DIST, (file, rel) => {
+  fs.writeFileSync(file, rewriteCssLinks(fs.readFileSync(file, "utf8"), rel));
+});
+
 // Safety: sanity-check that .htaccess and 404.html shipped.
 for (const required of [".htaccess", "404.html", "index.html"]) {
   if (!fs.existsSync(path.join(DIST, required))) {
