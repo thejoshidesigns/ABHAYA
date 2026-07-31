@@ -2203,3 +2203,10 @@
   background: #fdf3f2;
   color: #7a231e;
 }
+
+/* Long button labels must wrap on narrow screens instead of forcing
+   horizontal page scroll (checked by tests/e2e/responsive.spec.js). */
+.btn { max-width: 100%; }
+@media (max-width: 560px) {
+  .btn { white-space: normal; text-wrap: balance; }
+}
