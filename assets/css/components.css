@@ -28,9 +28,10 @@
 .btn:active { transform: translateY(1px); }
 
 .btn--primary {
-  background: var(--color-primary);
+  /* Deepened from the brand cyan so cream text clears WCAG AA (4.5:1). */
+  background: var(--color-primary-deep, #0b6a80);
   color: var(--color-cream);
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-deep, #0b6a80);
 }
 
 .btn--primary:hover { background: var(--color-primary-deep); border-color: var(--color-primary-deep); }
@@ -176,7 +177,7 @@
 
 /* Top utility bar (above header) */
 .topbar {
-  background: var(--color-primary-deep, #0f5b6b);
+  background: #0b4453;
   color: #fff;
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium, 500);
@@ -195,7 +196,7 @@
   text-decoration: none;
 }
 .topbar__phone:hover { text-decoration: underline; }
-.topbar__hours { opacity: .85; }
+.topbar__hours { color: #e8f4f7; }
 @media (max-width: 640px) {
   .topbar__inner { justify-content: center; gap: var(--space-3); font-size: 12px; }
 }
