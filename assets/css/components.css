@@ -886,6 +886,52 @@
 
 .footer__legal-links { display: flex; flex-wrap: wrap; gap: var(--space-4); }
 
+/* ---------- GitHub sync indicator ---------- */
+.github-sync {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background: rgba(246, 240, 231, 0.06);
+  border: 1px solid rgba(246, 240, 231, 0.08);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-xs);
+  color: var(--color-cream);
+  opacity: 0.85;
+}
+
+.github-sync__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-semi);
+}
+
+.github-sync__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-sage);
+  box-shadow: 0 0 0 2px rgba(128, 160, 128, 0.25);
+}
+
+.github-sync__dot.is-pending { background: var(--color-amber); }
+.github-sync__dot.is-error { background: var(--color-coral); }
+
+.github-sync__time,
+.github-sync__commit {
+  color: var(--color-cream);
+  opacity: 0.8;
+}
+
+.github-sync__commit {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  letter-spacing: 0.02em;
+}
+
+
 /* ---------- FAQ ---------- */
 .faq {
   display: flex;
