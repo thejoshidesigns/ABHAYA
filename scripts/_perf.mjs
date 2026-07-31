@@ -13,7 +13,7 @@ srv.listen(PORT,"127.0.0.1",async()=>{
   for(const k of ["render-blocking-resources","unused-css-rules","unminified-css","unminified-javascript","unused-javascript","modern-image-formats","uses-responsive-images","mainthread-work-breakdown","bootup-time","font-display","prioritize-lcp-image","network-dependency-tree-insight","render-blocking-insight","document-latency-insight"]){
     const x=a[k]; if(!x||x.score===null||x.score>=0.9) continue;
     console.log(`  -- ${k} (${x.displayValue||""})`);
-    (x.details?.items||[]).slice(0,8).forEach(i=>console.log("      ",JSON.stringify(i).slice(0,220)));
+    (Array.isArray(x.details?.items)?x.details.items:[]).slice(0,8).forEach(i=>console.log("      ",JSON.stringify(i).slice(0,220)));
   }
   console.log("  LCP element:", JSON.stringify(a["largest-contentful-paint-element"]?.details?.items?.[0]||{}).slice(0,300));
  }
