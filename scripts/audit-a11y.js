@@ -156,8 +156,15 @@ const CONTRAST_SWEEP = () => {
   const contrast = [];
 
   for (const viewport of VIEWPORTS) {
+    // reducedMotion:'reduce' is required for determinism, not convenience.
+    // Reveal animations transition opacity 0 -> 1; sampling mid-flight makes
+    // axe measure a composited colour (e.g. #56848d instead of #356b76) and
+    // report a contrast failure that no user ever sees. The site's
+    // prefers-reduced-motion block forces those elements to their final
+    // opacity immediately, so we measure the settled state users actually read.
     const context = await browser.newContext({
       viewport: { width: viewport.width, height: viewport.height },
+      reducedMotion: "reduce",
     });
     const page = await context.newPage();
 
