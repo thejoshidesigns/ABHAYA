@@ -175,14 +175,34 @@
               <span class="at-glance__value"><a href="tel:+15734033544">(573) 403-3544</a></span>
             </div>
           </div>
-          <div class="location__map">
-            <iframe
-              src="https://www.google.com/maps?q=2011+Chapel+Plaza+Ct+Ste+9+Columbia+MO+65203&amp;output=embed"
-              title="Map of Columbia office"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen></iframe>
+          <!-- Click-to-load map. Nothing contacts Google until the visitor
+               presses the button, so no third party sees a request from
+               someone merely reading a behavioural-health contact page.
+               The address above and the plain link below both work with the
+               embed never loaded. -->
+          <div class="map-consent" data-map-consent>
+            <p class="map-consent__note">
+              The interactive map is provided by Google Maps. Loading it shares
+              your IP address with Google.
+            </p>
+            <button
+              type="button"
+              class="btn btn--secondary map-consent__load"
+              data-map-load
+              data-map-src="https://www.google.com/maps?q=2011+Chapel+Plaza+Ct+Ste+9+Columbia+MO+65203&amp;output=embed"
+              data-map-title="Map of the Columbia office at 2011 Chapel Plaza Ct Ste 9">
+              Load interactive map
+            </button>
+            <p class="map-consent__status" data-map-status role="status" aria-live="polite"></p>
+            <p class="map-consent__alt">
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=2011+Chapel+Plaza+Ct+Ste+9+Columbia+MO+65203"
+                 target="_blank" rel="noopener noreferrer">
+                Open in Google Maps
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+            </p>
           </div>
+          <div class="location__map" data-map-frame hidden></div>
         </article>
 
         <article class="at-glance">
