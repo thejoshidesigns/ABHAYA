@@ -25,9 +25,16 @@ const VIEWPORTS = [
   { name: 'mobile', width: 390, height: 844 },
 ];
 
+// Reveal animations transition opacity 0 -> 1. If axe samples mid-flight it
+// measures a composited colour and reports contrast failures that no user ever
+// sees, making this suite non-deterministic. The site's prefers-reduced-motion
+// rules force those elements to their final opacity immediately, so this pins
+// the suite to the settled state users actually read.
+test.use({ reducedMotion: 'reduce' });
+
 for (const viewport of VIEWPORTS) {
   for (const url of PAGES) {
-    test(`axe: ${url} @ ${viewport.name}`, async ({ page }) => {
+    test(`axe: ${url} @ ${viewport.name}`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await page.goto(url, { waitUntil: 'load' });
 
@@ -35,13 +42,27 @@ for (const viewport of VIEWPORTS) {
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
         .analyze();
 
+      const describe = (v) =>
+        `${v.id} (${v.impact}): ${v.nodes.map((n) => n.target.join(' ')).join(' | ')}`;
+
+      // Moderate and minor findings do not fail the build, but they are never
+      // swallowed: they are attached to the test report and printed.
+      const advisory = results.violations.filter(
+        (v) => v.impact !== 'serious' && v.impact !== 'critical'
+      );
+      if (advisory.length) {
+        const text = advisory.map(describe).join('\n');
+        await testInfo.attach(`advisory-a11y-${viewport.name}`, {
+          body: text,
+          contentType: 'text/plain',
+        });
+        console.log(`[a11y advisory] ${url} @ ${viewport.name}\n${text}`);
+      }
+
       const blocking = results.violations.filter(
         (v) => v.impact === 'serious' || v.impact === 'critical'
       );
-
-      const summary = blocking
-        .map((v) => `${v.id} (${v.impact}): ${v.nodes.map((n) => n.target.join(' ')).join(' | ')}`)
-        .join('\n');
+      const summary = blocking.map(describe).join('\n');
 
       expect(summary, `Accessibility violations on ${url} @ ${viewport.name}:\n${summary}`).toBe('');
     });
