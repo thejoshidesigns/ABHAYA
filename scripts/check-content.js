@@ -7,7 +7,18 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SKIP_DIRS = new Set(['node_modules', '.git', 'scripts', 'test-results', 'playwright-report']);
+// scripts/ and tests/ are tooling, never shipped content: they legitimately
+// contain placeholder addresses and sample data used to drive the checks.
+const SKIP_DIRS = new Set([
+  'node_modules',
+  '.git',
+  'scripts',
+  'tests',
+  'build-reports',
+  'test-results',
+  'playwright-report',
+]);
+
 const EXTENSIONS = ['.html', '.css', '.js', '.json', '.xml', '.txt', '.md'];
 const SKIP_FILES = new Set(['UNRESOLVED-CONTENT.md', 'MAINTENANCE.md', 'package-lock.json', 'bun.lock']);
 
