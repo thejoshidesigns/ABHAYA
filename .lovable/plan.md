@@ -1,93 +1,94 @@
+## Scope
 
-# Abhaya Behavioral Health — Audit & Implementation Plan
+Static site (plain HTML/CSS/JS, `build.js` copies to `dist/`, `scripts/check-contact.js` guards contact data). No framework migration. New tooling is devDependencies only, installed against the existing lockfile, never shipped to `dist/`.
 
-## 1. Audit findings
-
-### Critical (compliance / trust risk)
-1. **Fabricated testimonials still live.** `assets/js/quote-wall.js` and `testimonials.html` present anonymized stories in a card/modal pattern that reads as patient reviews. Even with disclaimers, the "Care" nav label + modal author fields (`quote-modal-author`, `quote-modal-role`, `quote-modal-context`) mimic a review UI. Must be reframed as "Our care principles" with no author/role/context slots.
-2. **Unverified HIPAA compliance claim.** `index.html:335` — "Secure, HIPAA-compliant video consultations". Website cannot self-assert HIPAA compliance; must be softened to "confidential telehealth using a HIPAA-aligned platform" or similar factual phrasing.
-3. **Web3Forms simulation on localhost.** `assets/js/contact.js` / `intake.js` simulate success without a backend. Per brief, must never simulate success; must show a graceful "online submission temporarily unavailable — please call/email" fallback until access key is configured server-side.
-4. **Intake form collects sensitive data** (checkbox `consent_hipaa`, symptom fields, medication text areas per intake.html line counts). Needs minimization — public unverified form should collect name, contact, best time, and short reason only.
-
-### High (design system / consistency)
-5. **Duplicate/legacy CSS.** `home-v2.css` (1285 lines) + `pages.css` (1528) + `components.css` (2185) contain overlapping hero, card, and carousel definitions. Two carousel implementations (`insurance-carousel.js` + `.logo-marquee`) exist; `insurance-carousel.js` is now unused.
-6. **Two motion engines running.** `motion.js` (249) + `motion-gsap.js` (290) + GSAP CDN load on every page. GSAP only needed for a few pages; motion.js reveal duplicates GSAP ScrollTrigger reveals.
-7. **Duplicated inline SVG icons** across every page (`quote-card__mark` repeats 8× per page). Should use `<use href="assets/img/icons/sprite.svg#...">`.
-8. **Nav/footer drift risk.** Nav duplicated verbatim across 15 HTML files — must be verified identical, active states use `aria-current="page"` consistently.
-
-### Medium (a11y / perf)
-9. Lime `#bbd639` on cream fails AA for small text; needs audit of any small-text usage.
-10. Fonts loaded via `<link rel="preload" as="style">` without `onload` swap — no benefit, and Fraunces weight range is broad; subset to used weights.
-11. `data-split-text="words"` runs on every page's hero H1; if JS fails, text still renders (good), but motion should be gated behind `prefers-reduced-motion`.
-12. `404.html` uses full editorial hero; verify it loads no GSAP unnecessarily.
-13. `.htaccess` is minimal — missing cache headers, security headers (X-Content-Type-Options, Referrer-Policy), and gzip.
-
-### Low
-14. `og:image` points to `og-default.svg` — most social platforms don't render SVG OG images; needs a raster fallback (or accept degraded preview).
-15. `sitemap.xml` includes `testimonials.html` — will need URL update when renamed.
-16. `build.js` excludes `src/` and `node_modules` but not `.github`, `.lovable`, `.workspace`, `.prettierrc`, `.prettierignore`, `bun.lock`, `.gitignore`, `README*`. Must be widened.
-
-## 2. Design system decisions (no code yet)
-
-- Keep tokens: teal `#07abce`, lime `#bbd639`, cream `#F4F9FB`, ink `#2a3a40`, Fraunces + Plus Jakarta Sans.
-- Lime restricted to: numbered markers, small icon accents, illustration highlights. Never body text on cream.
-- Consolidate to **one** hero pattern (`hero-editorial`), **one** card pattern, **one** carousel (`logo-marquee`), **one** reveal system (IntersectionObserver in `motion.js`), GSAP retained only for the About sticky-approach sequence.
-- Icons: single `sprite.svg` referenced via `<use>`; remove per-page inline SVG duplication for repeating marks.
-
-## 3. Implementation sequence (phased, reviewable)
-
-**Phase A — Compliance & content safety (do first, blocks publish)**
-- Rewrite `testimonials.html` as `care.html` ("Our care principles") — remove author/role/context fields, remove quotation-mark visual, remove modal or repurpose to expanded principle text only.
-- Update all nav/footer/sitemap references: label "Care", href `care.html`, drop from testimonials wording.
-- Fix HIPAA phrasing on `index.html` and any other page.
-- Rework `contact.js` / `intake.js`: remove localhost simulation; if `access_key` empty → show "Online form temporarily unavailable — call (573) 403-3544 or email contactus@abhayabh.com" and keep phone/email as primary CTAs.
-- Minimize `intake.html` fields to non-PHI (name, phone, email, preferred contact, brief note, adult/minor, insurance name only — no member ID, no medication list, no symptom details).
-
-**Phase B — Design system cleanup (no visual regressions)**
-- Delete `insurance-carousel.js` (unused).
-- Move all repeated inline SVG marks to `sprite.svg`; replace with `<use>`.
-- Merge overlapping hero/card/carousel CSS; keep single source in `components.css` (base) + `home-v2.css` (home-only) + `pages.css` (subpage-only). Remove dead selectors validated by grep.
-- Reduce GSAP loading to only About page; other pages use `motion.js` reveal.
-- Widen `build.js` EXCLUDE list; add `.htaccess` cache/security headers.
-
-**Phase C — Premium page refinements**
-- **Home**: quieter hero (single kinetic word, static fallback), founder intro block with accessible video modal wired but showing "Video coming soon" state (no fake play), 4-step "What to expect" timeline (Request → Intake → First visit → Ongoing care), standardized services grid, care-principles teaser linking to `/care.html`, trust strip (verified only), crisis band, footer.
-- **About**: keep sticky approach, tighten copy, ensure Dr. Yerrapu naming.
-- **Services (overview + 3 detail pages)**: unified card layout, consistent icon per service, single CTA pattern, clear scope statements.
-- **Conditions**: accessible `<details>` list with educational disclaimer; no self-assessment scoring.
-- **Insurance**: `.logo-marquee` as text pills until logos supplied; clean steps list (no double numbering).
-- **FAQ**: existing accordion audited for a11y (already uses `<details>`, good).
-- **Contact / Intake**: per Phase A.
-- **Privacy / Accessibility**: content review only, formatting to match system.
-- **404**: original lightweight SVG, standard header/footer, links to Home/Services/Contact/Intake.
-
-**Phase D — QA**
-- Manual page walkthrough at 320/375/768/1024/1440 via Playwright screenshots.
-- Keyboard, reduced-motion, 200% zoom checks.
-- `node build.js` → inspect `dist/` for stray files.
-- Verify all internal links, tel:/mailto:.
-
-## 4. Items I will NOT do without your confirmation
-
-- **Deleting `testimonials.html`** vs renaming to `care.html` with 301-style redirect note (static host — needs `.htaccess` `Redirect` rule). Please confirm rename.
-- **Removing the modal** on the care page entirely, or keeping it to expand principle text only.
-- **Intake field list**: I'll cut to the minimal set above unless you specify additional fields you want kept.
-- **GSAP removal from Home**: I'll keep only reveal + one word kinetic; confirm you're OK losing any current GSAP flourishes on home.
-
-## 5. Assets I still need from you
-
-1. Verified phone number confirmation (repo shows `(573) 403-3544` — confirm correct).
-2. Dr. Yerrapu portrait (JPG/PNG, ≥800×1000) and 30-90s intro video (MP4 + captions .vtt) when ready.
-3. Verified credentials list (degrees, board certifications, licenses, affiliations).
-4. Verified insurance carrier list + logo files (SVG preferred).
-5. Confirmation of telehealth scope (Missouri only, or additional states).
-6. Confirmation of age scope (adults only? adolescents? minimum age).
-7. Any documented, authorized patient testimonials (only if legally cleared).
-
-## 6. Deliverable on completion
-
-Full changed-files list, page-by-page change log, a11y/security/perf check summary, unresolved verification items, and `dist/` contents ready for GoDaddy upload.
+Eight phases, run **one at a time**. After each phase I report files changed, tests run, and unresolved concerns, and I stop if the build fails or if a change would alter visible clinical content without your approval.
 
 ---
 
-**Please confirm** the four decisions in §4, then I'll implement in the phase order above. If you want to skip any phase or reorder, tell me now.
+## Phase 1 — Content additions (insurance + contact)
+
+**Good Faith Estimate (`insurance.html`)**
+- New `<section id="good-faith-estimate">` between the self-pay section and "How to verify your coverage", using the existing `.section` / `.section__head` pattern (no card inside a card).
+- Exactly the five approved statements, plus a link to the CMS page with `rel="noopener noreferrer"`.
+- No claim the site generates or delivers estimates; no invented procedures, codes, deadlines or guarantees.
+
+**FAQ (`faq.html`)**
+- The "What is a Good Faith Estimate?" answer links to `insurance.html#good-faith-estimate`; the matching JSON-LD text stays consistent with the visible answer.
+
+**Crisis notice (`contact.html`)**
+- Compact `<aside role="note">` directly after the hero, before contact details: states the site and contact form are not monitored for emergencies, `tel:911` for immediate danger, call/text 988 links for mental-health crisis.
+- Static styling only, AA contrast, legible at 320px and 200–400% zoom. The full 988 section near the footer is untouched.
+
+## Phase 2 — Encoding and placeholder audit
+
+- `scripts/check-content.js`: flags mojibake (`Ã`, `â€`, `Â`), U+FFFD, stray control chars, and placeholders (`TODO`, `TBD`, `lorem ipsum`, `example.com`, `FIXME`, empty `href="#"` stubs). Non-zero exit on a hit.
+- Fix real encoding defects; all files remain UTF-8.
+- Uncertain factual content is never invented. It goes into `UNRESOLVED-CONTENT.md`: file, location, what needs client confirmation. This file contains **no** patient information, credentials or private client discussion, is git-tracked but **excluded from `dist/`**, as are all QA reports.
+
+## Phase 3 — Testimonials / care stories
+
+- Audit `care.html`, `index.html` and any other page carrying stories.
+- Without documented patient authorization and approved final wording: remove attributions, names, photographs, star ratings and treatment-outcome claims.
+- Anything retained is rewritten as a clearly and visibly labelled illustrative care scenario ("Illustrative scenario, not an actual patient experience"), with the label adjacent to the content, not buried in a footnote.
+- Removed items are logged in `UNRESOLVED-CONTENT.md` for client decision.
+
+## Phase 4 — Build-time partials + local preview
+
+Extend `build.js` (plain Node, no runtime deps, no framework):
+- `partials/` holds top bar, header/nav, mobile menu, crisis section, footer. Pages use `<!-- @include header -->` markers; the build injects full markup, so `dist/` is complete static HTML with **no client-side nav or footer injection**.
+- Depth token (`{{base}}` → `` or `../`) gives correct relative links for root pages and `services/*`; per-page active state sets `aria-current="page"` and the active nav class. ARIA attributes, mobile menu behavior and keyboard handling are preserved verbatim from current markup.
+- Page `<head>`, titles, descriptions and JSON-LD stay in individual page files.
+
+**Local preview**
+- Source pages now contain include markers, so they must never be served raw. `npm run dev` is changed to build first and serve `dist/`; `npm start` keeps serving `dist/` as today. A `npm run preview` (build + serve, with a watch-rebuild option) is the reliable everyday command.
+
+**Verification**
+- Build asserts each generated page has exactly one `<header>`, one `<main>`, one `<footer>`.
+- Before/after equivalence is checked by **DOM and behavioral comparison**, not byte diffs: parse pre-refactor and post-refactor `dist/` pages, compare normalized element trees (tag, attributes, text) per page, then run the Playwright suite from Phase 7 against both.
+
+**Deployment**
+- The existing GitHub Pages workflow already builds and publishes `dist/`; it is preserved and re-verified after the refactor. Normal workflow files are not deleted.
+
+## Phase 5 — Conservative dead-code cleanup
+
+- Inventory every CSS selector and JS function; cross-reference HTML, partials and JS-constructed class strings before removing anything.
+- Preserve runtime-state classes (`is-active`, `is-visible`, `is-open`) and reduced-motion branches even when absent from static HTML.
+- Consolidate duplicated reveal/carousel/motion code only where behavior is identical (`reveal.js` vs the reveal logic in `motion.js` is the main candidate).
+- No automated CSS purge. CSS/JS byte sizes reported before and after; every page exercised afterwards.
+
+## Phase 6 — Forms (both remain inactive for real delivery)
+
+- **Contact form**: kept for non-sensitive general messages only. May later use Web3Forms; access key stays blank now.
+- **Appointment Request / intake**: **not** wired to Web3Forms. It stays unconnected until the practice confirms in writing that the chosen service and configuration meet its HIPAA/BAA requirements. No documentation is presented claiming Web3Forms is BAA-covered.
+- No diagnosis, medication, treatment-history or other sensitive free-text fields added or transmitted.
+- Remove any path that reports successful delivery when nothing is configured. With no key, submission is blocked and an inline message points to phone/email.
+- Accessibility: visible labels, helper text, required indicators, inline errors via `aria-describedby`, focus moved to the first invalid field, `aria-live="polite"` status region, submit locked during an in-flight attempt to prevent duplicates.
+- Validation logic extracted into a testable module with Node built-in test-runner tests.
+- Report of what remains before real delivery: contact form needs a key; intake form needs a written HIPAA/BAA determination first.
+
+## Phase 7 — Automated checks, accessibility and responsive suites
+
+- `scripts/check-links.js` + `html-validate` against `dist/`: internal links and `#fragments` resolve; images/CSS/JS/icons/favicon/downloads exist; relative paths validated from `services/*`; duplicate IDs and semantic validity checked. `tel:`/`mailto:`/external URLs are syntax-checked only, never fetched.
+- Playwright + `@axe-core/playwright`, with **explicit `playwright install --with-deps` in the CI workflow**.
+- Axe on every page (home, about, services overview and each service page, conditions, insurance, contact, intake, faq, privacy, accessibility, care, 404) at desktop and mobile widths; serious/critical findings fail. Any suppression carries a written justification.
+- Interaction coverage: mobile menu open/close/Escape/focus return, FAQ accordion and filters, skip link, visible keyboard focus.
+- Responsive suite at 320x568, 390x844, 768x1024, 1440x900: horizontal-overflow and overlap detection, header/footer/button/typography checks, reduced-motion mode, 200% zoom where automatable, screenshots saved. Chromium/Firefox/WebKit where supported — reported as **WebKit engine coverage only; real Safari and physical-device testing stay a separate manual launch check**.
+- One documented command, `npm run check` (build then all checks), exiting non-zero on real defects.
+
+## Phase 8 — Security headers, third-party audit, launch package, guide
+
+- Inventory every external origin actually used (Google Fonts, Google Maps embed, jsDelivr/GSAP, Web3Forms endpoint); drop unused ones; self-host fonts (OFL permits it).
+- `.htaccess` is GoDaddy-Apache-only and inert on GitHub Pages; it ships inside `dist/`. Directives validated as supported on shared hosting, CSP introduced conservatively after confirming every required origin, no `unsafe-eval`, `frame-ancestors 'self'`, plus `X-Content-Type-Options`, `Referrer-Policy`, conservative `Permissions-Policy`. **No HSTS** until production HTTPS is verified. A written **rollback procedure** (restore the prior `.htaccess`, or rename it, to recover from a 500) ships with it.
+- Maps: the `?output=embed` iframe uses no API key; I'll recommend a click-to-load wrapper and implement it if you want it.
+- `npm run prelaunch`: `npm audit` (never `--force`), build, HTML/link/asset checks, a11y tests, responsive tests, Lighthouse on representative pages with scores reported. Oversized images converted to WebP/AVIF with originals preserved, explicit width/height added, below-fold images lazy-loaded (hero eager).
+- `dist/` verified as an upload-ready `public_html` payload: no `node_modules`, `.git`, sources, tests, docs, temp/editor files, secrets, source maps, and no `.claude`/`.codex`/AI instruction files, AI metadata, chat transcripts or Lovable branding anywhere in the repo or `dist/`. Generated file manifest plus deployment checklist. No DNS changes, no deployment claims.
+- `MAINTENANCE.md`: one page, non-technical: contact info, hours/facilities, provider images, insurance info, building, what to upload to `public_html`, verifying forms once activated, checking sitemap/robots/HTTPS/404, and which content needs clinical or legal sign-off. No credentials.
+
+---
+
+## Technical notes
+
+DevDependencies only, installed against the existing lockfile, no unrelated major-version upgrades: `@playwright/test`, `@axe-core/playwright`, `html-validate`, `lighthouse`, `sharp`. Everything else is plain Node scripts.
+
+New npm scripts: `preview`, `check:content`, `check:links`, `check:html`, `test:a11y`, `test:responsive`, `check`, `prelaunch`.

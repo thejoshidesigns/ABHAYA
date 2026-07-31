@@ -2279,3 +2279,32 @@
   width: 0.45rem; height: 0.22rem; border-left: 2px solid var(--color-primary);
   border-bottom: 2px solid var(--color-primary); transform: rotate(-45deg);
 }
+
+#good-faith-estimate { scroll-margin-top: 140px; }
+
+/* Compact crisis notice (contact page, above ordinary contact details) */
+.crisis-note {
+  background: color-mix(in oklab, var(--color-crisis) 8%, var(--color-cream));
+  border-top: 1px solid color-mix(in oklab, var(--color-crisis) 32%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-crisis) 32%, transparent);
+  padding: var(--space-5) 0;
+}
+.crisis-note__title {
+  font-size: var(--fs-md);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink);
+}
+.crisis-note__body {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-loose);
+  overflow-wrap: break-word;
+}
+.crisis-note__body a {
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
