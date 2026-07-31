@@ -1,6 +1,6 @@
 # Accessibility audit
 
-Generated: 2026-07-31T22:02:34.513Z
+Generated: 2026-07-31T22:03:45.812Z
 Pages: 15 | Viewports: desktop, mobile
 Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 
@@ -21,11 +21,11 @@ None.
 
 | Rule | Page | Viewports | Nodes | Example target |
 | --- | --- | --- | --- | --- |
-| `color-contrast` | /index.html | desktop, mobile | 11 | `.why-item:nth-child(1) > .why-item__body > p` |
-| `color-contrast` | /services/index.html | desktop, mobile | 7 | `.bento-ed__rule-label--lime` |
-| `color-contrast` | /services/medication.html | desktop, mobile | 6 | `.is-active > .timeline__node` |
-| `color-contrast` | /services/psychotherapy.html | desktop, mobile | 6 | `.is-active > .timeline__node` |
-| `color-contrast` | /conditions.html | desktop, mobile | 6 | `.is-active > .timeline__node` |
+| `color-contrast` | /index.html | desktop, mobile | 10 | `.why-item:nth-child(1) > .why-item__body > p` |
+| `color-contrast` | /services/index.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
+| `color-contrast` | /services/medication.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
+| `color-contrast` | /services/psychotherapy.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
+| `color-contrast` | /conditions.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
 | `color-contrast` | /insurance.html | desktop, mobile | 4 | `.rate-card:nth-child(1) > .rate-card__unit` |
 
 ### moderate (0)
@@ -63,9 +63,5 @@ Axe reports these when it cannot resolve the situation on its own, most often a 
 
 Independent of axe. Alpha-composites every background layer to get the real effective colour, then applies the WCAG 2.1 threshold (4.5:1, or 3:1 for large text). Elements over gradients or background images are skipped as genuinely undecidable.
 
-| Selector | Text | Fg | Bg | Ratio | Needs | Pages |
-| --- | --- | --- | --- | --- | --- | --- |
-| `span.bento-ed__rule-label.bento-ed__rule-label--lime` | Remote care | `#2a3a40` | `#1a252a` | **1.32:1** | 4.5:1 | /services/index.html |
-| `em` | your | `#07abce` | `#f4f9fb` | **2.56:1** | 3:1 | /index.html |
-| `span.timeline__node` | 01 | `#ffffff` | `#07abce` | **2.72:1** | 4.5:1 | /services/index.html, /services/medication.html, /services/psychotherapy.html, /conditions.html |
+No failures. Every resolvable text/background pair meets WCAG AA.
 
