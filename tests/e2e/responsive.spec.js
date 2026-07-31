@@ -4,6 +4,9 @@ const PAGES = [
   '/index.html',
   '/about.html',
   '/services/index.html',
+  '/services/medication.html',
+  '/services/psychotherapy.html',
+  '/services/telepsychiatry.html',
   '/conditions.html',
   '/insurance.html',
   '/contact.html',
@@ -15,9 +18,13 @@ const PAGES = [
 const VIEWPORTS = [
   { name: '320x568', width: 320, height: 568 },
   { name: '390x844', width: 390, height: 844 },
+  // Immediately below and above the global grid breakpoint (720px).
+  { name: '700x900', width: 700, height: 900 },
+  { name: '721x900', width: 721, height: 900 },
   { name: '768x1024', width: 768, height: 1024 },
   { name: '1440x900', width: 1440, height: 900 },
 ];
+
 
 for (const vp of VIEWPORTS) {
   for (const url of PAGES) {
