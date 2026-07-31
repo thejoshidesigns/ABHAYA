@@ -90,10 +90,21 @@ test.describe('keyboard and interaction coverage', () => {
 
   test('conditions filter narrows the list', async ({ page }) => {
     await page.goto('/conditions.html');
-    const filter = page.locator('[data-filter]').nth(1);
-    if (await filter.count()) {
-      await filter.click();
-      await expect(page.locator('[data-condition]:visible').first()).toBeVisible();
-    }
+    const tiles = page.locator('#conditions-grid .bento__tile');
+    const total = await tiles.count();
+    expect(total).toBeGreaterThan(0);
+
+    // "Mood" is the second chip; it must leave some tiles but not all of them.
+    const chip = page.locator('.filter-bar__btn[data-filter="mood"]');
+    await chip.click();
+    await expect(chip).toHaveAttribute('aria-pressed', 'true');
+
+    const shown = page.locator('#conditions-grid .bento__tile:visible');
+    await expect.poll(() => shown.count()).toBeGreaterThan(0);
+    expect(await shown.count()).toBeLessThan(total);
+
+    // Search narrows further, and "All" restores the full list.
+    await page.locator('.filter-bar__btn[data-filter="all"]').click();
+    await expect.poll(() => shown.count()).toBe(total);
   });
 });

@@ -87,11 +87,13 @@
 }
 
 .btn-pill--primary {
-  background: var(--color-primary);
+  background: var(--color-primary-accessible);
   color: #fff;
 }
 .btn-pill--primary:hover,
 .btn-pill--primary:focus-visible {
+  background: var(--color-primary-accessible-hover);
+  /* glow keeps the logo cyan: decorative, carries no information */
   box-shadow: 0 12px 32px -8px color-mix(in oklab, var(--color-primary) 45%, transparent);
   transform: translateY(-1px);
 }
@@ -178,7 +180,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: color-mix(in oklab, var(--color-ink) 40%, transparent);
+  color: var(--color-ink-soft);
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -590,7 +592,7 @@
 }
 .hero-glow__title em {
   font-style: italic;
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
   font-weight: var(--fw-regular);
 }
 
@@ -598,7 +600,7 @@
 .hero-glow__sub {
   font-size: clamp(1rem, 1.1vw, 1.15rem);
   line-height: 1.7;
-  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+  color: var(--color-ink-soft);
   max-width: 34rem;
   margin-bottom: 2rem;
 }
@@ -612,11 +614,13 @@
 
 .btn-pill--outline {
   background: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 2px solid var(--color-primary-accessible);
+  color: var(--color-primary-accessible);
 }
 .btn-pill--outline:hover,
 .btn-pill--outline:focus-visible {
+  color: var(--color-primary-accessible-hover);
+  border-color: var(--color-primary-accessible-hover);
   background: color-mix(in oklab, var(--color-primary) 8%, transparent);
 }
 
@@ -742,11 +746,11 @@
   text-align: center;
 }
 .hero-glow__tile--teal { background: var(--color-cream); }
-.hero-glow__tile--teal .hero-glow__tile-num { color: var(--color-primary); }
+.hero-glow__tile--teal .hero-glow__tile-num { color: var(--color-primary-accessible); }
 .hero-glow__tile--lime { background: color-mix(in oklab, var(--color-accent) 15%, transparent); }
 .hero-glow__tile--lime .hero-glow__tile-num { color: var(--color-ink); }
 .hero-glow__tile-num { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
-.hero-glow__tile-label { font-size: 0.68rem; color: color-mix(in oklab, var(--color-ink) 50%, transparent); }
+.hero-glow__tile-label { font-size: 0.68rem; color: var(--color-ink-soft); }
 
 /* Floating "next session" card */
 .hero-glow__float {
@@ -771,7 +775,7 @@
   height: 2.75rem;
   border-radius: 0.85rem;
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-ink-deep);
   display: grid;
   place-items: center;
 }
@@ -780,7 +784,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--color-ink) 45%, transparent);
+  color: var(--color-ink-soft);
 }
 .hero-glow__float-value {
   font-weight: 700;

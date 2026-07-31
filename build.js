@@ -40,6 +40,14 @@ const EXCLUDE = new Set([
   "CLAUDE.md",
   "MAINTENANCE.md",
   "UNRESOLVED-CONTENT.md",
+  "DEPLOYMENT-CHECKLIST.md",
+  "SECURITY-HEADERS.md",
+  "THIRD-PARTY-AUDIT.md",
+  "DIST-MANIFEST.txt",
+  "LICENSE",
+  ".htmlvalidate.json",
+  ".editorconfig",
+  "coverage",
   "tsconfig.json",
   "vite.config.ts",
 ]);
@@ -124,6 +132,8 @@ function copyDir(src, dest, rel = "") {
     // Keep .htaccess; drop every other dotfile/dotdir.
     if (entry.name.startsWith(".") && entry.name !== ".htaccess") continue;
     if (EXCLUDE.has(entry.name)) continue;
+    // Documentation, tests and tooling never belong in a public bundle.
+    if (/\.(md|map|test\.js|spec\.js)$/i.test(entry.name)) continue;
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
     const relPath = rel ? `${rel}/${entry.name}` : entry.name;

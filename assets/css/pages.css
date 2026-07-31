@@ -1474,8 +1474,9 @@ details.faq-item > *:not(summary) {
 .approach__step {
   transition: opacity var(--dur-slow) var(--ease-out);
 }
-.approach__step[data-active="false"] { opacity: 0.55; }
-.approach__step[data-active="true"]  { opacity: 1; }
+/* Inactive steps are de-emphasised through colour and the decorative rule,
+   never through opacity: a faded wrapper drags body text below AA. */
+.approach__step[data-active="false"] .approach__step-line { opacity: 0.5; }
 
 .approach__step-rule {
   display: flex;
@@ -1487,10 +1488,10 @@ details.faq-item > *:not(summary) {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 500;
-  color: var(--color-gold);
+  color: var(--color-gold-deep);
   transition: color var(--dur) var(--ease-out);
 }
-.approach__step[data-active="true"] .approach__step-num { color: var(--color-primary); }
+.approach__step[data-active="true"] .approach__step-num { color: var(--color-primary-accessible); }
 
 .approach__step-line {
   flex: 1;
@@ -1513,14 +1514,15 @@ details.faq-item > *:not(summary) {
   transition: color var(--dur-slow) var(--ease-out);
 }
 .approach__step[data-active="true"] .approach__step-title {
-  color: var(--color-primary);
+  color: var(--color-primary-accessible);
 }
+.approach__step[data-active="false"] .approach__step-title { color: var(--color-ink-soft); }
 
 .approach__step-body {
   font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.7;
-  color: rgba(11, 29, 34, 0.72);
+  color: var(--color-ink-soft);
   margin: 0;
   max-width: 46ch;
 }
@@ -1593,7 +1595,7 @@ details.faq-item > *:not(summary) {
   text-align: center;
   font-size: 0.9rem;
   line-height: 1.55;
-  color: #6b7a80;
+  color: var(--color-ink-soft);
 }
 @media (prefers-reduced-motion: reduce) {
   .care-principle { transition: none; }

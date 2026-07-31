@@ -28,13 +28,16 @@
 .btn:active { transform: translateY(1px); }
 
 .btn--primary {
-  /* Deepened from the brand cyan so cream text clears WCAG AA (4.5:1). */
-  background: var(--color-primary-deep, #0b6a80);
-  color: var(--color-cream);
-  border-color: var(--color-primary-deep, #0b6a80);
+  /* Accessible teal fill, not the logo cyan: white text clears AA at 5.14:1. */
+  background: var(--color-primary-accessible);
+  color: #fff;
+  border-color: var(--color-primary-accessible);
 }
 
-.btn--primary:hover { background: var(--color-primary-deep); border-color: var(--color-primary-deep); }
+.btn--primary:hover {
+  background: var(--color-primary-accessible-hover);
+  border-color: var(--color-primary-accessible-hover);
+}
 
 .btn--secondary {
   background: transparent;
@@ -154,14 +157,14 @@
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 1.5px;
-  background: var(--color-primary);
+  background: var(--color-primary-accessible);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform var(--dur) var(--ease-out);
 }
 
 .nav__link:hover,
-.nav__link[aria-current="page"] { color: var(--color-primary-deep); }
+.nav__link[aria-current="page"] { color: var(--color-primary-accessible); }
 .nav__link:hover::after,
 .nav__link[aria-current="page"]::after { transform: scaleX(1); }
 
@@ -932,7 +935,7 @@
 }
 
 .cta-band h2 { color: var(--color-cream); margin-bottom: var(--space-4); }
-.cta-band p { color: var(--color-cream); opacity: 0.92; margin-bottom: var(--space-6); max-width: 50ch; margin-inline: auto; }
+.cta-band p { color: #fff; margin-bottom: var(--space-6); max-width: 50ch; margin-inline: auto; }
 
 .cta-band__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
 
@@ -1676,7 +1679,7 @@
   z-index: 2;
 }
 
-.cta-editorial .btn--primary { background: var(--color-primary); }
+.cta-editorial .btn--primary { background: var(--color-primary-accessible); }
 .cta-editorial .btn--secondary {
   border-color: var(--color-cream);
   color: var(--color-cream);
@@ -2130,7 +2133,7 @@
   box-shadow: 0 6px 18px rgba(7,171,206,0.28);
 }
 .insurance-carousel__btn:focus-visible {
-  outline: 2px solid var(--color-teal, #07abce);
+  outline: 2px solid var(--color-primary-accessible);
   outline-offset: 2px;
 }
 .insurance-carousel__btn--prev { left: 0; }
