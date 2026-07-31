@@ -1,6 +1,6 @@
 # Accessibility audit
 
-Generated: 2026-07-31T21:56:17.103Z
+Generated: 2026-07-31T21:59:48.171Z
 Pages: 15 | Viewports: desktop, mobile
 Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 
@@ -9,7 +9,7 @@ Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 | Severity | Findings | Gate |
 | --- | --- | --- |
 | critical | 0 | **fails build** |
-| serious | 5 | **fails build** |
+| serious | 20 | **fails build** |
 | moderate | 0 | reported only |
 | minor | 0 | reported only |
 
@@ -17,13 +17,20 @@ Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 
 None.
 
-### serious (5)
+### serious (20)
 
 | Rule | Page | Viewports | Nodes | Example target |
 | --- | --- | --- | --- | --- |
-| `color-contrast` | /about.html | desktop, mobile | 3 | `.approach__step[data-approach-step=""][data-active="false"]:` |
-| `color-contrast` | /404.html | desktop, mobile | 10 | `.eyebrow` |
-| `color-contrast` | /insurance.html | mobile | 1 | `.is-visible.section__head.reveal > .eyebrow` |
+| `color-contrast` | /index.html | desktop, mobile | 24 | `.why-item:nth-child(1) > .why-item__body > p` |
+| `color-contrast` | /services/index.html | desktop, mobile | 10 | `.eyebrow--gold` |
+| `color-contrast` | /services/medication.html | desktop, mobile | 8 | `.is-active > .timeline__node` |
+| `color-contrast` | /services/psychotherapy.html | desktop, mobile | 7 | `.is-active > .timeline__node` |
+| `color-contrast` | /services/telepsychiatry.html | desktop, mobile | 1 | `.bento__tile--sage > .bento__body` |
+| `color-contrast` | /conditions.html | desktop, mobile | 19 | `#adhd > .bento__cta[href="services/index.html"]` |
+| `color-contrast` | /insurance.html | desktop, mobile | 4 | `.rate-card:nth-child(1) > .rate-card__unit` |
+| `color-contrast` | /contact.html | desktop, mobile | 4 | `.bento__tile--sage > .bento__body` |
+| `color-contrast` | /care.html | desktop, mobile | 10 | `.care-principle:nth-child(1) > .care-principle__num[aria-hid` |
+| `color-contrast` | /privacy.html | desktop, mobile | 1 | `.callout__body` |
 
 ### moderate (0)
 
@@ -40,15 +47,16 @@ Axe reports these when it cannot resolve the situation on its own, most often a 
 | Rule | Page | Viewports | Nodes | Example target |
 | --- | --- | --- | --- | --- |
 | `color-contrast` | /index.html | desktop, mobile | 15 | `div[data-target="12"] > .stats-band__num > .stats-band__valu` |
-| `color-contrast` | /about.html | desktop, mobile | 11 | `.hero-editorial__eyebrow` |
-| `color-contrast` | /services/index.html | desktop, mobile | 5 | `.crisis-editorial__num` |
-| `color-contrast` | /services/medication.html | desktop, mobile | 5 | `.crisis-editorial__num` |
+| `color-contrast` | /about.html | desktop, mobile | 20 | `.hero-editorial__eyebrow` |
+| `color-contrast` | /services/index.html | desktop, mobile | 14 | `.hero-editorial__eyebrow` |
+| `color-contrast` | /services/medication.html | desktop, mobile | 12 | `.hero-editorial__eyebrow` |
 | `color-contrast` | /services/psychotherapy.html | desktop, mobile | 12 | `.hero-editorial__eyebrow` |
-| `color-contrast` | /services/telepsychiatry.html | desktop, mobile | 5 | `.crisis-editorial__num` |
-| `color-contrast` | /conditions.html | desktop, mobile | 5 | `.crisis-editorial__num` |
-| `color-contrast` | /insurance.html | desktop, mobile | 12 | `.hero-editorial__eyebrow` |
-| `color-contrast` | /contact.html | desktop, mobile | 12 | `.hero-editorial__eyebrow` |
-| `color-contrast` | /intake.html | desktop, mobile | 22 | `.nav__link[data-nav="home"][href="index.html"]` |
+| `color-contrast` | /services/telepsychiatry.html | desktop, mobile | 14 | `.hero-editorial__eyebrow` |
+| `color-contrast` | /conditions.html | desktop, mobile | 14 | `.hero-editorial__eyebrow` |
+| `color-contrast` | /insurance.html | desktop, mobile | 16 | `.hero-editorial__eyebrow` |
+| `color-contrast` | /contact.html | desktop, mobile | 16 | `.hero-editorial__eyebrow` |
+| `color-contrast` | /intake.html | desktop, mobile | 25 | `.nav__link[data-nav="home"][href="index.html"]` |
+| `link-in-text-block` | /intake.html | desktop, mobile | 1 | `.hero-editorial__sub > a[href$="tel:988"]` |
 | `color-contrast` | /faq.html | desktop, mobile | 12 | `.hero-editorial__eyebrow` |
 | `color-contrast` | /care.html | desktop, mobile | 9 | `.hero-editorial__eyebrow` |
 | `color-contrast` | /privacy.html | desktop, mobile | 12 | `.hero-editorial__eyebrow` |
