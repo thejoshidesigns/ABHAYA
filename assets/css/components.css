@@ -520,7 +520,7 @@
   color: var(--color-ink);
 }
 
-.field__label .req { color: var(--color-primary-deep); margin-left: 2px; }
+.field__label .req { color: var(--color-primary-accessible); margin-left: 2px; }
 
 .field__hint {
   font-size: var(--fs-xs);
@@ -590,7 +590,7 @@
   color: var(--color-ink);
 }
 
-.checkbox__label .req { color: var(--color-primary-deep); }
+.checkbox__label .req { color: var(--color-primary-accessible); }
 
 /* ---------- Multi-step form ---------- */
 .intake {
@@ -650,9 +650,10 @@
 }
 
 .intake__step.is-active .intake__step-bubble {
-  background: var(--color-primary);
+  /* Cream on bright cyan is 2.56:1; on the accessible teal it is 4.85:1. */
+  background: var(--color-primary-accessible);
   color: var(--color-cream);
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-accessible);
 }
 
 .intake__step.is-done .intake__step-bubble {
@@ -1326,8 +1327,8 @@
   height: 46px;
   border-radius: 50%;
   background: var(--color-paper);
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary-deep);
+  border: 2px solid var(--color-primary-accessible);
+  color: var(--color-primary-accessible);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1340,7 +1341,8 @@
 }
 
 .timeline.is-visible .timeline__item.is-active .timeline__node {
-  background: var(--color-primary);
+  /* Cream on bright cyan is 2.72:1; on the accessible teal it is 4.85:1. */
+  background: var(--color-primary-accessible);
   color: var(--color-cream);
 }
 
