@@ -38,3 +38,10 @@ build-reports/
 DIST-MANIFEST.txt
 test-results/
 playwright-report/
+
+# Lovable / AI assistant workspace folders (private; not for GitHub)
+.lovable/
+.workspace/
+.agents/
+.claude/
+.codex/
