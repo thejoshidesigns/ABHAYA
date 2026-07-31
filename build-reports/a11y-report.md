@@ -1,6 +1,6 @@
 # Accessibility audit
 
-Generated: 2026-07-31T22:03:45.812Z
+Generated: 2026-07-31T22:04:55.137Z
 Pages: 15 | Viewports: desktop, mobile
 Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 
@@ -9,7 +9,7 @@ Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 | Severity | Findings | Gate |
 | --- | --- | --- |
 | critical | 0 | **fails build** |
-| serious | 12 | **fails build** |
+| serious | 0 | **fails build** |
 | moderate | 0 | reported only |
 | minor | 0 | reported only |
 
@@ -17,16 +17,9 @@ Ruleset: wcag2a, wcag2aa, wcag21a, wcag21aa
 
 None.
 
-### serious (12)
+### serious (0)
 
-| Rule | Page | Viewports | Nodes | Example target |
-| --- | --- | --- | --- | --- |
-| `color-contrast` | /index.html | desktop, mobile | 10 | `.why-item:nth-child(1) > .why-item__body > p` |
-| `color-contrast` | /services/index.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
-| `color-contrast` | /services/medication.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
-| `color-contrast` | /services/psychotherapy.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
-| `color-contrast` | /conditions.html | desktop, mobile | 3 | `.is-active > .timeline__body` |
-| `color-contrast` | /insurance.html | desktop, mobile | 4 | `.rate-card:nth-child(1) > .rate-card__unit` |
+None.
 
 ### moderate (0)
 
