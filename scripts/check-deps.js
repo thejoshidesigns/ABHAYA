@@ -11,9 +11,13 @@
    A registry that is simply unreachable must not silently block a release,
    and must not be mistaken for a clean result either.
 
-   Exit 0 = no high/critical advisories, or the registry was unreachable
-            (loudly reported as SKIPPED, review manually before launch).
-   Exit 1 = high or critical advisories present.
+   Exit 0 = no high/critical advisories, or (default mode only) the registry
+            was unreachable, loudly reported as SKIPPED.
+   Exit 1 = high or critical advisories present, or --strict was passed and the
+            audit could not complete (reported as BLOCKED).
+
+   `npm run prelaunch` uses --strict: a launch gate must never pass while the
+   required audit is impossible to run.
 
    Never run `npm audit fix --force`. It performs major-version upgrades.
    ========================================================================= */
@@ -21,11 +25,15 @@
 
 const { spawnSync } = require("child_process");
 
-const res = spawnSync("npm", ["audit", "--json"], {
+const STRICT = process.argv.includes("--strict");
+const REGISTRY = "https://registry.npmjs.org/";
+
+const res = spawnSync("npm", ["audit", "--json", `--registry=${REGISTRY}`], {
   cwd: require("path").join(__dirname, ".."),
   encoding: "utf8",
   maxBuffer: 32 * 1024 * 1024,
 });
+
 
 let report = null;
 try {
@@ -34,20 +42,32 @@ try {
   /* non-JSON output, handled below */
 }
 
-// Registry could not answer: skip loudly rather than blocking or lying.
+// Registry could not answer.
 if (!report || report.error) {
   const detail =
     (report && report.error && (report.error.summary || report.error.detail)) ||
     (res.stderr || "").trim().split("\n").slice(-1)[0] ||
     "unknown error";
+  if (STRICT) {
+    console.error(
+      "check-deps BLOCKED: the npm advisory endpoint could not be reached.\n" +
+        `  registry: ${REGISTRY}\n` +
+        `  reason:   ${detail}\n` +
+        "  This is NOT a pass and NOT a skip. The dependency audit is a\n" +
+        "  mandatory launch gate. Restore registry access and re-run\n" +
+        "  `npm run prelaunch`."
+    );
+    process.exit(1);
+  }
   console.warn(
     "check-deps SKIPPED: the npm advisory endpoint is unavailable.\n" +
       `  reason: ${detail}\n` +
-      "  This is NOT a pass. Run `npm audit` against the public registry\n" +
-      "  before deploying (see DEPLOYMENT-CHECKLIST.md section 1)."
+      "  This is NOT a pass. Run `npm run check:deps:strict` against the\n" +
+      "  public registry before deploying (DEPLOYMENT-CHECKLIST.md section A)."
   );
   process.exit(0);
 }
+
 
 const counts = (report.metadata && report.metadata.vulnerabilities) || {};
 const high = (counts.high || 0) + (counts.critical || 0);

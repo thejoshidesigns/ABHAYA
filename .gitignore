@@ -32,3 +32,9 @@ Abhaya-Website-Plan-GoogleDoc.txt
 v2-system.html
 v2-*.html
 DIST-MANIFEST.txt
+
+# Generated reports and manifests (regenerate locally; never committed)
+build-reports/
+DIST-MANIFEST.txt
+test-results/
+playwright-report/

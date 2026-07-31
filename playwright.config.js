@@ -15,8 +15,20 @@ module.exports = defineConfig({
     screenshot: 'only-on-failure',
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'], headless: true } },
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: true,
+        // Environments that supply their own Chromium (CI images, sandboxes)
+        // can point at it with CHROME_PATH. Unset, Playwright uses its own.
+        launchOptions: process.env.CHROME_PATH
+          ? { executablePath: process.env.CHROME_PATH, args: ['--no-sandbox'] }
+          : {},
+      },
+    },
   ],
+
   webServer: {
     command: `npx http-server dist -p ${PORT} -c-1 --silent`,
     url: `http://127.0.0.1:${PORT}/index.html`,
