@@ -11,6 +11,9 @@
     "check:contact": "node scripts/check-contact.js"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.62.1",
+    "html-validate": "^11.6.0",
     "prettier": "^3.3.3"
   },
   "private": true
