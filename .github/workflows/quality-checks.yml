@@ -35,3 +35,6 @@ jobs:
 
       - name: Build website
         run: npm run build
+
+      - name: Verify contact information
+        run: npm run check:contact
