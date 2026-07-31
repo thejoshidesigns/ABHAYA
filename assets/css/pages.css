@@ -1329,6 +1329,7 @@ details.faq-item > *:not(summary) {
 /* --- Pinned visual card --- */
 .approach__pin {
   position: static;
+  min-width: 0;
 }
 @media (min-width: 900px) {
   .approach__pin {
