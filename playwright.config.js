@@ -42,7 +42,7 @@ module.exports = defineConfig({
   ],
 
   webServer: {
-    command: `npx http-server dist -p ${PORT} -c-1 --silent`,
+    command: `node scripts/serve-dist.js ${PORT}`,
     url: `http://127.0.0.1:${PORT}/index.html`,
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,

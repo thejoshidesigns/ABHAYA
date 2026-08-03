@@ -7,13 +7,15 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-// scripts/ and tests/ are tooling, never shipped content: they legitimately
-// contain placeholder addresses and sample data used to drive the checks.
+// scripts/, tests/ and Artifacts/ are project tooling or private working
+// documents, never shipped content: they legitimately contain placeholder
+// addresses and planning notes used to drive the work.
 const SKIP_DIRS = new Set([
   'node_modules',
   '.git',
   'scripts',
   'tests',
+  'Artifacts',
   'build-reports',
   'test-results',
   'playwright-report',
